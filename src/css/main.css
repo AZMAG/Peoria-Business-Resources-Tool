@@ -391,15 +391,67 @@ template {
           justify-content: space-between;
 }
 
-#table {
+#cardsListContainer {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
   font-size: 12px;
   margin-right: 20px;
+  max-height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#cardsListContainer #cardsList .card {
+  margin-right: 2px;
+}
+
+#cardsListContainer #cardsList .card:hover {
+  background-color: #ededed;
+  cursor: pointer;
+}
+
+#controls {
+  background-color: #ededed;
+  padding-top: 35px;
+  padding-top: 30px;
+  width: 70vw;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#controls .fieldlist {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+}
+
+#controls .fieldlist li {
+  margin-left: 20px;
 }
 
 #mapView {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+}
+
+.horizontalIconContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.horizontalIconContainer .horizontalIcon {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;

@@ -2,26 +2,64 @@
  Map
 ********************/
 #mapView {
-    padding: 0;
-    margin: 0;
-    height: 500px;
-    width: 500px;
+  padding: 0;
+  margin: 0;
+  height: 500px;
+  width: 500px;
 }
 
 .mapTableContainer {
-    display: flex;
-    width: 80vw;
-    margin: 20px auto;
-    padding: 10px;
-    justify-content: space-between;
+  display: flex;
+  width: 80vw;
+  margin: 20px auto;
+  padding: 10px;
+  justify-content: space-between;
+}
+#cardsListContainer {
+  flex: 1;
+  font-size: 12px;
+  margin-right: 20px;
+  max-height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  #cardsList {
+    .card {
+      margin-right: 2px;
+
+      &:hover {
+        background-color: lighten(lightgray, 10%);
+        cursor: pointer;
+      }
+    }
+  }
 }
 
-#table {
-    flex: 1;
-    font-size: 12px;
-    margin-right: 20px;
+#controls {
+  background-color: lighten(lightgray, 10%);
+  padding-top: 35px;
+  padding-top: 30px;
+  width: 70vw;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .fieldlist {
+    display: flex;
+    list-style: none;
+
+    li {
+      margin-left: 20px;
+    }
+  }
 }
 
 #mapView {
+  flex: 4;
+}
+.horizontalIconContainer {
+  display: flex;
+  .horizontalIcon {
     flex: 1;
+  }
 }
