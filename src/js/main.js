@@ -133,7 +133,7 @@ require([
             })
             .filter((fltr) => fltr);
         peoriaBusinessesLayer.definitionExpression = filterComponents.join(
-            " OR "
+            " AND "
         );
         console.log(filterComponents.join(" OR "));
     });
