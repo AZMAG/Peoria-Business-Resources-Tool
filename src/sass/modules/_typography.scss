@@ -2,5 +2,23 @@
 * SASS Typography
 *****************/
 
-$base-font-family: 'Poppins',
-sans-serif;
+// @import url('https://fonts.googleapis.com/css?family=Open'+ 'Sans:300italic',
+    //  400italic,
+    // 600italic,
+    // 700italic,
+    // 800italic,
+    // 400,
+    // 300,
+    // 600,
+    // 700,
+    // 800);
+@import url('https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i,600,600i,700,700i');
+
+@font-face {
+    font-family: 'MuseoSans-500';
+    src: url('fonts/MuseoSans-500.eot') format('embedded-opentype');
+    src: url('fonts/MuseoSans-500.woff') format('woff'), url('MuseoSans-500.ttf') format('truetype'),
+        url('MuseoSans-500.svg#MuseoSans-500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
