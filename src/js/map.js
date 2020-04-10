@@ -6,7 +6,8 @@ require([
     "esri/geometry/Extent",
     "esri/widgets/Search",
     "esri/tasks/Locator",
-], function (config, Map, MapView, FeatureLayer, Extent, Search, Locator) {
+], function(config, Map, MapView, FeatureLayer, Extent, Search, Locator) {
+
     var map = new Map({
         basemap: "gray",
     });
@@ -58,7 +59,7 @@ require([
 
     view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
         lyrView = layerView;
-        lyrView.watch("updating", function (value) {
+        lyrView.watch("updating", function(value) {
             // once the layer view finishes updating
             if (!value) {
                 lyrView
@@ -80,8 +81,7 @@ require([
     let $cboxDelivery = $("#cboxDelivery");
     let $cboxApp = $("#cboxApp");
 
-    let filters = [
-        {
+    let filters = [{
             field: "TakeOut",
             getValue: () => {
                 return $cboxTakeOut.prop("checked") ? 1 : 0;
@@ -105,19 +105,16 @@ require([
         view,
         includeDefaultSources: false,
         locationEnabled: false,
-        sources: [
-            {
-                locator: new Locator({
-                    url:
-                        "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
-                }),
-                singleLineFieldName: "SingleLine",
-                outFields: ["Addr_type"],
-                autoNavigate: true,
-                searchExtent: extent,
-                placeholder: "Address",
-            },
-        ],
+        sources: [{
+            locator: new Locator({
+                url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+            }),
+            singleLineFieldName: "SingleLine",
+            outFields: ["Addr_type"],
+            autoNavigate: true,
+            searchExtent: extent,
+            placeholder: "Address",
+        }, ],
     });
 
     view.ui.add(search, "bottom-left");
@@ -174,21 +171,23 @@ require([
         console.log(filterComponents.join(" OR "));
     });
 });
+
 function titleCase(str) {
     str = str.toLowerCase().split(' ');
     for (var i = 0; i < str.length; i++) {
-      str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+        str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
     }
     return str.join(' ');
-  }
+}
+
 function formatPhoneNumber(phoneNumberString) {
     var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
     var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
     if (match) {
-      return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+        return '(' + match[1] + ') ' + match[2] + '-' + match[3];
     }
     return 'N/A';
-  }
+}
 
 function getCardsList(data) {
     return data.map(
