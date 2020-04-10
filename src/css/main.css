@@ -452,6 +452,15 @@ template {
   margin-left: 20px;
 }
 
+<<<<<<< HEAD
+=======
+#mapView {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+}
+
+>>>>>>> 181ffaa480762940fc33ac86c563c6c61a0e734e
 .horizontalIconContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -661,6 +670,10 @@ template {
     background-size: auto auto;
     max-width: 100%;
     margin: 0;
+    left: -10%;
+  }
+  .footer_nav {
+    left: -10%;
   }
   #page_footer #footercolumn .footer_address p {
     font-size: 14px;
