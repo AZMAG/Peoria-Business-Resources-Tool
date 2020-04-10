@@ -169,7 +169,13 @@ require([
         console.log(filterComponents.join(" OR "));
     });
 });
-
+function titleCase(str) {
+    str = str.toLowerCase().split(' ');
+    for (var i = 0; i < str.length; i++) {
+      str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+    }
+    return str.join(' ');
+  }
 function formatPhoneNumber(phoneNumberString) {
     var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
     var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
@@ -196,7 +202,7 @@ function getCardsList(data) {
             return `
             <div data-objectid="${OBJECTID}" class="card">
               <div class="card-body">
-                <h5 class="card-title">${Name}</h5>
+                <h5 class="card-title">${titleCase(Name)}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">${Address}</h6>
                 ${
                     Phone_Number
