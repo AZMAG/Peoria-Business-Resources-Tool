@@ -170,6 +170,15 @@ require([
     });
 });
 
+function formatPhoneNumber(phoneNumberString) {
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+      return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+    }
+    return 'N/A';
+  }
+
 function getCardsList(data) {
     return data.map(
         ({
@@ -191,7 +200,7 @@ function getCardsList(data) {
                 <h6 class="card-subtitle mb-2 text-muted">${Address}</h6>
                 ${
                     Phone_Number
-                        ? `<p class="card-text"><em class="fa fa-phone"></em> ${Phone_Number}</p>`
+                        ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(Phone_Number)}</p>`
                         : ""
                 }
                 <div class="horizontalIconContainer">
