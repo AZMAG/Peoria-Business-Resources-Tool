@@ -23,7 +23,7 @@
         <a id="home_link" href="https://www.peoriaaz.gov/"></a>
     </header>
     <div class="jumbotron">Welcome to the City of Peoria business locations COVID-19 Project.</div>
-    <main>
+    <main class="main-content">
         <div id="controls">
             <ul class="fieldlist">
                 <li>
@@ -41,15 +41,18 @@
             </ul>
         </div>
         <div class="mapTableContainer">
-            <div id="cardsListContainer">
-                <div>
-                    <h4>Number of Business Locations: <b id="numFeatures"></b></h4>
+
+            <div id="listContainer">
+                <h4>Number of Business Locations: <b id="numFeatures"></b></h4>
+                <div id="cardsListContainer">
+                    <div id="cardsList"></div>
                 </div>
-                <div id="cardsList"></div>
             </div>
+
             <div id="mapView"></div>
         </div>
     </main>
+
     <footer id="page_footer" class="">
         <div id="footercolumn" class="site_template_column footer_column">
             <div class="footer_address col-xs-12 col-md-3">
@@ -67,9 +70,6 @@
                     <a href="https://www.peoriaaz.gov/?splash=https%3a%2f%2fmy.adp.com%2f&amp;____isexternal=true" target="_blank">Employee Login</a>
                 </p>
             </div>
-            <!--startindex-->
-
-            <!--stopindex-->
 
             <div class="social_icons col-xs-12 col-md-6">
                 <a href="https://www.peoriaaz.gov/?splash=https%3a%2f%2ftwitter.com%2fpeoriaaz&amp;____isexternal=true" target="_blank" title="Follow us on Twitter!">
@@ -88,9 +88,6 @@
                     <img src="https://www.peoriaaz.gov/Home/ShowPublishedImage/304/636148110422430000" alt="nextdoor" />
                 </a>
             </div>
-            <!--startindex-->
-
-            <!--stopindex-->
 
             <div class="footer_nav">
                 <a href="https://www.peoriaaz.gov/" target="_self">Home</a>
@@ -101,10 +98,7 @@
                 <a href="https://www.peoriaaz.gov/residents/advanced-components/site-map" target="_self">Sitemap</a>
                 <a href="https://www.peoriaaz.gov/residents/advanced-components/site-specific-pages/contact-us" target="_self">Contact Us</a>
             </div>
-            <!--startindex-->
         </div>
-
-        <!--startindex-->
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>

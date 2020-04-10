@@ -22,6 +22,11 @@ require([
         container: "mapView",
         map,
         extent,
+        zoom: 8,
+        constraints: {
+            rotationEnabled: false,
+            minZoom: 10
+        },
     }));
 
     var peoriaBoundaryLayer = new FeatureLayer({
