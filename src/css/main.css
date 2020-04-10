@@ -463,6 +463,10 @@ template {
 /*******************
  Footer
 ********************/
+#footercolumn {
+  margin-left: 20%;
+}
+
 .mainSpan_wrapper_home #page_footer {
   display: none;
 }
@@ -477,6 +481,7 @@ template {
 #page_footer #footercolumn {
   color: #000;
   display: block;
+  margin-left: 20%;
 }
 
 #page_footer #footercolumn .footer_address,
@@ -626,6 +631,7 @@ template {
     position: relative;
     padding: 0;
     min-height: 232px;
+    margin-left: 20%;
   }
   #page_footer #footercolumn .footer_address {
     float: left;
@@ -756,7 +762,6 @@ template {
   margin-bottom: 0;
   position: relative;
   width: 100%;
-  background: #1a79c4 url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/mobile/mob_header_bg.png") center top no-repeat !important;
   height: 106px;
   background-size: cover;
 }
@@ -812,21 +817,19 @@ template {
   #siteheader a#home_link {
     height: 115px;
     right: auto;
-    left: 0;
+    margin-left: 10%;
     top: 17px;
     width: 375px;
-    background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/logo.png") center center no-repeat !important;
+    background: url("https://www.peoriaed.com/Project/Contents/EconDev/_gfx/cmn/logo.png") center center no-repeat !important;
     background-size: 100% auto !important;
   }
 }
 
 @media only screen and (min-width: 62em) {
   #siteheader a#home_link {
-    height: 115px;
     right: auto;
     left: 0;
     top: 17px;
-    width: 520px;
   }
 }
 
@@ -867,7 +870,7 @@ template {
 }
 
 .jumbotron {
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   margin-bottom: 0;
   color: #ffffff;
   background-color: #8e3847;
@@ -2401,7 +2404,7 @@ body.front_end_body {
   .social_icons {
     float: left;
     width: 100%;
-    min-height: 192px;
+    min-height: 145px;
     padding: 80px 0 0 103px;
     background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/connect_icon.png") left center no-repeat;
     margin: 0;
@@ -2425,7 +2428,6 @@ body.front_end_body {
 @media only screen and (min-width: 62em) {
   .social_icons {
     width: auto;
-    float: right;
   }
   .social_icons a {
     margin: 0 0 0 16px !important;

@@ -18,7 +18,7 @@
     margin-bottom: 0;
     position: relative;
     width: 100%;
-    background: $peoria-main url($header_strip_URL) center top no-repeat !important;
+    // background: $peoria-main url($header_strip_URL) center top no-repeat !important;
     height: 106px;
     background-size: cover;
 }
@@ -78,7 +78,7 @@
     #siteheader a#home_link {
         height: 115px;
         right: auto;
-        left: 0;
+        margin-left: 10%;
         top: 17px;
         width: 375px;
         background: url($header_logo_URL) center center no-repeat !important;
@@ -88,11 +88,11 @@
 
 @media only screen and (min-width: 62em) {
     #siteheader a#home_link {
-        height: 115px;
+        // height: 115px;
         right: auto;
         left: 0;
         top: 17px;
-        width: 520px;
+        // width: 320px;
     }
 }
 
@@ -135,7 +135,7 @@
 
 
 .jumbotron {
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
     margin-bottom: 0;
     color: $text-white;
     background-color: $peoria-accent;

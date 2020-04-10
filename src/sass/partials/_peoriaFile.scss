@@ -1605,7 +1605,7 @@ body.front_end_body {
     .social_icons {
         float: left;
         width: 100%;
-        min-height: 192px;
+        min-height: 145px;
         padding: 80px 0 0 103px;
         background: url('https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/connect_icon.png') left center no-repeat;
         margin: 0;
@@ -1631,7 +1631,7 @@ body.front_end_body {
 @media only screen and (min-width: 62em) {
     .social_icons {
         width: auto;
-        float: right;
+        // float: right;
     }
 
     .social_icons a {
