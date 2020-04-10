@@ -12,6 +12,14 @@ require([
         basemap: "gray",
     });
 
+    const maxExtent = new Extent({
+        xmin: -12532415.067261647,
+        ymin: 3954353.6294668326,
+        xmax: -12455978.038976442,
+        ymax: 4030790.657752038,
+        spatialReference: { wkid: 3857 },
+    });
+
     const extent = new Extent({
         xmin: -12532415.067261647,
         ymin: 3954353.6294668326,
@@ -56,6 +64,29 @@ require([
     map.add(peoriaBusinessesLayer);
 
     let lyrView = null;
+
+    view.watch('extent', function (extent) {
+        let currentCenter = extent.center;
+        if (!maxExtent.contains(currentCenter)) {
+            let newCenter = extent.center;
+            if (currentCenter.x < maxExtent.xmin) {
+                newCenter.x = maxExtent.xmin;
+            }
+            if (currentCenter.x > maxExtent.xmax) {
+                newCenter.x = maxExtent.xmax;
+            }
+            if (currentCenter.y < maxExtent.ymin) {
+                newCenter.y = maxExtent.ymin;
+            }
+            if (currentCenter.y > maxExtent.ymax) {
+                newCenter.y = maxExtent.ymax;
+            }
+
+            let newExtent = view.extent.clone();
+            newExtent.centerAt(newCenter);
+            view.extent = newExtent;
+        }
+    });
 
     view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
         lyrView = layerView;
