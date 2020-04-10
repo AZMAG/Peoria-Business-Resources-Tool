@@ -25,17 +25,15 @@ require([
     }));
 
     var peoriaBoundaryLayer = new FeatureLayer({
-        url: "https://geo.azmag.gov/arcgis/rest/services/maps/RegionalBoundaries/MapServer/3",
+        url: config.pBoundaryLayer,
         definitionExpression: "Juris = 'PEORIA'",
     });
-
     map.add(peoriaBoundaryLayer);
 
     var peoriaBusinessesLayer = new FeatureLayer({
-        url: "https://geo.azmag.gov/arcgis/rest/services/maps/PeoriaBusinesses/MapServer/0",
+        url: config.pBusinessLayer,
         outFields: ["*"],
     });
-
     map.add(peoriaBusinessesLayer);
 
     let lyrView = null;
