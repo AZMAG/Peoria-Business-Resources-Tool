@@ -5,39 +5,29 @@ require([
     "esri/layers/FeatureLayer",
     "esri/geometry/Extent",
     "esri/widgets/Search",
-    "esri/tasks/Locator",
-], function(config, Map, MapView, FeatureLayer, Extent, Search, Locator) {
+    "esri/tasks/Locator"
+], function(config, Map, MapView, FeatureLayer, Extent, Search, Locator, ) {
+
+    const maxExtent = new Extent(config.maxExtent);
+    const initExtent = new Extent(config.intExtent);
 
     var map = new Map({
         basemap: "gray",
     });
 
-    const maxExtent = new Extent({
-        xmin: -12532415.067261647,
-        ymin: 3954353.6294668326,
-        xmax: -12455978.038976442,
-        ymax: 4030790.657752038,
-        spatialReference: { wkid: 3857 },
-    });
-
-    const extent = new Extent({
-        xmin: -12532415.067261647,
-        ymin: 3954353.6294668326,
-        xmax: -12455978.038976442,
-        ymax: 4030790.657752038,
-        spatialReference: { wkid: 3857 },
-    });
-
-    var view = (window.view = new MapView({
+    var view = new MapView({
         container: "mapView",
         map,
-        extent,
+        extent: initExtent,
         zoom: 8,
         constraints: {
             rotationEnabled: false,
             minZoom: 10
         },
-    }));
+        ui: {
+            components: []
+        },
+    });
 
     var peoriaBoundaryLayer = new FeatureLayer({
         url: config.pBoundaryLayer,
@@ -52,7 +42,7 @@ require([
             type: "simple",
             symbol: {
                 type: "simple-marker",
-                size: 6,
+                size: 8,
                 color: "#00008b",
                 outline: {
                     width: 1,
@@ -65,7 +55,7 @@ require([
 
     let lyrView = null;
 
-    view.watch('extent', function (extent) {
+    view.watch('extent', function(extent) {
         let currentCenter = extent.center;
         if (!maxExtent.contains(currentCenter)) {
             let newCenter = extent.center;
@@ -132,23 +122,23 @@ require([
         },
     ];
 
-    let search = new Search({
-        view,
-        includeDefaultSources: false,
-        locationEnabled: false,
-        sources: [{
-            locator: new Locator({
-                url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
-            }),
-            singleLineFieldName: "SingleLine",
-            outFields: ["Addr_type"],
-            autoNavigate: true,
-            searchExtent: extent,
-            placeholder: "Address",
-        }, ],
-    });
+    // let search = new Search({
+    //     view,
+    //     includeDefaultSources: false,
+    //     locationEnabled: false,
+    //     sources: [{
+    //         locator: new Locator({
+    //             url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+    //         }),
+    //         singleLineFieldName: "SingleLine",
+    //         outFields: ["Addr_type"],
+    //         autoNavigate: true,
+    //         searchExtent: extent,
+    //         placeholder: "Address",
+    //     }, ],
+    // });
 
-    view.ui.add(search, "bottom-left");
+    // view.ui.add(search, "bottom-left");
 
     let highlight;
 
@@ -199,9 +189,15 @@ require([
         peoriaBusinessesLayer.definitionExpression = filterComponents.join(
             " AND "
         );
-        console.log(filterComponents.join(" OR "));
+        // console.log(filterComponents.join(" OR "));
     });
+
+    return {
+        map,
+        view
+    };
 });
+
 
 function titleCase(str) {
     str = str.toLowerCase().split(' ');

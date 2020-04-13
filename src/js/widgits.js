@@ -2,85 +2,62 @@ define([
     "mag/map",
     "esri/widgets/Zoom",
     "esri/widgets/Home",
-    "esri/widgets/Legend",
-    "esri/widgets/BasemapToggle",
-    "esri/widgets/Locate",
-    "esri/widgets/Search",
-    "esri/tasks/Locator",
-    "esri/geometry/Extent"
-], function({
-    map,
-    view
-}, Zoom, Home, Legend, BasemapToggle, Locate, Search, Locator, Extent) {
+], function({ map, view }, Zoom, Home) {
 
-
-
-
-    //Add legend widget
-    var legend = new Legend({
-        view,
-        container: "legendContainer"
-    });
-    view.ui.add(legend, 'top-right');
 
     //Add basemap toggle widget
-    var basemapToggle = new BasemapToggle({
-        view,
-        nextBasemap: "hybrid"
-    });
+    // var basemapToggle = new BasemapToggle({
+    //     view,
+    //     nextBasemap: "hybrid"
+    // });
 
+    // basemapToggle.on('toggle', function(event) {
+    //     const tractsLayer = map.findLayerById("tracts");
 
-    basemapToggle.on('toggle', function(event) {
-        const tractsLayer = map.findLayerById("tracts");
+    //     if (event.current.title === "Imagery with Labels") {
+    //         tractsLayer.opacity = .5;
+    //     } else {
+    //         tractsLayer.opacity = .9;
+    //     }
+    // });
 
-        if (event.current.title === "Imagery with Labels") {
-            tractsLayer.opacity = .5;
-        } else {
-            tractsLayer.opacity = .9;
-        }
-    });
-
-    view.ui.add(basemapToggle, "bottom-left");
+    // view.ui.add(basemapToggle, "bottom-left");
 
     //Add zoom widget
     var zoom = new Zoom({
         view
     });
-    view.ui.add(zoom, 'bottom-left');
+    view.ui.add(zoom, 'top-left');
 
     //Add home widget
     var home = new Home({
         view
     });
-    view.ui.add(home, 'bottom-left');
+    view.ui.add(home, 'top-left');
 
     //Add locate widget
-    var locate = new Locate({
-        view
-    });
-    view.ui.add(locate, 'bottom-left');
+    // var locate = new Locate({
+    //     view
+    // });
+    // view.ui.add(locate, 'bottom-left');
 
     //Add search widget
-    let search = new Search({
-        view,
-        includeDefaultSources: false,
-        sources: [{
-            locator: new Locator({
-                url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
-            }),
-            singleLineFieldName: 'SingleLine',
-            outFields: ["Addr_type"],
-            autoNavigate: true,
-            searchExtent: new Extent({
-                xmin: -114.68,
-                ymin: 31.29,
-                xmax: -109.06,
-                ymax: 36.99
-            }),
-            placeholder: '302 N 1st Ave, Phoenix, AZ'
-        }]
-    });
+    // let search = new Search({
+    //     view,
+    //     includeDefaultSources: false,
+    //     locationEnabled: false,
+    //     sources: [{
+    //         locator: new Locator({
+    //             url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+    //         }),
+    //         singleLineFieldName: "SingleLine",
+    //         outFields: ["Addr_type"],
+    //         autoNavigate: true,
+    //         searchExtent: extent,
+    //         placeholder: "Address",
+    //     }, ],
+    // });
 
-    view.ui.add(search, "bottom-left");
+    // view.ui.add(search, "bottom-left");
 
 });
