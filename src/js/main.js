@@ -6,7 +6,7 @@
 require([
         "mag/config",
         "mag/map",
-        "mag/widgits"
+        "mag/widgets"
     ], function(config) {
         $(document).ready(function() {
             "use strict";

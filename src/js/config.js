@@ -1,5 +1,11 @@
 define([], function() {
 
+    var popContent = `
+            <div>
+            <span><b>Address: </b>{Address}</span></br>
+            <span><b> Phone: </b>{Phone_Number}</span></br>
+            </div>
+         `;
 
     return {
         version: "v0.0.1 | 2020-04-09",
@@ -25,6 +31,13 @@ define([], function() {
             xmax: -12455978.038976442,
             ymax: 4030790.657752038,
             spatialReference: { wkid: 3857 },
+        },
+
+
+
+        popTemplate: {
+            title: "{NAME}",
+            content: popContent,
         },
 
 

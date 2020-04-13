@@ -1,12 +1,10 @@
-require([
+define([
     "mag/config",
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/FeatureLayer",
-    "esri/geometry/Extent",
-    "esri/widgets/Search",
-    "esri/tasks/Locator"
-], function(config, Map, MapView, FeatureLayer, Extent, Search, Locator, ) {
+    "esri/geometry/Extent"
+], function(config, Map, MapView, FeatureLayer, Extent, ) {
 
     const maxExtent = new Extent(config.maxExtent);
     const initExtent = new Extent(config.intExtent);
@@ -27,6 +25,14 @@ require([
         ui: {
             components: []
         },
+        popup: {
+            dockEnabled: false,
+            collapseEnabled: false,
+            dockOptions: {
+                buttonEnabled: false,
+                breakpoint: false,
+            }
+        }
     });
 
     var peoriaBoundaryLayer = new FeatureLayer({
@@ -50,6 +56,7 @@ require([
                 },
             },
         },
+        popupTemplate: config.popTemplate
     });
     map.add(peoriaBusinessesLayer);
 
@@ -121,24 +128,6 @@ require([
             },
         },
     ];
-
-    // let search = new Search({
-    //     view,
-    //     includeDefaultSources: false,
-    //     locationEnabled: false,
-    //     sources: [{
-    //         locator: new Locator({
-    //             url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
-    //         }),
-    //         singleLineFieldName: "SingleLine",
-    //         outFields: ["Addr_type"],
-    //         autoNavigate: true,
-    //         searchExtent: extent,
-    //         placeholder: "Address",
-    //     }, ],
-    // });
-
-    // view.ui.add(search, "bottom-left");
 
     let highlight;
 
