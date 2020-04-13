@@ -1,4 +1,4 @@
-require([
+define([
     "mag/config",
     "esri/Map",
     "esri/views/MapView",
