@@ -1,0 +1,40 @@
+/*******************
+ SASS Popups
+********************/
+
+.esri-view-width-less-than-medium .esri-popup__main-container {
+    max-width: 350px;
+}
+
+.esri-popup__header-title {
+    font-size: 14px;
+    background-color: $peoria-main;
+    color: $text-white;
+
+    &:hover {
+        background-color: lighten($peoria-main, 20%);
+    }
+}
+
+.esri-widget {
+
+    .esri-popup__content {
+        font-size: 11px;
+    }
+}
+
+// css for home and zoom buttons
+.esri-widget--button {
+    background-color: $peoria-main;
+    color: $widget_con;
+
+    &:hover {
+        background-color: lighten($peoria-main, 20%);
+        color: $close-hover;
+        // border: 1px solid #001833;
+    }
+
+    &.esri-widget.esri-disabled {
+        background-color: $widget_con;
+    }
+}

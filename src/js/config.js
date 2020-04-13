@@ -3,7 +3,8 @@ define([], function() {
     var popContent = `
             <div>
             <span><b>Address: </b>{Address}</span></br>
-            <span><b> Phone: </b>{Phone_Number}</span></br>
+            <span><b>Phone: </b>{Phone_Number}</span></br>
+            <span><b>Website: </b><a href="{Website}" target="_blank">Business Link</a></span></br >
             </div>
          `;
 

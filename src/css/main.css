@@ -6998,4 +6998,39 @@ table.tableBox td {
 table.tableBox td {
   border-top: 1px solid #cbcbcb;
 }
+
+/*******************
+ SASS Popups
+********************/
+.esri-view-width-less-than-medium .esri-popup__main-container {
+  max-width: 350px;
+}
+
+.esri-popup__header-title {
+  font-size: 14px;
+  background-color: #1a79c4;
+  color: #ffffff;
+}
+
+.esri-popup__header-title:hover {
+  background-color: #5baae9;
+}
+
+.esri-widget .esri-popup__content {
+  font-size: 11px;
+}
+
+.esri-widget--button {
+  background-color: #1a79c4;
+  color: #ccd1d6;
+}
+
+.esri-widget--button:hover {
+  background-color: #5baae9;
+  color: #777777;
+}
+
+.esri-widget--button.esri-widget.esri-disabled {
+  background-color: #ccd1d6;
+}
 /*# sourceMappingURL=main.css.map */
