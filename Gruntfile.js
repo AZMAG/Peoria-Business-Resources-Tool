@@ -147,9 +147,10 @@ module.exports = function(grunt) {
             },
             build: {
                 files: {
-                    "dist/CAG/js/main.js": ["dist/CAG/js/main.js"],
-                    "dist/MAG/js/main.js": ["dist/MAG/js/main.js"],
-                    "dist/shared/js/main.js": ["dist/shared/js/main.js"],
+                    "dist/js/main.REPLACE.js": ["dist/js/main.REPLACE.js"],
+                    "dist/js/map.js": ["dist/js/map.js"],
+                    "dist/js/widgets.js": ["dist/js/widgets.js"],
+                    "dist/js/config.js": ["dist/js/config.js"],
                 }
             }
         },
@@ -239,7 +240,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask("build-html", ["replace:update_Meta", "copy", "toggleComments"]);
     grunt.registerTask("build-css", ["sass", "cssmin", "postcss", "clean:clean_css", "clean:clean_sass"]);
-    grunt.registerTask("build-js", ["babel"]);
+    grunt.registerTask("build-js", ["babel", "uglify"]);
     grunt.registerTask("build-rename", ["replace:release", "copy:rename", "clean:clean_js"]);
 
     grunt.registerTask("ts", ["postcss"]);

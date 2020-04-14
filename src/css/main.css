@@ -561,6 +561,7 @@ template {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   line-height: 1.75;
+  font-size: 14px;
 }
 
 #page_footer .footer_nav a {

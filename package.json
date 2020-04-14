@@ -18,7 +18,7 @@
         "#MAGmaps"
     ],
     "main": "src/main.js",
-    "homepage": "https://geo.azmag.gov/maps/",
+    "homepage": "https://geo.azmag.gov/maps/peoriabiz",
     "repository": {
         "type": "git",
         "url": "https://github.com/AZMAG/Peoria-Business-Resources-Tool"
