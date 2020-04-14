@@ -911,6 +911,76 @@ template {
   font-weight: 700;
 }
 
+/*******************
+ SASS Popups
+********************/
+.esri-view-width-less-than-medium .esri-popup__main-container {
+  max-width: 350px;
+}
+
+.esri-popup__header-title {
+  font-size: 14px;
+  background-color: #1a79c4;
+  color: #ffffff;
+}
+
+.esri-popup__header-title:hover {
+  background-color: #5baae9;
+}
+
+.esri-widget .esri-popup__content {
+  font-size: 11px;
+}
+
+.esri-widget--button {
+  background-color: #1a79c4;
+  color: #ccd1d6;
+}
+
+.esri-widget--button:hover {
+  background-color: #5baae9;
+  color: #777777;
+}
+
+.esri-widget--button.esri-widget.esri-disabled {
+  background-color: #ccd1d6;
+}
+
+/*******************
+ Cards
+********************/
+.card-body {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 18px;
+  color: #1a79c4;
+}
+
+.card-subtitle {
+  font-size: 12px;
+}
+
+p.card-text {
+  margin-bottom: .25rem;
+}
+
+.horizontalIconContainer {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 14px;
+  margin-top: 1em;
+}
+
+.horizontalIconContainer .horizontalIcon {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
 @media screen and (min-width: 40.5em) and (max-width: 47.9375em) {
   .standardlayout .column.left_col,
   .standardthreecolumnlayout .column.left_col,
@@ -1066,10 +1136,6 @@ body[radeditorbody] table {
   line-height: 1.2857142857142858 !important;
   font-family: 'Cabin', sans-serif;
   color: #101d29;
-}
-
-p {
-  margin: 0 0 1em 0;
 }
 
 .column select {
@@ -6746,10 +6812,6 @@ body[radeditorbody] table {
   color: #101d29;
 }
 
-p {
-  margin: 0 0 1em 0;
-}
-
 /**title colors*/
 h1,
 h2,
@@ -6997,40 +7059,5 @@ table.tableBox td {
 
 table.tableBox td {
   border-top: 1px solid #cbcbcb;
-}
-
-/*******************
- SASS Popups
-********************/
-.esri-view-width-less-than-medium .esri-popup__main-container {
-  max-width: 350px;
-}
-
-.esri-popup__header-title {
-  font-size: 14px;
-  background-color: #1a79c4;
-  color: #ffffff;
-}
-
-.esri-popup__header-title:hover {
-  background-color: #5baae9;
-}
-
-.esri-widget .esri-popup__content {
-  font-size: 11px;
-}
-
-.esri-widget--button {
-  background-color: #1a79c4;
-  color: #ccd1d6;
-}
-
-.esri-widget--button:hover {
-  background-color: #5baae9;
-  color: #777777;
-}
-
-.esri-widget--button.esri-widget.esri-disabled {
-  background-color: #ccd1d6;
 }
 /*# sourceMappingURL=main.css.map */
