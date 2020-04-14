@@ -9,7 +9,7 @@ define([], function() {
          `;
 
     return {
-        version: "v0.0.1 | 2020-04-09",
+        version: "v0.0.2 | 2020-04-14",
         copyright: "2020",
 
         peoriaURL: "https://www.peoriaaz.gov/",
