@@ -98,7 +98,6 @@ define([
                     .then(({ features }) => {
                         let data = features.map(({ attributes }) => attributes);
                         let cardsList = getCardsList(data);
-                        $("#numFeatures").html(cardsList.length);
                         $("#cardsList").html(cardsList.join(""));
                     });
             }
