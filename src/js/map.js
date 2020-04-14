@@ -1,44 +1,89 @@
-require([
+define([
     "mag/config",
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/FeatureLayer",
-    "esri/geometry/Extent",
-    "esri/widgets/FeatureTable",
-], function(config, Map, MapView, FeatureLayer, Extent) {
+    "esri/geometry/Extent"
+], function(config, Map, MapView, FeatureLayer, Extent, ) {
+
+    const maxExtent = new Extent(config.maxExtent);
+    const initExtent = new Extent(config.intExtent);
+
     var map = new Map({
         basemap: "gray",
     });
 
-    const extent = new Extent({
-        xmin: -12532415.067261647,
-        ymin: 3954353.6294668326,
-        xmax: -12455978.038976442,
-        ymax: 4030790.657752038,
-        spatialReference: { wkid: 3857 },
-    });
-
-    var view = (window.view = new MapView({
+    var view = new MapView({
         container: "mapView",
         map,
-        extent,
-    }));
-
-    var peoriaBoundaryLayer = new FeatureLayer({
-        url: "https://geo.azmag.gov/arcgis/rest/services/maps/RegionalBoundaries/MapServer/3",
-        definitionExpression: "Juris = 'PEORIA'",
+        extent: initExtent,
+        zoom: 8,
+        constraints: {
+            rotationEnabled: false,
+            minZoom: 10
+        },
+        ui: {
+            components: []
+        },
+        popup: {
+            dockEnabled: false,
+            collapseEnabled: false,
+            dockOptions: {
+                buttonEnabled: false,
+                breakpoint: false,
+            }
+        }
     });
 
+    var peoriaBoundaryLayer = new FeatureLayer({
+        url: config.pBoundaryLayer,
+        definitionExpression: "Juris = 'PEORIA'",
+    });
     map.add(peoriaBoundaryLayer);
 
     var peoriaBusinessesLayer = new FeatureLayer({
-        url: "https://geo.azmag.gov/arcgis/rest/services/maps/PeoriaBusinesses/MapServer/0",
+        url: config.pBusinessLayer,
         outFields: ["*"],
+        renderer: {
+            type: "simple",
+            symbol: {
+                type: "simple-marker",
+                size: 8,
+                color: "#00008b",
+                outline: {
+                    width: 1,
+                    color: "#dadaff",
+                },
+            },
+        },
+        popupTemplate: config.popTemplate
     });
-
     map.add(peoriaBusinessesLayer);
 
     let lyrView = null;
+
+    view.watch('extent', function(extent) {
+        let currentCenter = extent.center;
+        if (!maxExtent.contains(currentCenter)) {
+            let newCenter = extent.center;
+            if (currentCenter.x < maxExtent.xmin) {
+                newCenter.x = maxExtent.xmin;
+            }
+            if (currentCenter.x > maxExtent.xmax) {
+                newCenter.x = maxExtent.xmax;
+            }
+            if (currentCenter.y < maxExtent.ymin) {
+                newCenter.y = maxExtent.ymin;
+            }
+            if (currentCenter.y > maxExtent.ymax) {
+                newCenter.y = maxExtent.ymax;
+            }
+
+            let newExtent = view.extent.clone();
+            newExtent.centerAt(newCenter);
+            view.extent = newExtent;
+        }
+    });
 
     view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
         lyrView = layerView;
@@ -53,7 +98,6 @@ require([
                     .then(({ features }) => {
                         let data = features.map(({ attributes }) => attributes);
                         let cardsList = getCardsList(data);
-                        $("#numFeatures").html(cardsList.length);
                         $("#cardsList").html(cardsList.join(""));
                     });
             }
@@ -91,12 +135,12 @@ require([
         if (lyrView) {
             let { features } = await lyrView.queryFeatures({
                 objectIds: [objectId],
-                returnGeometry: true
+                returnGeometry: true,
             });
             if (features[0]) {
                 view.goTo({
                     target: features[0],
-                    zoom: 15
+                    zoom: 15,
                 });
             }
         }
@@ -133,9 +177,32 @@ require([
         peoriaBusinessesLayer.definitionExpression = filterComponents.join(
             " AND "
         );
-        console.log(filterComponents.join(" OR "));
+        // console.log(filterComponents.join(" OR "));
     });
+
+    return {
+        map,
+        view
+    };
 });
+
+
+function titleCase(str) {
+    str = str.toLowerCase().split(' ');
+    for (var i = 0; i < str.length; i++) {
+        str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+    }
+    return str.join(' ');
+}
+
+function formatPhoneNumber(phoneNumberString) {
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+        return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+    }
+    return 'N/A';
+}
 
 function getCardsList(data) {
     return data.map(
@@ -154,11 +221,11 @@ function getCardsList(data) {
             return `
             <div data-objectid="${OBJECTID}" class="card">
               <div class="card-body">
-                <h5 class="card-title">${Name}</h5>
+                <h5 class="card-title">${titleCase(Name)}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">${Address}</h6>
                 ${
                     Phone_Number
-                        ? `<p class="card-text"><em class="fa fa-phone"></em> ${Phone_Number}</p>`
+                        ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(Phone_Number)}</p>`
                         : ""
                 }
                 <div class="horizontalIconContainer">

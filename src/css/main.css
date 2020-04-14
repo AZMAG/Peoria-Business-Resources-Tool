@@ -366,13 +366,23 @@ template {
   font-style: normal;
 }
 
+/****************
+* SASS Assets
+*****************/
 /*******************
  SASS Partials
 ********************/
 /*******************
  Map
 ********************/
+.main-content {
+  background-color: #f1f1f1;
+}
+
 #mapView {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
   padding: 0;
   margin: 0;
   height: 500px;
@@ -383,39 +393,46 @@ template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 80vw;
-  margin: 20px auto;
-  padding: 10px;
+  margin: 0 0 0 15px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
 
-#cardsListContainer {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+#listContainer {
+  -webkit-box-flex: 1.5;
+      -ms-flex: 1.5;
+          flex: 1.5;
   font-size: 12px;
+}
+
+#listContainer h4 {
+  text-align: center;
+  font-size: 18px;
+  padding: 10px 0 0 0;
   margin-right: 20px;
+}
+
+#listContainer #cardsListContainer {
   max-height: 500px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
-#cardsListContainer #cardsList .card {
+#listContainer #cardsList .card {
   margin-right: 2px;
 }
 
-#cardsListContainer #cardsList .card:hover {
+#listContainer #cardsList .card:hover {
   background-color: #ededed;
   cursor: pointer;
 }
 
 #controls {
-  background-color: #ededed;
+  color: #ffffff;
+  background-color: #2e93e3;
   padding-top: 35px;
   padding-top: 30px;
-  width: 70vw;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -437,12 +454,14 @@ template {
 
 #controls .fieldlist li {
   margin-left: 20px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 #mapView {
-  -webkit-box-flex: 4;
-      -ms-flex: 4;
-          flex: 4;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
 }
 
 .horizontalIconContainer {
@@ -460,12 +479,313 @@ template {
 /*******************
  Footer
 ********************/
+#footercolumn {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 1200px) {
+  #footercolumn {
+    width: 1024px;
+    max-width: 1024px;
+  }
+}
+
+#page_footer #footercolumn .footer_seal {
+  float: left;
+  height: 192px;
+  display: table;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.mainSpan_wrapper_home #page_footer {
+  display: none;
+}
+
+#page_footer {
+  padding: 30px 10px 10px 10px;
+  font-size: 82%;
+  display: block;
+  background: #35322b;
+}
+
+#page_footer #footercolumn {
+  color: #000;
+  display: block;
+}
+
+#page_footer #footercolumn .footer_address,
+#page_footer #footercolumn .footer_contact {
+  padding-top: 110px;
+  width: 200px;
+  float: none;
+  margin: 0 auto 30px;
+}
+
+#page_footer #footercolumn .footer_address p,
+#page_footer #footercolumn .footer_contact p {
+  font-size: 14px;
+  text-align: center;
+}
+
+#page_footer #footercolumn .footer_address {
+  background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/location_icon.png") no-repeat center top;
+}
+
+#page_footer #footercolumn .footer_contact {
+  background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/phone_icon.png") no-repeat center top;
+}
+
+#page_footer #footercolumn .footer_copyright {
+  color: #cdbd96;
+  font-size: 12px;
+  text-align: center;
+}
+
+#page_footer #footercolumn .footer_copyright a {
+  color: #fff;
+  margin: 0;
+}
+
+#page_footer .footer_nav {
+  margin: 0 auto 10px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  line-height: 1.75;
+}
+
+#page_footer .footer_nav a {
+  white-space: nowrap;
+  margin: 0 6px;
+  letter-spacing: 0.2px;
+}
+
+#page_footer .footer_nav a:after {
+  content: '|';
+  margin-left: 16px;
+}
+
+#page_footer .footer_nav a:last-child:after {
+  display: none;
+}
+
+#page_footer .footer_copyright {
+  margin-bottom: 10px;
+}
+
+#page_footer p {
+  margin: 0;
+  clear: both;
+}
+
+#page_footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer_buttons {
+  display: none;
+}
+
+.footer_buttons ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 195px;
+  margin: 26px 0 14px;
+}
+
+.footer_buttons ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media screen and (min-width: 48em) {
+  .mainSpan_wrapper_home #page_footer {
+    display: block;
+  }
+  .footer_buttons {
+    display: block;
+  }
+  #page_footer {
+    clear: both;
+    min-height: 132px;
+    font-size: 100%;
+    background: #35322b;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    display: block;
+  }
+  #page_footer .footer_nav {
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+    bottom: 23px;
+  }
+  #page_footer:before {
+    content: '';
+    top: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+    height: 40px;
+    /* background: #282622; */
+    z-index: 0;
+  }
+  #page_footer a {
+    margin: 0;
+  }
+  #page_footer #footercolumn {
+    margin: 0 auto;
+    position: relative;
+    padding: 0;
+    min-height: 232px;
+  }
+  #page_footer #footercolumn .footer_address {
+    float: left;
+    width: 50%;
+    min-height: 192px;
+    background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/location_icon.png") left 12px center no-repeat;
+    padding: 0;
+    background-size: auto auto;
+    max-width: 100%;
+    margin: 0;
+  }
+  #page_footer #footercolumn .footer_address p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.2px;
+    line-height: 18px;
+    text-align: left;
+    padding: 80px 0 0 102px;
+  }
+  #page_footer #footercolumn .footer_contact {
+    float: left;
+    width: 50%;
+    min-height: 192px;
+    background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/phone_icon.png") 29px center no-repeat;
+    padding: 0;
+    background-size: auto auto;
+    max-width: 100%;
+    margin: 0;
+  }
+  #page_footer #footercolumn .footer_contact p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.2px;
+    line-height: 18px;
+    text-align: left;
+    padding: 80px 0 0 123px;
+  }
+  #page_footer #footercolumn .footer_contact p:last-child {
+    padding-top: 0;
+  }
+  #page_footer #footercolumn .footer_contact p a {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.2px;
+  }
+  #page_footer #footercolumn .footer_copyright {
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    color: #cdbd96;
+    letter-spacing: 0.2px;
+    line-height: 40px;
+    text-align: center;
+    margin: 12px 0 0;
+  }
+  #page_footer #footercolumn .footer_copyright a {
+    color: #fff;
+    font-weight: bold;
+  }
+  #page_footer #footercolumn .footer_copyright a:hover {
+    text-decoration: underline;
+  }
+}
+
+@media only screen and (min-width: 62em) {
+  #page_footer #footercolumn .footer_address {
+    width: 27.3%;
+  }
+  #page_footer #footercolumn .footer_contact {
+    width: 27.3%;
+  }
+  #page_footer .footer_nav {
+    width: 100%;
+  }
+}
+
+.mobile_home_footer {
+  background: #35322b;
+  text-align: center;
+  display: block;
+  color: #fff;
+  min-height: 83px;
+  margin-top: 48px;
+  letter-spacing: 0.2px;
+  padding: 5px 0 20px 0;
+  font-weight: 500;
+}
+
+.mobile_home_footer a {
+  color: #fff !important;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 40px;
+  text-decoration: none !important;
+  width: auto;
+  max-width: unset;
+  margin: 0 14px;
+}
+
+.mobile_home_footer a:hover {
+  text-decoration: underline !important;
+}
+
+.mobile_home_footer a:last-child {
+  width: 100%;
+  max-width: 122px;
+  background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/mobile/phone_mobile.png") no-repeat left;
+  padding-left: 27px;
+  clear: both;
+  display: block;
+  margin: 0 auto;
+}
+
 /*******************
  Header
 ********************/
-#siteheader {
-  width: 730px;
-  max-width: 730px;
+@media only screen and (min-width: 62em) {
+  #siteheader {
+    background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/header_txt_img.png") center bottom no-repeat !important;
+  }
 }
 
 #siteheader {
@@ -473,7 +793,6 @@ template {
   margin-bottom: 0;
   position: relative;
   width: 100%;
-  background: #1a79c4 url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/mobile/mob_header_bg.png") center top no-repeat !important;
   height: 106px;
   background-size: cover;
 }
@@ -529,21 +848,19 @@ template {
   #siteheader a#home_link {
     height: 115px;
     right: auto;
-    left: 0;
+    margin-left: 10%;
     top: 17px;
     width: 375px;
-    background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/logo.png") center center no-repeat !important;
+    background: url("https://www.peoriaed.com/Project/Contents/EconDev/_gfx/cmn/logo.png") center center no-repeat !important;
     background-size: 100% auto !important;
   }
 }
 
 @media only screen and (min-width: 62em) {
   #siteheader a#home_link {
-    height: 115px;
     right: auto;
     left: 0;
     top: 17px;
-    width: 520px;
   }
 }
 
@@ -573,6 +890,25 @@ template {
   .expand_link {
     display: none !important;
   }
+}
+
+@media (min-width: 48em) {
+  .jumbotron {
+    padding: 4rem 2rem;
+    font-size: medium;
+    font-weight: 700;
+  }
+}
+
+.jumbotron {
+  padding: 1rem 1rem;
+  margin-bottom: 0;
+  color: #ffffff;
+  background-color: #8e3847;
+  border-radius: 0;
+  text-align: center;
+  font-size: large;
+  font-weight: 700;
 }
 
 @media screen and (min-width: 40.5em) and (max-width: 47.9375em) {
@@ -1676,8 +2012,7 @@ body.front_end_body {
     background: #fff;
   }
   .container,
-  #sitebody,
-  #footercolumn {
+  #sitebody {
     width: 730px;
     max-width: 730px;
   }
@@ -1833,125 +2168,6 @@ body.front_end_body {
   }
 }
 
-.mainSpan_wrapper_home #page_footer {
-  display: none;
-}
-
-#page_footer {
-  padding: 30px 10px 10px 10px;
-  font-size: 82%;
-  display: block;
-  background: #35322b;
-}
-
-#page_footer #footercolumn {
-  color: #000;
-  display: block;
-}
-
-#page_footer #footercolumn .footer_address,
-#page_footer #footercolumn .footer_contact {
-  padding-top: 110px;
-  width: 200px;
-  float: none;
-  margin: 0 auto 30px;
-}
-
-#page_footer #footercolumn .footer_address p,
-#page_footer #footercolumn .footer_contact p {
-  font-size: 14px;
-  text-align: center;
-}
-
-#page_footer #footercolumn .footer_address {
-  background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/location_icon.png") no-repeat center top;
-}
-
-#page_footer #footercolumn .footer_contact {
-  background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/phone_icon.png") no-repeat center top;
-}
-
-#page_footer #footercolumn .footer_copyright {
-  color: #cdbd96;
-  font-size: 12px;
-  text-align: center;
-}
-
-#page_footer #footercolumn .footer_copyright a {
-  color: #fff;
-  margin: 0;
-}
-
-#page_footer .footer_nav {
-  margin: 0 auto 10px;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  line-height: 1.75;
-}
-
-#page_footer .footer_nav a {
-  white-space: nowrap;
-  margin: 0 6px;
-  letter-spacing: 0.2px;
-}
-
-#page_footer .footer_nav a:after {
-  content: '|';
-  margin-left: 16px;
-}
-
-#page_footer .footer_nav a:last-child:after {
-  display: none;
-}
-
-#page_footer .footer_copyright {
-  margin-bottom: 10px;
-}
-
-#page_footer p {
-  margin: 0;
-  clear: both;
-}
-
-#page_footer a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.footer_buttons {
-  display: none;
-}
-
-.footer_buttons ul {
-  list-style: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 0 195px;
-  margin: 26px 0 14px;
-}
-
-.footer_buttons ul li {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
 #mobile_vision a {
   border: 1px solid #bbbaba;
 }
@@ -1982,129 +2198,6 @@ body.front_end_body {
   line-height: 37px;
   font-size: 15px !important;
   margin-top: 0;
-}
-
-@media screen and (min-width: 48em) {
-  .mainSpan_wrapper_home #page_footer {
-    display: block;
-  }
-  .footer_buttons {
-    display: block;
-  }
-  #page_footer {
-    clear: both;
-    min-height: 232px;
-    font-size: 100%;
-    background: #35322b;
-    padding: 0;
-    margin: 0;
-    position: relative;
-    display: block;
-  }
-  #page_footer .footer_nav {
-    width: 60%;
-    margin: 0 auto;
-    position: relative;
-    bottom: 23px;
-  }
-  #page_footer:before {
-    content: '';
-    top: auto;
-    left: 0;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    width: 100%;
-    height: 40px;
-    /* background: #282622; */
-    z-index: 0;
-  }
-  #page_footer a {
-    margin: 0;
-  }
-  #page_footer #footercolumn {
-    margin: 0 auto;
-    position: relative;
-    padding: 0;
-    min-height: 232px;
-  }
-  #page_footer #footercolumn .footer_address {
-    float: left;
-    width: 50%;
-    min-height: 192px;
-    background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/location_icon.png") left 12px center no-repeat;
-    padding: 0;
-    background-size: auto auto;
-    max-width: 100%;
-    margin: 0;
-  }
-  #page_footer #footercolumn .footer_address p {
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: 0.2px;
-    line-height: 18px;
-    text-align: left;
-    padding: 80px 0 0 102px;
-  }
-  #page_footer #footercolumn .footer_contact {
-    float: left;
-    width: 50%;
-    min-height: 192px;
-    background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/phone_icon.png") 29px center no-repeat;
-    padding: 0;
-    background-size: auto auto;
-    max-width: 100%;
-    margin: 0;
-  }
-  #page_footer #footercolumn .footer_contact p {
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: 0.2px;
-    line-height: 18px;
-    text-align: left;
-    padding: 80px 0 0 123px;
-  }
-  #page_footer #footercolumn .footer_contact p:last-child {
-    padding-top: 0;
-  }
-  #page_footer #footercolumn .footer_contact p a {
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: 0.2px;
-  }
-  #page_footer #footercolumn .footer_copyright {
-    display: block;
-    font-size: 12px;
-    font-weight: normal;
-    color: #cdbd96;
-    letter-spacing: 0.2px;
-    line-height: 40px;
-    text-align: center;
-    margin: 12px 0 0;
-  }
-  #page_footer #footercolumn .footer_copyright a {
-    color: #fff;
-    font-weight: bold;
-  }
-  #page_footer #footercolumn .footer_copyright a:hover {
-    text-decoration: underline;
-  }
-}
-
-@media only screen and (min-width: 62em) {
-  #page_footer #footercolumn .footer_address {
-    width: 27.3%;
-  }
-  #page_footer #footercolumn .footer_contact {
-    width: 27.3%;
-  }
-  #page_footer .footer_nav {
-    width: 100%;
-  }
 }
 
 #headercolumn #top_nav {
@@ -2342,7 +2435,7 @@ body.front_end_body {
   .social_icons {
     float: left;
     width: 100%;
-    min-height: 192px;
+    min-height: 145px;
     padding: 80px 0 0 103px;
     background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/connect_icon.png") left center no-repeat;
     margin: 0;
@@ -2366,7 +2459,6 @@ body.front_end_body {
 @media only screen and (min-width: 62em) {
   .social_icons {
     width: auto;
-    float: right;
   }
   .social_icons a {
     margin: 0 0 0 16px !important;
@@ -4011,43 +4103,6 @@ body.front_end_body {
 .mobile_content {
   float: left;
   width: 100%;
-}
-
-.mobile_home_footer {
-  background: #35322b;
-  text-align: center;
-  display: block;
-  color: #fff;
-  min-height: 83px;
-  margin-top: 48px;
-  letter-spacing: 0.2px;
-  padding: 5px 0 20px 0;
-  font-weight: 500;
-}
-
-.mobile_home_footer a {
-  color: #fff !important;
-  display: inline-block;
-  font-size: 13px;
-  line-height: 40px;
-  text-decoration: none !important;
-  width: auto;
-  max-width: unset;
-  margin: 0 14px;
-}
-
-.mobile_home_footer a:hover {
-  text-decoration: underline !important;
-}
-
-.mobile_home_footer a:last-child {
-  width: 100%;
-  max-width: 122px;
-  background: url("_gfx/cmn/mobile/phone_mobile.png") no-repeat left;
-  padding-left: 27px;
-  clear: both;
-  display: block;
-  margin: 0 auto;
 }
 
 @media screen and (min-width: 48em) {
@@ -6942,5 +6997,40 @@ table.tableBox td {
 
 table.tableBox td {
   border-top: 1px solid #cbcbcb;
+}
+
+/*******************
+ SASS Popups
+********************/
+.esri-view-width-less-than-medium .esri-popup__main-container {
+  max-width: 350px;
+}
+
+.esri-popup__header-title {
+  font-size: 14px;
+  background-color: #1a79c4;
+  color: #ffffff;
+}
+
+.esri-popup__header-title:hover {
+  background-color: #5baae9;
+}
+
+.esri-widget .esri-popup__content {
+  font-size: 11px;
+}
+
+.esri-widget--button {
+  background-color: #1a79c4;
+  color: #ccd1d6;
+}
+
+.esri-widget--button:hover {
+  background-color: #5baae9;
+  color: #777777;
+}
+
+.esri-widget--button.esri-widget.esri-disabled {
+  background-color: #ccd1d6;
 }
 /*# sourceMappingURL=main.css.map */

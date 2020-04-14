@@ -1,7 +1,12 @@
 /*******************
  Map
 ********************/
+.main-content {
+  background-color: $main-background;
+}
+
 #mapView {
+  flex: 2;
   padding: 0;
   margin: 0;
   height: 500px;
@@ -10,18 +15,29 @@
 
 .mapTableContainer {
   display: flex;
-  width: 80vw;
-  margin: 20px auto;
-  padding: 10px;
+  // width: 80vw;
+  margin: 0 0 0 15px;
+  // padding: 10px;
   justify-content: space-between;
 }
-#cardsListContainer {
-  flex: 1;
+
+#listContainer {
+  flex: 1.5;
   font-size: 12px;
-  margin-right: 20px;
-  max-height: 500px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+
+  h4 {
+    text-align: center;
+    font-size: 18px;
+    padding: 10px 0 0 0;
+    margin-right: 20px;
+  }
+
+  #cardsListContainer {
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
   #cardsList {
     .card {
       margin-right: 2px;
@@ -35,10 +51,11 @@
 }
 
 #controls {
-  background-color: lighten(lightgray, 10%);
+  color: $text-white;
+  background-color: lighten($peoria-main, 10%);
   padding-top: 35px;
   padding-top: 30px;
-  width: 70vw;
+  // width: 70vw;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -50,15 +67,19 @@
 
     li {
       margin-left: 20px;
+      font-size: 20px;
+      font-weight: 600;
     }
   }
 }
 
 #mapView {
-  flex: 4;
+  flex: 2;
 }
+
 .horizontalIconContainer {
   display: flex;
+
   .horizontalIcon {
     flex: 1;
   }

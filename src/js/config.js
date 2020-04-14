@@ -1,5 +1,12 @@
 define([], function() {
 
+    var popContent = `
+            <div>
+            <span><b>Address: </b>{Address}</span></br>
+            <span><b>Phone: </b>{Phone_Number}</span></br>
+            <span><b>Website: </b><a href="{Website}" target="_blank">Business Link</a></span></br >
+            </div>
+         `;
 
     return {
         version: "v0.0.1 | 2020-04-09",
@@ -11,7 +18,28 @@ define([], function() {
 
         pBusinessLayer: "https://geo.azmag.gov/arcgis/rest/services/maps/PeoriaBusinesses/MapServer/0",
 
+        intExtent: {
+            xmin: -12532415.067261647,
+            ymin: 3954353.6294668326,
+            xmax: -12455978.038976442,
+            ymax: 4030790.657752038,
+            spatialReference: { wkid: 3857 },
+        },
 
+        maxExtent: {
+            xmin: -12532415.067261647,
+            ymin: 3954353.6294668326,
+            xmax: -12455978.038976442,
+            ymax: 4030790.657752038,
+            spatialReference: { wkid: 3857 },
+        },
+
+
+
+        popTemplate: {
+            title: "{NAME}",
+            content: popContent,
+        },
 
 
 
