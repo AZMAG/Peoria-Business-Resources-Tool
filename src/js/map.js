@@ -1,43 +1,40 @@
-require([
+define([
     "mag/config",
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/FeatureLayer",
-    "esri/geometry/Extent",
-    "esri/widgets/Search",
-    "esri/tasks/Locator",
-], function(config, Map, MapView, FeatureLayer, Extent, Search, Locator) {
+    "esri/geometry/Extent"
+], function(config, Map, MapView, FeatureLayer, Extent, ) {
+
+    const maxExtent = new Extent(config.maxExtent);
+    const initExtent = new Extent(config.intExtent);
 
     var map = new Map({
-        basemap: "gray",
+        basemap: "osm",
+        // basemap: "gray",
     });
 
-    const maxExtent = new Extent({
-        xmin: -12532415.067261647,
-        ymin: 3954353.6294668326,
-        xmax: -12455978.038976442,
-        ymax: 4030790.657752038,
-        spatialReference: { wkid: 3857 },
-    });
-
-    const extent = new Extent({
-        xmin: -12532415.067261647,
-        ymin: 3954353.6294668326,
-        xmax: -12455978.038976442,
-        ymax: 4030790.657752038,
-        spatialReference: { wkid: 3857 },
-    });
-
-    var view = (window.view = new MapView({
+    var view = new MapView({
         container: "mapView",
         map,
-        extent,
+        extent: initExtent,
         zoom: 8,
         constraints: {
             rotationEnabled: false,
             minZoom: 10
         },
-    }));
+        ui: {
+            components: []
+        },
+        popup: {
+            dockEnabled: false,
+            collapseEnabled: false,
+            dockOptions: {
+                buttonEnabled: false,
+                breakpoint: false,
+            }
+        }
+    });
 
     var peoriaBoundaryLayer = new FeatureLayer({
         url: config.pBoundaryLayer,
@@ -52,7 +49,7 @@ require([
             type: "simple",
             symbol: {
                 type: "simple-marker",
-                size: 6,
+                size: 8,
                 color: "#00008b",
                 outline: {
                     width: 1,
@@ -60,12 +57,13 @@ require([
                 },
             },
         },
+        popupTemplate: config.popTemplate
     });
     map.add(peoriaBusinessesLayer);
 
     let lyrView = null;
 
-    view.watch('extent', function (extent) {
+    view.watch('extent', function(extent) {
         let currentCenter = extent.center;
         if (!maxExtent.contains(currentCenter)) {
             let newCenter = extent.center;
@@ -131,24 +129,6 @@ require([
         },
     ];
 
-    let search = new Search({
-        view,
-        includeDefaultSources: false,
-        locationEnabled: false,
-        sources: [{
-            locator: new Locator({
-                url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
-            }),
-            singleLineFieldName: "SingleLine",
-            outFields: ["Addr_type"],
-            autoNavigate: true,
-            searchExtent: extent,
-            placeholder: "Address",
-        }, ],
-    });
-
-    view.ui.add(search, "bottom-left");
-
     let highlight;
 
     $("body").on("click", ".card", async (e) => {
@@ -198,9 +178,15 @@ require([
         peoriaBusinessesLayer.definitionExpression = filterComponents.join(
             " AND "
         );
-        console.log(filterComponents.join(" OR "));
+        // console.log(filterComponents.join(" OR "));
     });
+
+    return {
+        map,
+        view
+    };
 });
+
 
 function titleCase(str) {
     str = str.toLowerCase().split(' ');
@@ -237,10 +223,15 @@ function getCardsList(data) {
             <div data-objectid="${OBJECTID}" class="card">
               <div class="card-body">
                 <h5 class="card-title">${titleCase(Name)}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">${Address}</h6>
+                <h6 class="card-subtitle text-muted mb-2">${Address}</h6>
                 ${
                     Phone_Number
                         ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(Phone_Number)}</p>`
+                        : ""
+                }
+                 ${
+                    Website
+                        ? `<p class="card-text"><a href="${Website}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
                         : ""
                 }
                 <div class="horizontalIconContainer">
@@ -256,15 +247,11 @@ function getCardsList(data) {
                   }
                   ${
                       ThirdPartyApp
-                          ? `<span class="card-text horizontalIcon"><em class="fas fa-tablet-alt"></em> App</span>`
+                          ? `<span class="card-text horizontalIcon"><em class="fas fa-tablet-alt"></em> Mobile App</span>`
                           : ""
                   }
                 </div>
-                ${
-                    Website
-                        ? `<a href="${Website}" class="card-link"><em class="fa fa-link"></em> Website</a>`
-                        : ""
-                }
+
               </div>
             </div>
           `;
