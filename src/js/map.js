@@ -205,6 +205,10 @@ function formatPhoneNumber(phoneNumberString) {
     return 'N/A';
 }
 
+function formatWebsite() {
+
+}
+
 function getCardsList(data) {
     return data.map(
         ({
