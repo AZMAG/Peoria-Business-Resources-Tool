@@ -231,7 +231,7 @@ function getCardsList(data) {
                 }
                  ${
                     Website
-                        ? `<p class="card-text"><a href="${Website}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
+                        ? `<p class="card-text"><a href="https://${Website}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
                         : ""
                 }
                 <div class="horizontalIconContainer">
