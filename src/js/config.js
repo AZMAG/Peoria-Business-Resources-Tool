@@ -4,7 +4,7 @@ define([], function() {
             <div>
             <span><b>Address: </b>{Address}</span></br>
             <span><b>Phone: </b>{Phone_Number}</span></br>
-            <span><b>Website: </b><a href="https://{Website}" target="_blank">Business Link</a></span></br >
+            <span><b> Website: </b><a target="_blank" href="https://{Website}">Business Link</a></span></br >
             </div>
          `;
 

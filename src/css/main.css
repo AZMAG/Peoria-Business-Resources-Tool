@@ -916,7 +916,8 @@ template {
  SASS Popups
 ********************/
 .esri-view-width-less-than-medium .esri-popup__main-container {
-  max-width: 350px;
+  width: auto;
+  max-width: 400px;
 }
 
 .esri-popup__header-title {
