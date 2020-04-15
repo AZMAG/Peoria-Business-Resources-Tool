@@ -1,12 +1,23 @@
 define([], function() {
+    function formatPhoneNumber(phoneNumberString) {
+        var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+        var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+        if (match) {
+            return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+        }
+        return 'N/A';
+    }
 
-    var popContent = `
-            <div>
-            <span><b>Address: </b>{Address}</span></br>
-            <span><b>Phone: </b>{Phone_Number}</span></br>
-            <span><a target="_blank" href="https://{Website}" class="card-link"><em class="fa fa-link"></em> Website</a></span>
-            </div>
-         `;
+    var popContent = ({ graphic }) => {
+        let { Address, Phone_Number, Website } = graphic.attributes;            
+            return `
+                <div>
+                <span><b>Address: </b>${Address}</span></br>
+                <span><b>Phone: </b>${formatPhoneNumber(Phone_Number)}</span></br>
+                ${Website !== 'N/A' ? `<span><a target="_blank" href="https://${Website}" class="card-link"><em class="fa fa-link"></em> Website</a></span>` : '' }
+                </div>
+            `;
+        }
 
     return {
         version: "v0.0.2 | 2020-04-14",
@@ -37,7 +48,7 @@ define([], function() {
 
 
         popTemplate: {
-            title: "{NAME}",
+            title: "<span style='display: none;'>{*}</span>{NAME}",
             content: popContent,
         },
 

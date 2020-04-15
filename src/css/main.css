@@ -427,6 +427,10 @@ template {
   cursor: pointer;
 }
 
+#listContainer #cardsList .highlighted {
+  background-color: #d9ebfa;
+}
+
 #controls {
   color: #ffffff;
   background-color: #2e93e3;
