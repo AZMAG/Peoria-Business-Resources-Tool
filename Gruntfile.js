@@ -91,7 +91,7 @@ module.exports = function(grunt) {
             rename: {
                 files: [{
                     expand: true,
-                    src: ["src/js/main.REPLACE.js"],
+                    src: ["dist/js/main.REPLACE.js"],
                     rename: function() {
                         return jsFilePath;
                     }
@@ -111,6 +111,21 @@ module.exports = function(grunt) {
             }
         },
 
+        postcss: {
+            options: {
+                map: false,
+                processors: [
+                    require('pixrem')(),
+                    require('postcss-preset-env')()
+                ]
+            },
+            release: {
+                files: {
+                    'dist/css/master.css': 'dist/css/master.css'
+                }
+            }
+        },
+
         cssmin: {
             options: {
                 specialComments: "all",
@@ -126,30 +141,16 @@ module.exports = function(grunt) {
             }
         },
 
-        postcss: {
-            options: {
-                map: false,
-                processors: [
-                    require('pixrem')(),
-                    require('postcss-preset-env')()
-                ]
-            },
-            release: {
-                files: {
-                    '<%=config.out%>/css/master1.min.css': '<%=config.out%>/css/master.min.css'
-                }
-            }
-        },
-
         uglify: {
             options: {
                 mangle: true
             },
             build: {
                 files: {
-                    "dist/CAG/js/main.js": ["dist/CAG/js/main.js"],
-                    "dist/MAG/js/main.js": ["dist/MAG/js/main.js"],
-                    "dist/shared/js/main.js": ["dist/shared/js/main.js"],
+                    "dist/js/main.REPLACE.js": ["dist/js/main.REPLACE.js"],
+                    "dist/js/map.js": ["dist/js/map.js"],
+                    "dist/js/widgets.js": ["dist/js/widgets.js"],
+                    "dist/js/config.js": ["dist/js/config.js"],
                 }
             }
         },
@@ -238,7 +239,7 @@ module.exports = function(grunt) {
     grunt.registerTask("test", ["replace"]);
 
     grunt.registerTask("build-html", ["replace:update_Meta", "copy", "toggleComments"]);
-    grunt.registerTask("build-css", ["sass", "cssmin", "postcss", "clean:clean_css", "clean:clean_sass"]);
+    grunt.registerTask("build-css", ["sass", "cssmin", "clean:clean_css", "clean:clean_sass"]);
     grunt.registerTask("build-js", ["babel"]);
     grunt.registerTask("build-rename", ["replace:release", "copy:rename", "clean:clean_js"]);
 

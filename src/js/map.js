@@ -10,7 +10,8 @@ define([
     const initExtent = new Extent(config.intExtent);
 
     var map = new Map({
-        basemap: "gray",
+        basemap: "osm",
+        // basemap: "gray",
     });
 
     var view = new MapView({
@@ -222,10 +223,15 @@ function getCardsList(data) {
             <div data-objectid="${OBJECTID}" class="card">
               <div class="card-body">
                 <h5 class="card-title">${titleCase(Name)}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">${Address}</h6>
+                <h6 class="card-subtitle text-muted mb-2">${Address}</h6>
                 ${
                     Phone_Number
                         ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(Phone_Number)}</p>`
+                        : ""
+                }
+                 ${
+                    Website
+                        ? `<p class="card-text"><a href="https://${Website}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
                         : ""
                 }
                 <div class="horizontalIconContainer">
@@ -241,15 +247,11 @@ function getCardsList(data) {
                   }
                   ${
                       ThirdPartyApp
-                          ? `<span class="card-text horizontalIcon"><em class="fas fa-tablet-alt"></em> App</span>`
+                          ? `<span class="card-text horizontalIcon"><em class="fas fa-tablet-alt"></em> Mobile App</span>`
                           : ""
                   }
                 </div>
-                ${
-                    Website
-                        ? `<a href="${Website}" class="card-link"><em class="fa fa-link"></em> Website</a>`
-                        : ""
-                }
+
               </div>
             </div>
           `;

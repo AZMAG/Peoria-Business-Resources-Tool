@@ -4,12 +4,12 @@ define([], function() {
             <div>
             <span><b>Address: </b>{Address}</span></br>
             <span><b>Phone: </b>{Phone_Number}</span></br>
-            <span><b>Website: </b><a href="{Website}" target="_blank">Business Link</a></span></br >
+            <span><b>Website: </b><a href="https://{Website}" target="_blank">Business Link</a></span></br >
             </div>
          `;
 
     return {
-        version: "v0.0.1 | 2020-04-09",
+        version: "v0.0.2 | 2020-04-14",
         copyright: "2020",
 
         peoriaURL: "https://www.peoriaaz.gov/",
