@@ -3,9 +3,8 @@ define([
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/FeatureLayer",
-    "esri/geometry/Extent"
-], function(config, Map, MapView, FeatureLayer, Extent, ) {
-
+    "esri/geometry/Extent",
+], function (config, Map, MapView, FeatureLayer, Extent) {
     const maxExtent = new Extent(config.maxExtent);
     const initExtent = new Extent(config.intExtent);
 
@@ -21,10 +20,10 @@ define([
         zoom: 8,
         constraints: {
             rotationEnabled: false,
-            minZoom: 10
+            minZoom: 10,
         },
         ui: {
-            components: []
+            components: [],
         },
         popup: {
             dockEnabled: false,
@@ -32,8 +31,8 @@ define([
             dockOptions: {
                 buttonEnabled: false,
                 breakpoint: false,
-            }
-        }
+            },
+        },
     });
 
     var peoriaBoundaryLayer = new FeatureLayer({
@@ -57,13 +56,13 @@ define([
                 },
             },
         },
-        popupTemplate: config.popTemplate
+        popupTemplate: config.popTemplate,
     });
     map.add(peoriaBusinessesLayer);
 
     let lyrView = null;
 
-    view.watch('extent', function(extent) {
+    view.watch("extent", function (extent) {
         let currentCenter = extent.center;
         if (!maxExtent.contains(currentCenter)) {
             let newCenter = extent.center;
@@ -86,21 +85,43 @@ define([
         }
     });
 
+    let selectedId;
+
+    view.popup.watch("visible", async (visible) => {
+        if (visible) {
+            selectedId = view.popup.selectedFeature.attributes.OBJECTID;
+        } else {
+            selectedId = null;
+        }       
+
+        let cardData = await getCardListData(lyrView);
+        if (cardData) {
+            let cardsList = getCardsList(cardData, selectedId);
+            $("#cardsList").html(cardsList.join(""));
+        }
+    });
+
+    async function getCardListData(lyrView) {
+        let { features } = await lyrView.queryFeatures({
+            where: "1=1",
+            outFields: lyrView.availableFields,
+        });
+        if (features && features.length > 0) {
+            return features.map(({ attributes }) => attributes);
+        }
+        return null;
+    }
+
     view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
         lyrView = layerView;
-        lyrView.watch("updating", function(value) {
+        lyrView.watch("updating", async function (value) {
             // once the layer view finishes updating
             if (!value) {
-                lyrView
-                    .queryFeatures({
-                        where: "1=1",
-                        outFields: lyrView.availableFields,
-                    })
-                    .then(({ features }) => {
-                        let data = features.map(({ attributes }) => attributes);
-                        let cardsList = getCardsList(data);
-                        $("#cardsList").html(cardsList.join(""));
-                    });
+                let cardData = await getCardListData(lyrView);
+                if (cardData) {
+                    let cardsList = getCardsList(cardData, selectedId);
+                    $("#cardsList").html(cardsList.join(""));
+                }
             }
         });
     });
@@ -109,7 +130,8 @@ define([
     let $cboxDelivery = $("#cboxDelivery");
     let $cboxApp = $("#cboxApp");
 
-    let filters = [{
+    let filters = [
+        {
             field: "TakeOut",
             getValue: () => {
                 return $cboxTakeOut.prop("checked") ? 1 : 0;
@@ -138,11 +160,19 @@ define([
                 objectIds: [objectId],
                 returnGeometry: true,
             });
+
             if (features[0]) {
-                view.goTo({
+                await view.goTo({
                     target: features[0],
                     zoom: 15,
                 });
+
+                view.popup.open({
+                    location: features[0].geometry,
+                    features: features,
+                });
+
+                selectedId = objectId;
             }
         }
     });
@@ -183,29 +213,45 @@ define([
 
     return {
         map,
-        view
+        view,
     };
 });
 
-
-function titleCase(str) {
-    str = str.toLowerCase().split(' ');
+function titleCase(str) {    
+    str = str.toLowerCase().split(" ");
     for (var i = 0; i < str.length; i++) {
         str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
     }
-    return str.join(' ');
+    return str.join(" ");
 }
 
 function formatPhoneNumber(phoneNumberString) {
-    var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+    var cleaned = ("" + phoneNumberString).replace(/\D/g, "");
     var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
     if (match) {
-        return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+        return "(" + match[1] + ") " + match[2] + "-" + match[3];
     }
-    return 'N/A';
+    return "N/A";
 }
 
-function getCardsList(data) {
+function getCardsList(data, selectedId) {
+    if (selectedId) {
+        let sliceIndex = -1;
+        for (let i = 0; i < data.length; i++) {
+            const row = data[i];
+            if (row.OBJECTID === selectedId) {
+                sliceIndex = i;
+            }
+        }
+
+        if (sliceIndex) {
+            let highlighted;
+            highlighted = data.splice(sliceIndex, 1)[0];
+            highlighted.highlight = true;
+            data.unshift(highlighted);
+        }
+    }    
+
     return data.map(
         ({
             OBJECTID,
@@ -218,22 +264,25 @@ function getCardsList(data) {
             TakeOut,
             Delivery,
             ThirdPartyApp,
+            highlight
         }) => {
             return `
-            <div data-objectid="${OBJECTID}" class="card">
+            <div data-objectid="${OBJECTID}" class="card ${highlight ? 'highlighted' : ''}">
               <div class="card-body">
                 <h5 class="card-title">${titleCase(Name)}</h5>
                 <h6 class="card-subtitle text-muted mb-2">${Address}</h6>
                 ${
                     Phone_Number
-                        ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(Phone_Number)}</p>`
+                        ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(
+                              Phone_Number
+                          )}</p>`
                         : ""
                 }
                  ${
-                    Website
-                        ? `<p class="card-text"><a href="https://${Website}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
-                        : ""
-                }
+                     Website
+                         ? `<p class="card-text"><a href="https://${Website}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
+                         : ""
+                 }
                 <div class="horizontalIconContainer">
                   ${
                       TakeOut
