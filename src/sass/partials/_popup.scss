@@ -3,7 +3,16 @@
 ********************/
 
 .esri-view-width-less-than-medium .esri-popup__main-container {
-    max-width: 350px;
+    width: auto;
+    max-width: 400px;
+}
+
+.esri-popup__main-container .esri-widget {
+    font-size: 12px;
+
+    span {
+        line-height: 1.7;
+    }
 }
 
 .esri-popup__header-title {
@@ -16,12 +25,9 @@
     }
 }
 
-.esri-widget {
 
-    .esri-popup__content {
-        font-size: 11px;
-    }
-}
+
+
 
 // css for home and zoom buttons
 .esri-widget--button {

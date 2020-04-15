@@ -30,3 +30,18 @@ p.card-text {
         align-self: center;
     }
 }
+
+a.card-link {
+    color: $link-color;
+    text-decoration: underline;
+
+    &:hover {
+        color: $link-hover;
+        text-decoration: none;
+    }
+
+    &:visited {
+        color: $close-hover;
+        text-decoration: none;
+    }
+}
