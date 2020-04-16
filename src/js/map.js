@@ -4,7 +4,7 @@ define([
     "esri/views/MapView",
     "esri/layers/FeatureLayer",
     "esri/geometry/Extent",
-], function (config, Map, MapView, FeatureLayer, Extent) {
+], function(config, Map, MapView, FeatureLayer, Extent) {
     const maxExtent = new Extent(config.maxExtent);
     const initExtent = new Extent(config.intExtent);
 
@@ -62,7 +62,7 @@ define([
 
     let lyrView = null;
 
-    view.watch("extent", function (extent) {
+    view.watch("extent", function(extent) {
         let currentCenter = extent.center;
         if (!maxExtent.contains(currentCenter)) {
             let newCenter = extent.center;
@@ -92,7 +92,7 @@ define([
             selectedId = view.popup.selectedFeature.attributes.OBJECTID;
         } else {
             selectedId = null;
-        }       
+        }
 
         let cardData = await getCardListData(lyrView);
         if (cardData) {
@@ -114,7 +114,7 @@ define([
 
     view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
         lyrView = layerView;
-        lyrView.watch("updating", async function (value) {
+        lyrView.watch("updating", async function(value) {
             // once the layer view finishes updating
             if (!value) {
                 let cardData = await getCardListData(lyrView);
@@ -130,8 +130,7 @@ define([
     let $cboxDelivery = $("#cboxDelivery");
     let $cboxApp = $("#cboxApp");
 
-    let filters = [
-        {
+    let filters = [{
             field: "TakeOut",
             getValue: () => {
                 return $cboxTakeOut.prop("checked") ? 1 : 0;
@@ -217,7 +216,7 @@ define([
     };
 });
 
-function titleCase(str) {    
+function titleCase(str) {
     str = str.toLowerCase().split(" ");
     for (var i = 0; i < str.length; i++) {
         str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
@@ -234,13 +233,6 @@ function formatPhoneNumber(phoneNumberString) {
     return "N/A";
 }
 
-<<<<<<< HEAD
-function formatWebsite() {
-
-}
-
-function getCardsList(data) {
-=======
 function getCardsList(data, selectedId) {
     if (selectedId) {
         let sliceIndex = -1;
@@ -257,9 +249,8 @@ function getCardsList(data, selectedId) {
             highlighted.highlight = true;
             data.unshift(highlighted);
         }
-    }    
+    }
 
->>>>>>> 6f2ebf0d0b6cb1bcc5cedfc60fbe7f0c662ace6b
     return data.map(
         ({
             OBJECTID,
