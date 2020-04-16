@@ -287,7 +287,7 @@ function getCardsList(data, selectedId) {
                         : ""
                 }
                  ${
-                     Website
+                     Website !== 'N/A'
                          ? `<p class="card-text"><a href="https://${Website}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
                          : ""
                  }
