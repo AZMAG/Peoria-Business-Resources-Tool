@@ -233,9 +233,12 @@ function formatPhoneNumber(phoneNumberString) {
     return "N/A";
 }
 
-function formatWebsite() {
+// function formatWebsite(webAddress) {
+//     var webMatch = ( ^ ((https ? | ftp | smtp): \/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$);
+//                 if (webMatch) {
 
-}
+//                 }
+//             }
 
 function getCardsList(data) {
     return data.map(
