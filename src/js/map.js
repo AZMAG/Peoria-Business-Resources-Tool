@@ -138,6 +138,18 @@ define([
             return comparison;
         }
 
+        //
+        $("#sort-biz").on("click", function() {
+
+
+        });
+
+        function sortList() {
+
+        }
+
+
+
         var getCardsList = cards.getCardsList;
 
         view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
@@ -180,13 +192,6 @@ define([
                 },
             },
         ];
-
-
-        // console.log(getCardsList.data);
-        // $("#sort-biz").on("click", function() {
-
-        //     // sortBiz();
-        // });
 
         // Search by Business Function
         function setupBizDropdown(data) {
