@@ -61,23 +61,34 @@
     <header id="siteheader" class="">
         <a id="home_link" href="https://www.peoriaaz.gov/"></a>
     </header>
-    <div class="jumbotron">Welcome to the City of Peoria business locations COVID-19 Project.</div>
-    <main class="main-content">
+
+    <main id="main" class="main-content">
+        <div class="jumbotron">Welcome to the City of Peoria business locations COVID-19 Project.</div>
         <div id="controls">
-            <ul class="fieldlist">
-                <li>
-                    <input type="checkbox" id="cboxTakeOut" class="filterControl k-checkbox">
-                    <label class="k-checkbox-label" for="cboxTakeOut">Take out</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="cboxDelivery" class="filterControl k-checkbox">
-                    <label class="k-checkbox-label" for="cboxDelivery">Delivery</label>
-                </li>
-                <li>
-                    <input type="checkbox" id="cboxApp" class="filterControl k-checkbox">
-                    <label class="k-checkbox-label" for="cboxApp">Mobile App</label>
-                </li>
-            </ul>
+            <div id="bizControls">
+                <div id="bizDropDown" class="input-group">
+                    <input id="inputBiz" type="search" class="form-control" />
+                    <div class="input-group-append"></div>
+                </div>
+                <button id="sort-biz" type="button" class="btn btn-info sort-btn" data-toggle="tooltip" data-placement="top" title="Sort by School Name">Sort Business<i class="fas fa-sort"></i></button>
+            </div>
+            <div id="specials">
+                <ul class="fieldlist">
+                    <li>
+                        <input type="checkbox" id="cboxTakeOut" class="filterControl k-checkbox">
+                        <label class="k-checkbox-label" for="cboxTakeOut">Take out</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="cboxDelivery" class="filterControl k-checkbox">
+                        <label class="k-checkbox-label" for="cboxDelivery">Delivery</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="cboxApp" class="filterControl k-checkbox">
+                        <label class="k-checkbox-label" for="cboxApp">Mobile App</label>
+                    </li>
+                </ul>
+            </div>
+
         </div>
         <div class="mapTableContainer">
 
@@ -91,54 +102,9 @@
         </div>
     </main>
 
-    <footer id="page_footer" class="">
-        <div id="footercolumn" class="site_template_column footer_column">
-            <div class="footer_address col-xs-12 col-md-3">
-                <p>
-                    <a href="https://www.peoriaaz.gov/i-want-to/contact-the-city" target="_self">City of Peoria<br />8401 W.
-                        Monroe St.<br />Peoria, AZ 85345</a>
-                </p>
-            </div>
-            <div class="footer_contact col-xs-12 col-md-3">
-                <p>
-                    <a href="https://www.peoriaaz.gov/i-want-to/contact-the-city" target="_self">Contact Us<br />(623)
-                        773-7000<br /></a>
-                </p>
-                <p>
-                    <a href="https://www.peoriaaz.gov/?splash=https%3a%2f%2fmy.adp.com%2f&amp;____isexternal=true" target="_blank">Employee Login</a>
-                </p>
-            </div>
+    <footer id="page_footer" class=""></footer>
 
-            <div class="social_icons col-xs-12 col-md-6">
-                <a href="https://www.peoriaaz.gov/?splash=https%3a%2f%2ftwitter.com%2fpeoriaaz&amp;____isexternal=true" target="_blank" title="Follow us on Twitter!">
-                    <img src="https://www.peoriaaz.gov/Home/ShowPublishedImage/296/637063185536370000" alt="twitter" />
-                </a>
-                <a href="https://www.peoriaaz.gov/?splash=https%3a%2f%2fwww.facebook.com%2fCityofPeoriaAz%2f&amp;____isexternal=true" target="_blank" title="Like us on Facebook!">
-                    <img src="https://www.peoriaaz.gov/Home/ShowPublishedImage/298/636148110419330000" alt="facebook" />
-                </a>
-                <a href="https://www.peoriaaz.gov/?splash=https%3a%2f%2fwww.instagram.com%2fpeoriaazcam%2f&amp;____isexternal=true" target="_blank" title="Follow us on Instagram!">
-                    <img src="https://www.peoriaaz.gov/Home/ShowPublishedImage/306/636148110423700000" alt="instagram" />
-                </a>
-                <a href="https://www.peoriaaz.gov/?splash=https%3a%2f%2fwww.youtube.com%2fuser%2fPeoriaChannel11AZ&amp;____isexternal=true" target="_blank" title="Watch us on YouTube">
-                    <img src="https://www.peoriaaz.gov/Home/ShowPublishedImage/302/636148110421370000" alt="youtube" />
-                </a>
-                <a href="https://www.peoriaaz.gov/?splash=https%3a%2f%2fnextdoor.com%2f&amp;____isexternal=true" target="_blank" title="Follow us on NextDoor!">
-                    <img src="https://www.peoriaaz.gov/Home/ShowPublishedImage/304/636148110422430000" alt="nextdoor" />
-                </a>
-            </div>
-        </div>
-        <div class="footer_nav">
-            <a href="https://www.peoriaaz.gov/" target="_self">Home</a>
-            <a href="https://www.peoriaaz.gov/government/departments/human-resources/employment" target="_self">Employment</a>
-            <a href="https://www.peoriaaz.gov/government/americans-with-disabilities-act-ada" target="_self">Accessibility</a>
-            <a href="https://www.peoriaaz.gov/services/advanced-components/misc-pages/privacy-policy" target="_self">Privacy
-                Policy / Terms of Use</a>
-            <a href="https://www.peoriaaz.gov/residents/advanced-components/site-map" target="_self">Sitemap</a>
-            <a href="https://www.peoriaaz.gov/residents/advanced-components/site-specific-pages/contact-us" target="_self">Contact Us</a>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2019.2.619/js/kendo.all.min.js"></script>

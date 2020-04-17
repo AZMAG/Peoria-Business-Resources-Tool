@@ -45,3 +45,11 @@ a.card-link {
         text-decoration: none;
     }
 }
+
+#bizDropDown {
+    &.input-group {
+        width: 400px;
+    }
+
+    margin-right: 25px;
+}

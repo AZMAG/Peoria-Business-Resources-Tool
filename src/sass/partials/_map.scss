@@ -58,24 +58,38 @@
 #controls {
   color: $text-white;
   background-color: lighten($peoria-main, 10%);
-  padding-top: 35px;
-  padding-top: 30px;
-  // width: 70vw;
+  // padding-top: 30px;
   margin: 0 auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
 
-  .fieldlist {
+
+
+  #bizControls {
     display: flex;
-    list-style: none;
-
-    li {
-      margin-left: 20px;
-      font-size: 20px;
-      font-weight: 600;
-    }
+    padding: 10px;
   }
+
+  #specials {
+    justify-content: center;
+    padding: 10px;
+
+    .fieldlist {
+      display: flex;
+      list-style: none;
+
+      ul {
+        margin-bottom: 0;
+      }
+
+      li {
+        margin-left: 20px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+
+  }
+
 }
 
 #mapView {

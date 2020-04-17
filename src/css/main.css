@@ -434,28 +434,38 @@ template {
 #controls {
   color: #ffffff;
   background-color: #2e93e3;
-  padding-top: 35px;
-  padding-top: 30px;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+}
+
+#controls #bizControls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+}
+
+#controls #specials {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding: 10px;
 }
 
-#controls .fieldlist {
+#controls #specials .fieldlist {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   list-style: none;
 }
 
-#controls .fieldlist li {
+#controls #specials .fieldlist ul {
+  margin-bottom: 0;
+}
+
+#controls #specials .fieldlist li {
   margin-left: 20px;
   font-size: 20px;
   font-weight: 600;
@@ -1003,6 +1013,14 @@ a.card-link:hover {
 a.card-link:visited {
   color: #777777;
   text-decoration: none;
+}
+
+#bizDropDown {
+  margin-right: 25px;
+}
+
+#bizDropDown.input-group {
+  width: 400px;
 }
 
 @media screen and (min-width: 40.5em) and (max-width: 47.9375em) {

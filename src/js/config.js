@@ -1,3 +1,11 @@
+/* ========================================================================
+ * Maricopa Association of Governments
+ * JS document
+ * @project     MAG Peoria Business Resource Tool
+ * @summary     Config file for project
+ * @file        config.js
+ * ======================================================================== */
+
 define([], function() {
     function formatPhoneNumber(phoneNumberString) {
         var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
@@ -9,15 +17,15 @@ define([], function() {
     }
 
     var popContent = ({ graphic }) => {
-        let { Address, Phone_Number, Website } = graphic.attributes;            
-            return `
+        let { Address, Phone_Number, Website } = graphic.attributes;
+        return `
                 <div>
                 <span><b>Address: </b>${Address}</span></br>
                 <span><b>Phone: </b>${formatPhoneNumber(Phone_Number)}</span></br>
                 ${Website !== 'N/A' ? `<span><a target="_blank" href="https://${Website}" class="card-link"><em class="fa fa-link"></em> Website</a></span>` : '' }
                 </div>
             `;
-        }
+    }
 
     return {
         version: "v0.0.2 | 2020-04-14",
