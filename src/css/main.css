@@ -1023,6 +1023,18 @@ a.card-link:visited {
   width: 400px;
 }
 
+.sort-btn {
+  color: #ffffff;
+  background-color: #8e3847;
+  border-color: #a03f50;
+}
+
+.sort-btn:hover {
+  color: #ffffff;
+  background-color: #692a35;
+  border-color: #57222c;
+}
+
 @media screen and (min-width: 40.5em) and (max-width: 47.9375em) {
   .standardlayout .column.left_col,
   .standardthreecolumnlayout .column.left_col,

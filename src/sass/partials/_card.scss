@@ -53,3 +53,15 @@ a.card-link {
 
     margin-right: 25px;
 }
+
+.sort-btn {
+    color: $text-white;
+    background-color: $peoria-accent;
+    border-color: lighten($peoria-accent, 5%);
+
+    &:hover {
+        color: $text-white;
+        background-color: darken($peoria-accent, 10%);
+        border-color: darken($peoria-accent, 15%);
+    }
+}

@@ -15,6 +15,7 @@ define([
         "mag/card-functions",
     ],
     function(config, Map, MapView, FeatureLayer, Extent, cards) {
+        "use strict";
 
         const maxExtent = new Extent(config.maxExtent);
         const initExtent = new Extent(config.intExtent);
@@ -123,6 +124,20 @@ define([
             return null;
         }
 
+        function compare(a, b) {
+            // Use toUpperCase() to ignore character casing
+            const NameA = a.Name.toUpperCase();
+            const NameB = b.Name.toUpperCase();
+
+            let comparison = 0;
+            if (NameA > NameB) {
+                comparison = 1;
+            } else if (NameA < NameB) {
+                comparison = -1;
+            }
+            return comparison;
+        }
+
         var getCardsList = cards.getCardsList;
 
         view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
@@ -131,8 +146,10 @@ define([
                 // once the layer view finishes updating
                 if (!value) {
                     let cardData = await getCardListData(lyrView);
+                    cardData.sort(compare);
                     if (cardData) {
                         let cardsList = getCardsList(cardData, selectedId);
+                        // console.log(cardData);
                         $("#cardsList").html(cardsList.join(""));
                     }
                     setupBizDropdown(cardData);
@@ -171,22 +188,6 @@ define([
         //     // sortBiz();
         // });
 
-        // function sortBiz() {
-        //     if (sortDirection === "asc") {
-        //         dataSource.sort({
-        //             field: Name,
-        //             dir: "desc"
-        //         });
-        //         sortDirection = "desc";
-        //     } else {
-        //         dataSource.sort({
-        //             field: Name,
-        //             dir: "asc"
-        //         });
-        //         sortDirection = "asc";
-        //     }
-        // }
-
         // Search by Business Function
         function setupBizDropdown(data) {
             // console.log(data);
@@ -224,7 +225,7 @@ define([
 
         async function gotoBiz(e) {
             let objectId = e;
-            console.log(objectId);
+            // console.log(objectId);
             if (lyrView) {
                 let { features } = await lyrView.queryFeatures({
                     objectIds: [objectId],
@@ -252,7 +253,7 @@ define([
         //Click on card and zoom to point on map
         $("body").on("click", ".card", async (e) => {
             let objectId = $(e.currentTarget).data("objectid");
-            console.log(objectId);
+            // console.log(objectId);
             if (lyrView) {
                 let { features } = await lyrView.queryFeatures({
                     objectIds: [objectId],

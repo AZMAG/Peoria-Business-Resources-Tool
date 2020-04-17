@@ -9,7 +9,6 @@
 define([
         "mag/config",
         "mag/map",
-
     ],
     function(config, { map, view }) {
 
