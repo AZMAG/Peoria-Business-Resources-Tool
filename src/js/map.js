@@ -205,26 +205,54 @@ define([
                     }
                 },
                 placeholder: "Select a Business",
-                // change: onChange
+                change: onChange
             });
 
             function onChange() {
                 var dropdown = $("#inputBiz");
                 var bizData = dropdown.data("kendoComboBox");
                 var dataItem = bizData.dataItem();
+                // console.log(dataItem, dataItem.OBJECTID);
                 if (dataItem !== undefined) {
-                    // getSchoolsData(dataItem.id);
-                    // tp.publish('toggle-page', 3);
+                    var e = dataItem.OBJECTID;
+                    gotoBiz(e);
                 } else {
                     return;
                 }
             }
         }
 
+        async function gotoBiz(e) {
+            let objectId = e;
+            console.log(objectId);
+            if (lyrView) {
+                let { features } = await lyrView.queryFeatures({
+                    objectIds: [objectId],
+                    returnGeometry: true,
+                });
+
+                if (features[0]) {
+                    await view.goTo({
+                        target: features[0],
+                        zoom: 15,
+                    });
+
+                    view.popup.open({
+                        location: features[0].geometry,
+                        features: features,
+                    });
+
+                    selectedId = objectId;
+                }
+            };
+        };
+
         let highlight;
 
+        //Click on card and zoom to point on map
         $("body").on("click", ".card", async (e) => {
             let objectId = $(e.currentTarget).data("objectid");
+            console.log(objectId);
             if (lyrView) {
                 let { features } = await lyrView.queryFeatures({
                     objectIds: [objectId],
@@ -247,6 +275,7 @@ define([
             }
         });
 
+        //hover card and highlights point on map
         $("body").on("mouseenter", ".card", async (e) => {
             let objectId = $(e.currentTarget).data("objectid");
             if (lyrView) {
@@ -261,7 +290,7 @@ define([
                 }
             }
         });
-
+        //hover card remove and remove highlighted point on map
         $("body").on("mouseleave", ".card", (e) => {
             if (highlight) {
                 highlight.remove();
