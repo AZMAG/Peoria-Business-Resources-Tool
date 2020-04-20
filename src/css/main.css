@@ -378,16 +378,6 @@ template {
   background-color: #f1f1f1;
 }
 
-#mapView {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
-  padding: 0;
-  margin: 0;
-  height: 500px;
-  width: 500px;
-}
-
 .mapTableContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -396,6 +386,17 @@ template {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  height: 500px;
+}
+
+#mapView {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  padding: 0;
+  margin: 0;
+  height: 500px;
+  width: 500px;
 }
 
 #listContainer {
@@ -413,7 +414,7 @@ template {
 }
 
 #listContainer #cardsListContainer {
-  max-height: 500px;
+  height: 500px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -432,12 +433,12 @@ template {
 }
 
 #controls {
-  color: #ffffff;
-  background-color: #2e93e3;
-  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  color: #ffffff;
+  background-color: #2e93e3;
+  margin: 0 auto;
 }
 
 #controls #bizControls {

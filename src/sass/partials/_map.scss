@@ -5,20 +5,19 @@
   background-color: $main-background;
 }
 
+.mapTableContainer {
+  display: flex;
+  margin: 0 0 0 15px;
+  justify-content: space-between;
+  height: 500px;
+}
+
 #mapView {
   flex: 2;
   padding: 0;
   margin: 0;
   height: 500px;
   width: 500px;
-}
-
-.mapTableContainer {
-  display: flex;
-  // width: 80vw;
-  margin: 0 0 0 15px;
-  // padding: 10px;
-  justify-content: space-between;
 }
 
 #listContainer {
@@ -33,7 +32,7 @@
   }
 
   #cardsListContainer {
-    max-height: 500px;
+    height: 500px;
     overflow-y: scroll;
     overflow-x: hidden;
   }
@@ -56,12 +55,11 @@
 }
 
 #controls {
+  display: flex;
   color: $text-white;
   background-color: lighten($peoria-main, 10%);
   // padding-top: 30px;
   margin: 0 auto;
-  display: flex;
-
 
 
   #bizControls {

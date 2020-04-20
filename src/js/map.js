@@ -101,7 +101,7 @@ define([
 
         view.popup.watch("visible", async (visible) => {
             if (visible) {
-                selectedId = view.popup.selectedFeature.attributes.OBJECTID;
+                selectedId = view.popup.selectedFeature.attributes.TableID;
             } else {
                 selectedId = null;
             }
@@ -128,13 +128,13 @@ define([
 
         function sortPos(a, b) {
             // Use toUpperCase() to ignore character casing
-            const NameA = a.Name.toUpperCase();
-            const NameB = b.Name.toUpperCase();
+            const Restaurant_NameA = a.Restaurant_Name.toUpperCase();
+            const Restaurant_NameB = b.Restaurant_Name.toUpperCase();
 
             let comparison = 0;
-            if (NameA > NameB) {
+            if (Restaurant_NameA > Restaurant_NameB) {
                 comparison = 1;
-            } else if (NameA < NameB) {
+            } else if (Restaurant_NameA < Restaurant_NameB) {
                 comparison = -1;
             }
             return comparison;
@@ -142,13 +142,13 @@ define([
 
         function sortNeg(a, b) {
             // Use toUpperCase() to ignore character casing
-            const NameA = a.Name.toUpperCase();
-            const NameB = b.Name.toUpperCase();
+            const Restaurant_NameA = a.Restaurant_Name.toUpperCase();
+            const Restaurant_NameB = b.Restaurant_Name.toUpperCase();
 
             let comparison = 0;
-            if (NameA > NameB) {
+            if (Restaurant_NameA > Restaurant_NameB) {
                 comparison = 1;
-            } else if (NameA < NameB) {
+            } else if (Restaurant_NameA < Restaurant_NameB) {
                 comparison = -1;
             }
             //invert return value by multiplying by -1
@@ -156,7 +156,6 @@ define([
         }
 
         //sort button
-
         $("#sort-biz").on("click", function() {
             var toggleStatus = $("#sort-biz").attr("data-status");
             if (toggleStatus === "on") {
@@ -166,6 +165,7 @@ define([
                 $("#sort-biz").attr("data-status", "on");
                 sortType = sortNeg;
             }
+
             console.log(toggleStatus);
         });
 
@@ -188,8 +188,6 @@ define([
                 }
             });
         });
-
-
 
         let $cboxTakeOut = $("#cboxTakeOut");
         let $cboxDelivery = $("#cboxDelivery");
@@ -220,15 +218,15 @@ define([
             // console.log(data);
             var dropdown = $("#inputBiz");
             dropdown.kendoComboBox({
-                dataTextField: "Name",
-                dataValueField: "Name",
+                dataTextField: "Restaurant_Name",
+                dataValueField: "Restaurant_Name",
                 filter: "none",
                 suggest: true,
-                template: "${data.Name}",
+                template: "${data.Restaurant_Name}",
                 dataSource: {
                     data: data,
                     sort: {
-                        field: "Name",
+                        field: "Restaurant_Name",
                         dir: "asc"
                     }
                 },
@@ -240,9 +238,9 @@ define([
                 var dropdown = $("#inputBiz");
                 var bizData = dropdown.data("kendoComboBox");
                 var dataItem = bizData.dataItem();
-                // console.log(dataItem, dataItem.OBJECTID);
+                // console.log(dataItem, dataItem.TableID);
                 if (dataItem !== undefined) {
-                    var e = dataItem.OBJECTID;
+                    var e = dataItem.TableID;
                     gotoBiz(e);
                 } else {
                     return;

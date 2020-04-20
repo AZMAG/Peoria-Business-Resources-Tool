@@ -32,33 +32,33 @@ define([
         function getCardsList(data) {
             return data.map(
                 ({
-                    OBJECTID,
-                    Name,
-                    Phone_Number,
-                    Address,
+                    TableID,
+                    Restaurant_Name,
+                    Phone_Number_Redone,
+                    Business_Address,
                     Specials,
-                    Website,
-                    Opn_for,
+                    Link,
+                    Open_,
                     TakeOut,
                     Delivery,
                     ThirdPartyApp,
-                    highlight
+                    Highlight
                 }) => {
                     return `
-            <div data-objectid="${OBJECTID}" class="card ${highlight ? 'highlighted' : ''}">
+            <div data-objectid="${TableID}" class="card ${Highlight ? 'highlighted' : ''}">
               <div class="card-body">
-                <h5 class="card-title">${titleCase(Name)}</h5>
-                <h6 class="card-subtitle text-muted mb-2">${Address}</h6>
+                <h5 class="card-title">${titleCase(Restaurant_Name)}</h5>
+                <h6 class="card-subtitle text-muted mb-2">${Business_Address}</h6>
                 ${
-                    Phone_Number
+                    Phone_Number_Redone
                         ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(
-                              Phone_Number
+                              Phone_Number_Redone
                           )}</p>`
                         : ""
                 }
                  ${
-                     Website !== 'N/A'
-                         ? `<p class="card-text"><a href="https://${Website}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
+                     Link !== 'N/A'
+                         ? `<p class="card-text"><a href="https://${Link}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
                          : ""
                  }
                 <div class="horizontalIconContainer">
