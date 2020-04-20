@@ -165,15 +165,14 @@ define([
                 $("#sort-biz").attr("data-status", "on");
                 sortType = sortNeg;
             }
-
             console.log(toggleStatus);
         });
-
 
         var getCardsList = cards.getCardsList;
 
         view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
             lyrView = layerView;
+
             lyrView.watch("updating", async function(value) {
                 // once the layer view finishes updating
                 if (!value) {
@@ -188,6 +187,7 @@ define([
                 }
             });
         });
+
 
         let $cboxTakeOut = $("#cboxTakeOut");
         let $cboxDelivery = $("#cboxDelivery");
