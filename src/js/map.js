@@ -124,7 +124,9 @@ define([
             return null;
         }
 
-        function compare(a, b) {
+        var sortType = sortPos;
+
+        function sortPos(a, b) {
             // Use toUpperCase() to ignore character casing
             const NameA = a.Name.toUpperCase();
             const NameB = b.Name.toUpperCase();
@@ -138,16 +140,34 @@ define([
             return comparison;
         }
 
-        //
-        $("#sort-biz").on("click", function() {
+        function sortNeg(a, b) {
+            // Use toUpperCase() to ignore character casing
+            const NameA = a.Name.toUpperCase();
+            const NameB = b.Name.toUpperCase();
 
-
-        });
-
-        function sortList() {
-
+            let comparison = 0;
+            if (NameA > NameB) {
+                comparison = 1;
+            } else if (NameA < NameB) {
+                comparison = -1;
+            }
+            //invert return value by multiplying by -1
+            return comparison * -1;
         }
 
+        //sort button
+
+        $("#sort-biz").on("click", function() {
+            var toggleStatus = $("#sort-biz").attr("data-status");
+            if (toggleStatus === "on") {
+                $("#sort-biz").attr("data-status", "off");
+                sortType = sortPos;
+            } else {
+                $("#sort-biz").attr("data-status", "on");
+                sortType = sortNeg;
+            }
+            console.log(toggleStatus);
+        });
 
 
         var getCardsList = cards.getCardsList;
@@ -158,7 +178,7 @@ define([
                 // once the layer view finishes updating
                 if (!value) {
                     let cardData = await getCardListData(lyrView);
-                    cardData.sort(compare);
+                    cardData.sort(sortType);
                     if (cardData) {
                         let cardsList = getCardsList(cardData, selectedId);
                         // console.log(cardData);
@@ -168,6 +188,8 @@ define([
                 }
             });
         });
+
+
 
         let $cboxTakeOut = $("#cboxTakeOut");
         let $cboxDelivery = $("#cboxDelivery");
