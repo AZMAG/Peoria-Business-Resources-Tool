@@ -13,7 +13,7 @@ define([
     "esri/layers/FeatureLayer",
     "esri/geometry/Extent",
     "mag/card-functions",
-], function (config, Map, MapView, FeatureLayer, Extent, cards) {
+], function(config, Map, MapView, FeatureLayer, Extent, cardsF) {
     "use strict";
 
     const maxExtent = new Extent(config.maxExtent);
@@ -72,9 +72,7 @@ define([
     });
     map.add(peoriaBusinessesLayer);
 
-    let lyrView = null;
-
-    view.watch("extent", function (extent) {
+    view.watch("extent", function(extent) {
         let currentCenter = extent.center;
         if (!maxExtent.contains(currentCenter)) {
             let newCenter = extent.center;
@@ -97,6 +95,7 @@ define([
         }
     });
 
+    let lyrView = null;
     let selectedId;
 
     view.popup.watch("visible", async (visible) => {
@@ -112,12 +111,13 @@ define([
             $("#cardsList").html(cardsList.join(""));
         }
     });
+
+    // Specials Checkboxes
     let $cboxTakeOut = $("#cboxTakeOut");
     let $cboxDelivery = $("#cboxDelivery");
     let $cboxApp = $("#cboxApp");
 
-    let filters = [
-        {
+    let filters = [{
             field: "TakeOut",
             getValue: () => {
                 return $cboxTakeOut.prop("checked") ? 1 : 0;
@@ -136,8 +136,13 @@ define([
             },
         },
     ];
+
+    $(".filterControl").change(() => {
+        peoriaBusinessesLayer.definitionExpression = getCurrentDefinitionExpression();
+    });
+
     function getCurrentDefinitionExpression() {
-        let definitionExpression = "1=1 ";
+        let definitionExpression = "1=1";
         let checkboxes = filters
             .map((filter) => {
                 let val = filter.getValue();
@@ -154,6 +159,7 @@ define([
         if (dataItem) {
             definitionExpression += ` AND Category = '${dataItem}'`;
         }
+        // console.log(definitionExpression);
         return definitionExpression;
     }
 
@@ -200,7 +206,7 @@ define([
     }
 
     //sort button
-    $("#sort-biz").on("click", function () {
+    $("#sort-biz").on("click", function() {
         var toggleStatus = $("#sort-biz").attr("data-status");
         if (toggleStatus === "on") {
             $("#sort-biz").attr("data-status", "off");
@@ -209,15 +215,15 @@ define([
             $("#sort-biz").attr("data-status", "on");
             sortType = sortNeg;
         }
-        console.log(toggleStatus);
+        // console.log(toggleStatus);
     });
 
-    var getCardsList = cards.getCardsList;
+    var getCardsList = cardsF.getCardsList;
 
     view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
         lyrView = layerView;
 
-        lyrView.watch("updating", async function (value) {
+        lyrView.watch("updating", async function(value) {
             // once the layer view finishes updating
             if (!value) {
                 let cardData = await getCardListData(lyrView);
@@ -365,9 +371,7 @@ define([
         }
     });
 
-    $(".filterControl").change(() => {
-        peoriaBusinessesLayer.definitionExpression = getCurrentDefinitionExpression();
-    });
+
 
     return {
         map,
