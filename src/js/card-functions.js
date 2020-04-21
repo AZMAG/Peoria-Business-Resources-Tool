@@ -36,6 +36,7 @@ define([
                     Restaurant_Name,
                     Phone_Number_Redone,
                     Business_Address,
+                    Category,
                     Specials,
                     Link,
                     Open_,
@@ -47,20 +48,25 @@ define([
                     return `
             <div data-objectid="${TableID}" class="card ${Highlight ? 'highlighted' : ''}">
               <div class="card-body">
-                <h5 class="card-title">${titleCase(Restaurant_Name)}</h5>
-                <h6 class="card-subtitle text-muted mb-2">${Business_Address}</h6>
-                ${
-                    Phone_Number_Redone
-                        ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(
-                              Phone_Number_Redone
-                          )}</p>`
-                        : ""
-                }
-                 ${
-                     Link !== 'N/A'
-                         ? `<p class="card-text"><a href="https://${Link}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
-                         : ""
-                 }
+                <div class="card-top">
+                    <h5 class="card-title">${ titleCase(Restaurant_Name)}</h5>
+                    <h6 class="catType">${Category}</h6>
+                </div>
+                <div class="card-info">
+                    <h6 class="card-subtitle text-muted mb-2">${Business_Address}</h6>
+                    ${
+                        Phone_Number_Redone
+                            ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(
+                                Phone_Number_Redone
+                            )}</p>`
+                            : ""
+                    }
+                    ${
+                        Link !== 'N/A'
+                            ? `<p class="card-text"><a href="https://${Link}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
+                            : ""
+                    }
+                 </div>
                 <div class="horizontalIconContainer">
                   ${
                       TakeOut
@@ -78,7 +84,6 @@ define([
                           : ""
                   }
                 </div>
-
               </div>
             </div>
           `;
