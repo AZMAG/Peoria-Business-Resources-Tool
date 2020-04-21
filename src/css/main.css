@@ -7083,4 +7083,70 @@ table.tableBox td {
 table.tableBox td {
   border-top: 1px solid #cbcbcb;
 }
+
+.hidden {
+  display: none;
+}
+
+.successMessage {
+  font-size: 20px;
+  font-weight: bold;
+  top: 0px;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  display: none;
+}
+
+.invalid-tooltip {
+  position: relative;
+}
+
+.redAsterisk {
+  color: red;
+}
+
+.form-control {
+  width: 95%;
+  padding: 2px 5px;
+}
+
+.iconTooltip .iconTooltiptext::after {
+  pointer-events: none;
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -9px;
+  border-width: 9px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+}
+
+.iconTooltip {
+  pointer-events: none;
+  position: absolute;
+  z-index: 9999999999;
+  display: none;
+  border-bottom: 1px dotted black;
+}
+
+.iconTooltip .iconTooltiptext {
+  pointer-events: none;
+  width: 150px;
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  padding: 0px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  background-color: black;
+  border: 2px solid black;
+}
+
+.tooltip {
+  z-index: 1000000;
+}
 /*# sourceMappingURL=main.css.map */

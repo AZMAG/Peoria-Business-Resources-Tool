@@ -6,48 +6,45 @@
  * @file        card-functions.js
  * ======================================================================== */
 
-define([
-        "mag/config",
-        "mag/map",
-    ],
-    function(config, { map, view }) {
-
-        function titleCase(str) {
-            str = str.toLowerCase().split(" ");
-            for (var i = 0; i < str.length; i++) {
-                str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
-            }
-            return str.join(" ");
+define(["mag/config", "mag/map"], function (config, { map, view }) {
+    function titleCase(str) {
+        str = str.toLowerCase().split(" ");
+        for (var i = 0; i < str.length; i++) {
+            str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
         }
+        return str.join(" ");
+    }
 
-        function formatPhoneNumber(phoneNumberString) {
-            var cleaned = ("" + phoneNumberString).replace(/\D/g, "");
-            var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-            if (match) {
-                return "(" + match[1] + ") " + match[2] + "-" + match[3];
-            }
-            return "N/A";
+    function formatPhoneNumber(phoneNumberString) {
+        var cleaned = ("" + phoneNumberString).replace(/\D/g, "");
+        var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+        if (match) {
+            return "(" + match[1] + ") " + match[2] + "-" + match[3];
         }
+        return "N/A";
+    }
 
-        function getCardsList(data) {
-            return data.map(
-                ({
-                    OBJECTID,
-                    Name,
-                    Phone_Number,
-                    Address,
-                    Specials,
-                    Website,
-                    Opn_for,
-                    TakeOut,
-                    Delivery,
-                    ThirdPartyApp,
-                    highlight
-                }) => {
-                    return `
-            <div data-objectid="${OBJECTID}" class="card ${highlight ? 'highlighted' : ''}">
+    function getCardsList(data) {
+        return data.map(
+            ({
+                OBJECTID,
+                Restaurant_Name,
+                Phone_Number,
+                Address,
+                Specials,
+                Website,
+                Opn_for,
+                TakeOut,
+                Delivery,
+                ThirdPartyApp,
+                highlight,
+            }) => {
+                return `
+            <div data-objectid="${OBJECTID}" class="card ${
+                    highlight ? "highlighted" : ""
+                }">
               <div class="card-body">
-                <h5 class="card-title">${titleCase(Name)}</h5>
+                <h5 class="card-title">${titleCase(Restaurant_Name)}</h5>
                 <h6 class="card-subtitle text-muted mb-2">${Address}</h6>
                 ${
                     Phone_Number
@@ -57,7 +54,7 @@ define([
                         : ""
                 }
                  ${
-                     Website !== 'N/A'
+                     Website !== "N/A"
                          ? `<p class="card-text"><a href="https://${Website}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
                          : ""
                  }
@@ -82,16 +79,11 @@ define([
               </div>
             </div>
           `;
-                }
-            );
-        }
+            }
+        );
+    }
 
-
-
-        return {
-            getCardsList
-        };
-
-
-
-    });
+    return {
+        getCardsList,
+    };
+});
