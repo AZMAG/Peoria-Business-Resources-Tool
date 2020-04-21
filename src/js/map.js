@@ -184,6 +184,7 @@ define([
                         $("#cardsList").html(cardsList.join(""));
                     }
                     setupBizDropdown(cardData);
+                    bizCatogory(cardData);
                 }
             });
         });
@@ -239,6 +240,36 @@ define([
                 var bizData = dropdown.data("kendoComboBox");
                 var dataItem = bizData.dataItem();
                 // console.log(dataItem, dataItem.TableID);
+                if (dataItem !== undefined) {
+                    var e = dataItem.TableID;
+                    gotoBiz(e);
+                } else {
+                    return;
+                }
+            }
+        }
+
+        function bizCatogory(data) {
+            // console.log(data);
+            let unique = [...new Set(data.map(item => item.Category))];
+            // console.log(unique);
+            // create ComboBox from input HTML element
+            $("#bizCat").kendoComboBox({
+                dataSource: {
+                    data: unique,
+                    sort: {
+                        dir: "asc"
+                    }
+                },
+                placeholder: "Select a Category",
+                change: onChange
+            });
+
+            function onChange() {
+                var dropdown = $("#bizCat");
+                var bizData = dropdown.data("kendoComboBox");
+                var dataItem = bizData.dataItem();
+                console.log(dataItem, dataItem.TableID);
                 if (dataItem !== undefined) {
                     var e = dataItem.TableID;
                     gotoBiz(e);
