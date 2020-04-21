@@ -61,12 +61,6 @@
   // padding-top: 30px;
   margin: 0 auto;
 
-
-  #bizControls {
-    display: flex;
-    padding: 15px;
-  }
-
   #specials {
     justify-content: center;
     padding-top: 25px;
@@ -88,16 +82,4 @@
 
   }
 
-}
-
-#mapView {
-  flex: 2;
-}
-
-.horizontalIconContainer {
-  display: flex;
-
-  .horizontalIcon {
-    flex: 1;
-  }
 }

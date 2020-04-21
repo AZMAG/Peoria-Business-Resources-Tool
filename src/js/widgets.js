@@ -47,4 +47,5 @@ define([
         });
         view.ui.add(search, "bottom-left");
 
-    });
+    }
+);

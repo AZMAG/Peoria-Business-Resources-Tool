@@ -91,12 +91,8 @@ define([
             );
         }
 
-
-
         return {
             getCardsList
         };
-
-
-
-    });
+    }
+);

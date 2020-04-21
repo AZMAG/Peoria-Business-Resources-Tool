@@ -37,14 +37,16 @@
 }
 
 .horizontalIconContainer {
-    justify-content: center;
+    display: flex;
     font-size: 14px;
     margin-top: 1em;
 
     .horizontalIcon {
-        align-self: center;
+        flex: 1;
     }
 }
+
+
 
 a.card-link {
     color: $link-color;
@@ -59,14 +61,6 @@ a.card-link {
         color: $close-hover;
         text-decoration: none;
     }
-}
-
-#bizDropDown {
-    &.input-group {
-        width: 400px;
-    }
-
-    margin-right: 25px;
 }
 
 .sort-btn {
