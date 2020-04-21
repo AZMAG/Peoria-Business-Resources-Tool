@@ -269,10 +269,9 @@ define([
                 var dropdown = $("#bizCat");
                 var bizData = dropdown.data("kendoComboBox");
                 var dataItem = bizData.dataItem();
-                console.log(dataItem, dataItem.TableID);
+                // console.log(dataItem, dataItem.TableID);
                 if (dataItem !== undefined) {
-                    var e = dataItem.TableID;
-                    gotoBiz(e);
+                    peoriaBusinessesLayer.setDefinitionExpression("Category =" + dataItem);
                 } else {
                     return;
                 }
@@ -364,8 +363,10 @@ define([
             peoriaBusinessesLayer.definitionExpression = filterComponents.join(
                 " AND "
             );
-            // console.log(filterComponents.join(" OR "));
+            console.log(filterComponents.join(" OR "));
         });
+
+
 
         return {
             map,
