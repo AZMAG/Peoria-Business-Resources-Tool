@@ -112,6 +112,50 @@ define([
             $("#cardsList").html(cardsList.join(""));
         }
     });
+    let $cboxTakeOut = $("#cboxTakeOut");
+    let $cboxDelivery = $("#cboxDelivery");
+    let $cboxApp = $("#cboxApp");
+
+    let filters = [
+        {
+            field: "TakeOut",
+            getValue: () => {
+                return $cboxTakeOut.prop("checked") ? 1 : 0;
+            },
+        },
+        {
+            field: "Delivery",
+            getValue: () => {
+                return $cboxDelivery.prop("checked") ? 1 : 0;
+            },
+        },
+        {
+            field: "ThirdPartyApp",
+            getValue: () => {
+                return $cboxApp.prop("checked") ? 1 : 0;
+            },
+        },
+    ];
+    function getCurrentDefinitionExpression() {
+        let definitionExpression = "1=1 ";
+        let checkboxes = filters
+            .map((filter) => {
+                let val = filter.getValue();
+                return val ? `${filter.field} = ${val}` : null;
+            })
+            .filter((fltr) => fltr);
+        var dropdown = $("#bizCat");
+        var bizData = dropdown.data("kendoComboBox");
+        var dataItem = bizData.dataItem();
+
+        if (checkboxes.length > 0) {
+            definitionExpression += " AND " + checkboxes.join(" AND ");
+        }
+        if (dataItem) {
+            definitionExpression += ` AND Category = '${dataItem}'`;
+        }
+        return definitionExpression;
+    }
 
     async function getCardListData(lyrView) {
         let { features } = await lyrView.queryFeatures({
@@ -189,31 +233,6 @@ define([
         });
     });
 
-    let $cboxTakeOut = $("#cboxTakeOut");
-    let $cboxDelivery = $("#cboxDelivery");
-    let $cboxApp = $("#cboxApp");
-
-    let filters = [
-        {
-            field: "TakeOut",
-            getValue: () => {
-                return $cboxTakeOut.prop("checked") ? 1 : 0;
-            },
-        },
-        {
-            field: "Delivery",
-            getValue: () => {
-                return $cboxDelivery.prop("checked") ? 1 : 0;
-            },
-        },
-        {
-            field: "ThirdPartyApp",
-            getValue: () => {
-                return $cboxApp.prop("checked") ? 1 : 0;
-            },
-        },
-    ];
-
     // Search by Business Function
     function setupBizDropdown(data) {
         // console.log(data);
@@ -266,22 +285,8 @@ define([
         });
 
         function onChange() {
-            var dropdown = $("#bizCat");
-            var bizData = dropdown.data("kendoComboBox");
-            var dataItem = bizData.dataItem();
-            // console.log(dataItem, dataItem.TableID);
-            if (dataItem !== undefined) {
-                console.log(dataItem);
-                const peoriaBusinessesLayer = map.findLayerById(
-                    "peoriaBusinesses"
-                );
-                peoriaBusinessesLayer.definitionExpression =
-                    peoriaBusinessesLayer.definitionExpression || " 1=1 ";
-                peoriaBusinessesLayer.definitionExpression +=
-                    " AND Category = '" + dataItem + "'";
-            } else {
-                return;
-            }
+            const peoriaBusinessesLayer = map.findLayerById("peoriaBusinesses");
+            peoriaBusinessesLayer.definitionExpression = getCurrentDefinitionExpression();
         }
     }
 
@@ -361,19 +366,7 @@ define([
     });
 
     $(".filterControl").change(() => {
-        let filterComponents = filters
-            .map((filter) => {
-                let val = filter.getValue();
-                return val ? `${filter.field} = ${val}` : null;
-            })
-            .filter((fltr) => fltr);
-        peoriaBusinessesLayer.definitionExpression =
-            peoriaBusinessesLayer.definitionExpression || " 1=1 ";
-        if (filterComponents.length > 0) {
-            peoriaBusinessesLayer.definitionExpression +=
-                " AND " + filterComponents.join(" AND ");
-        }
-        console.log(peoriaBusinessesLayer.definitionExpression);
+        peoriaBusinessesLayer.definitionExpression = getCurrentDefinitionExpression();
     });
 
     return {
