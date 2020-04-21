@@ -1,4 +1,14 @@
+/* ========================================================================
+ * Maricopa Association of Governments
+ * JS document
+ * @project     MAG Peoria Business Resource Tool
+ * @summary     Config file for project
+ * @file        config.js
+ * ======================================================================== */
+
 define([], function() {
+    "use strict";
+
     function formatPhoneNumber(phoneNumberString) {
         var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
         var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
@@ -9,18 +19,18 @@ define([], function() {
     }
 
     var popContent = ({ graphic }) => {
-        let { Address, Phone_Number, Website } = graphic.attributes;            
-            return `
+        let { Business_Address, Phone_Number_Redone, Link } = graphic.attributes;
+        return `
                 <div>
-                <span><b>Address: </b>${Address}</span></br>
-                <span><b>Phone: </b>${formatPhoneNumber(Phone_Number)}</span></br>
-                ${Website !== 'N/A' ? `<span><a target="_blank" href="https://${Website}" class="card-link"><em class="fa fa-link"></em> Website</a></span>` : '' }
+                <span><b>Address: </b>${Business_Address}</span></br>
+                <span><b>Phone: </b>${formatPhoneNumber(Phone_Number_Redone)}</span></br>
+                ${Link !== 'N/A' ? `<span><a target="_blank" href="https://${Link}" class="card-link"><em class="fa fa-link"></em> Website</a></span>` : '' }
                 </div>
             `;
-        }
+    }
 
     return {
-        version: "v0.0.2 | 2020-04-14",
+        version: "v0.0.3 | 2020-04-20",
         copyright: "2020",
 
         peoriaURL: "https://www.peoriaaz.gov/",
@@ -48,7 +58,7 @@ define([], function() {
 
 
         popTemplate: {
-            title: "<span style='display: none;'>{*}</span>{NAME}",
+            title: "<span style='display: none;'>{*}</span>{Restaurant_Name}",
             content: popContent,
         },
 

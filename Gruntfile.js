@@ -247,5 +247,5 @@ module.exports = function(grunt) {
     grunt.registerTask("tsjs", ["clean:build", "copy", "requirejs"]);
 
 
-    grunt.registerTask("build", ["clean:build", "build-html", "build-css", "build-js", "build-rename"]);
+    grunt.registerTask("build", ["clean:build", "build-html", "build-css", "build-rename"]);
 };
