@@ -49,6 +49,7 @@ define(["mag/config", "mag/map"], function(config, { map, view }) {
                     <h6 class="catType">${Category}</h6>
                 </div>
                 <div class="card-info">
+                <div class="col col-sm-8">
                     <h6 class="card-subtitle text-muted mb-2">${Business_Address}</h6>
                     ${
                         Phone_Number_Redone
@@ -62,6 +63,15 @@ define(["mag/config", "mag/map"], function(config, { map, view }) {
                             ? `<p class="card-text"><a href="https://${Link}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
                             : ""
                     }
+                    ${
+                        Specials_ !== null ?
+                            `<p class="card-text sp"><b>Specials:</b> ${Specials_}</p>` :
+                            ""
+                    }
+                 </div>
+                 <div class="col col-sm-4">
+                 <img src="${logo}" alt="biz logo">
+                 </div>
                  </div>
                 <div class="horizontalIconContainer">
                   ${

@@ -980,6 +980,10 @@ template {
   margin-bottom: .25rem;
 }
 
+.card-info p.card-text.sp {
+  margin: .5rem 0 0 0;
+}
+
 .horizontalIconContainer {
   display: -webkit-box;
   display: -ms-flexbox;

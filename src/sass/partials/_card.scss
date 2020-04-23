@@ -33,8 +33,14 @@
 
     p.card-text {
         margin-bottom: .25rem;
+
+        &.sp {
+            margin: .5rem 0 0 0;
+        }
     }
 }
+
+
 
 .horizontalIconContainer {
     display: flex;
