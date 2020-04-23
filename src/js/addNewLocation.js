@@ -18,8 +18,13 @@ define([
     const $commentPin = $(".commentPin");
     const $iconTooltip = $(".iconTooltip");
     const $modalForm = $("#modalForm");
-    const $newBusinessForm = $("#newBusinessForm");
+    let $newBusinessForm;
     const $btnCancelDrawing = $("#btnCancelDrawing");
+
+    function setup() {
+        $newBusinessForm = $("#newBusinessForm");
+        $newBusinessForm.submit(formSubmitted);
+    }
 
     let drawing = false;
     let currCoordinate;
@@ -62,20 +67,7 @@ define([
         let res = await editLayer.applyEdits({
             addFeatures: [newGraphic],
         });
-
-        // BusinessName: "test"
-        // BusinessAddress: "test"
-        // BusinessWebsite: "test"
-        // BusinessPhone: "test"
-        // takeOutCbox: true
-        // deliveryCheckBox: true
-        // mobileApp: false
-        // NAME: ""
-        // EMAIL: ""
     }
-    // let commentsLyr = app.map.findLayerById("mainLayer");
-
-    $newBusinessForm.submit(formSubmitted);
 
     function enableDrawing(id) {
         drawing = true;
@@ -191,5 +183,5 @@ define([
         }
     }
 
-    return { addMissingBusiness, enableDrawing };
+    return { addMissingBusiness, enableDrawing, setup };
 });

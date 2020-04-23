@@ -7,30 +7,21 @@
  * ======================================================================== */
 
 require([
-        "mag/config",
-        "mag/map",
-        "mag/widgets",
-        "mag/card-functions",
-        // "mag/controls"
-    ], function(config) {
-        "use strict";
-        $(document).ready(function() {
-
-            $("#modalForm").load("views/feedback-view.html", function() {
-
-            });
-
-            $("#page_footer").load("views/footer-view.html", function() {
-
-            });
-
-
-
-
-
+    "mag/config",
+    "mag/addNewLocation",
+    "mag/map",
+    "mag/widgets",
+    "mag/card-functions",
+    // "mag/controls"
+], function (config, addNewLocation) {
+    "use strict";
+    $(document).ready(function () {
+        $("#modalForm").load("views/feedback-view.html", function () {
+            addNewLocation.setup();
         });
 
-        return;
-    }
+        $("#page_footer").load("views/footer-view.html", function () {});
+    });
 
-);
+    return;
+});
