@@ -10,7 +10,8 @@ require([
         "mag/config",
         "mag/map",
         "mag/widgets",
-        "mag/card-functions"
+        "mag/card-functions",
+        // "mag/controls"
     ], function(config) {
         "use strict";
         $(document).ready(function() {
