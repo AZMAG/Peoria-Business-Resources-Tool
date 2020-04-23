@@ -45,10 +45,11 @@ define(["mag/config", "mag/map"], function(config, { map, view }) {
             <div data-objectid="${TableID}" class="card ${Highlight ? 'highlighted' : ''}">
               <div class="card-body">
                 <div class="card-top">
-                    <h5 class="card-title">${ titleCase(Restaurant_Name)}</h5>
+                    <h5 class="card-title">${Restaurant_Name}</h5>
                     <h6 class="catType">${Category}</h6>
                 </div>
                 <div class="card-info">
+                <div class="col col-sm-9">
                     <h6 class="card-subtitle text-muted mb-2">${Business_Address}</h6>
                     ${
                         Phone_Number_Redone
@@ -62,6 +63,19 @@ define(["mag/config", "mag/map"], function(config, { map, view }) {
                             ? `<p class="card-text"><a href="https://${Link}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
                             : ""
                     }
+                    ${
+                        Specials_ !== null ?
+                            `<p class="card-text sp"><b>Specials:</b> ${Specials_}</p>` :
+                            ""
+                    }
+                 </div>
+                 <div class="col col-sm-3 text-center">
+                    ${
+                        logo !== null ?
+                            `<img class="logo-img" src="images/logos/${logo}.png" alt="biz logo">`:
+                            ""
+                    }
+                 </div>
                  </div>
                 <div class="horizontalIconContainer">
                   ${
