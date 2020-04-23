@@ -12,7 +12,6 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 @import url("https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i,600,600i,700,700i");
-@import url("https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i,600,600i,700,700i");
 html {
   line-height: 1.15;
   /* 1 */
@@ -379,16 +378,6 @@ template {
   background-color: #f1f1f1;
 }
 
-#mapView {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
-  padding: 0;
-  margin: 0;
-  height: 500px;
-  width: 500px;
-}
-
 .mapTableContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -397,6 +386,17 @@ template {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  height: 500px;
+}
+
+#mapView {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  padding: 0;
+  margin: 0;
+  height: 500px;
+  width: 500px;
 }
 
 #listContainer {
@@ -414,7 +414,7 @@ template {
 }
 
 #listContainer #cardsListContainer {
-  max-height: 500px;
+  height: 500px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -428,52 +428,41 @@ template {
   cursor: pointer;
 }
 
+#listContainer #cardsList .highlighted {
+  background-color: #d9ebfa;
+}
+
 #controls {
-  color: #ffffff;
-  background-color: #2e93e3;
-  padding-top: 35px;
-  padding-top: 30px;
-  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  color: #ffffff;
+  background-color: #2e93e3;
+  margin: 0 auto;
+}
+
+#controls #specials {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding-top: 25px;
 }
 
-#controls .fieldlist {
+#controls #specials .fieldlist {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   list-style: none;
 }
 
-#controls .fieldlist li {
+#controls #specials .fieldlist ul {
+  margin-bottom: 0;
+}
+
+#controls #specials .fieldlist li {
   margin-left: 20px;
   font-size: 20px;
   font-weight: 600;
-}
-
-#mapView {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
-}
-
-.horizontalIconContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.horizontalIconContainer .horizontalIcon {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
 }
 
 /*******************
@@ -916,7 +905,16 @@ template {
  SASS Popups
 ********************/
 .esri-view-width-less-than-medium .esri-popup__main-container {
-  max-width: 350px;
+  width: auto;
+  max-width: 400px;
+}
+
+.esri-popup__main-container .esri-widget {
+  font-size: 12px;
+}
+
+.esri-popup__main-container .esri-widget span {
+  line-height: 1.7;
 }
 
 .esri-popup__header-title {
@@ -927,10 +925,6 @@ template {
 
 .esri-popup__header-title:hover {
   background-color: #5baae9;
-}
-
-.esri-widget .esri-popup__content {
-  font-size: 11px;
 }
 
 .esri-widget--button {
@@ -951,35 +945,99 @@ template {
  Cards
 ********************/
 .card-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-.card-title {
+.card-top .card-title {
   font-size: 18px;
   color: #1a79c4;
+  float: left;
 }
 
-.card-subtitle {
+.card-top .catType {
+  color: #1a79c4;
+  float: right;
+}
+
+.card-info {
+  display: inline;
+  float: left;
+}
+
+.card-info .card-subtitle {
   font-size: 12px;
 }
 
-p.card-text {
+.card-info p.card-text {
   margin-bottom: .25rem;
 }
 
 .horizontalIconContainer {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   font-size: 14px;
   margin-top: 1em;
 }
 
 .horizontalIconContainer .horizontalIcon {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+a.card-link {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+a.card-link:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+a.card-link:visited {
+  color: #777777;
+  text-decoration: none;
+}
+
+.sort-btn {
+  color: #ffffff;
+  background-color: #8e3847;
+  border-color: #a03f50;
+}
+
+.sort-btn:hover {
+  color: #ffffff;
+  background-color: #692a35;
+  border-color: #57222c;
+}
+
+/*******************
+ Dropdowns
+********************/
+#bizControls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 15px;
+}
+
+#bizDropDown {
+  width: 350px;
+  margin-right: 25px;
+}
+
+#catDropDown {
+  width: 210px;
 }
 
 @media screen and (min-width: 40.5em) and (max-width: 47.9375em) {
@@ -6763,39 +6821,8 @@ span.sticky {
 /* Fonts
  ================================================== */
 /*font-family: 'Open Sans', sans-serif;*/
-@font-face {
-  font-family: 'MuseoSans-500';
-  src: url("fonts/MuseoSans-500.eot") format("embedded-opentype");
-  src: url("fonts/MuseoSans-500.woff") format("woff"), url("MuseoSans-500.ttf") format("truetype"), url("MuseoSans-500.svg#MuseoSans-500") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
 /*** border color for listtable and tableData/tableBox classes*/
 /*other month day text color*/
-a,
-a:visited,
-.column a {
-  color: #1a79c4;
-  text-decoration: underline;
-}
-
-a:hover,
-a:focus {
-  text-decoration: none;
-}
-
-a[name],
-a[name]:hover,
-a[name]:focus {
-  color: #101d29;
-  text-decoration: none;
-}
-
-a img {
-  border: 0;
-}
-
 body.front_end_body,
 .sitewrapper,
 .sitewrapper select,

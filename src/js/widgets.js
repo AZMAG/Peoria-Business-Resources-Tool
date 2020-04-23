@@ -1,3 +1,11 @@
+/* ========================================================================
+ * Maricopa Association of Governments
+ * JS document
+ * @project     MAG Peoria Business Resource Tool
+ * @summary     Map widgets JavaScript file
+ * @file        widgets.js
+ * ======================================================================== */
+
 define([
         "mag/config",
         "mag/map",
@@ -39,4 +47,5 @@ define([
         });
         view.ui.add(search, "bottom-left");
 
-    });
+    }
+);

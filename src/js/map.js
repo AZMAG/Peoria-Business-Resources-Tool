@@ -1,10 +1,20 @@
+/* ========================================================================
+ * Maricopa Association of Governments
+ * JS document
+ * @project     MAG Peoria Business Resource Tool
+ * @summary     Map JavaScript file
+ * @file        map.js
+ * ======================================================================== */
+
 define([
     "mag/config",
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/FeatureLayer",
-    "esri/geometry/Extent"
-], function(config, Map, MapView, FeatureLayer, Extent, ) {
+    "esri/geometry/Extent",
+    "mag/card-functions",
+], function(config, Map, MapView, FeatureLayer, Extent, cardsF) {
+    "use strict";
 
     const maxExtent = new Extent(config.maxExtent);
     const initExtent = new Extent(config.intExtent);
@@ -21,10 +31,10 @@ define([
         zoom: 8,
         constraints: {
             rotationEnabled: false,
-            minZoom: 10
+            minZoom: 10,
         },
         ui: {
-            components: []
+            components: [],
         },
         popup: {
             dockEnabled: false,
@@ -32,8 +42,8 @@ define([
             dockOptions: {
                 buttonEnabled: false,
                 breakpoint: false,
-            }
-        }
+            },
+        },
     });
 
     var peoriaBoundaryLayer = new FeatureLayer({
@@ -44,6 +54,7 @@ define([
 
     var peoriaBusinessesLayer = new FeatureLayer({
         url: config.pBusinessLayer,
+        id: "peoriaBusinesses",
         outFields: ["*"],
         renderer: {
             type: "simple",
@@ -57,13 +68,11 @@ define([
                 },
             },
         },
-        popupTemplate: config.popTemplate
+        popupTemplate: config.popTemplate,
     });
     map.add(peoriaBusinessesLayer);
 
-    let lyrView = null;
-
-    view.watch('extent', function(extent) {
+    view.watch("extent", function(extent) {
         let currentCenter = extent.center;
         if (!maxExtent.contains(currentCenter)) {
             let newCenter = extent.center;
@@ -86,25 +95,24 @@ define([
         }
     });
 
-    view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
-        lyrView = layerView;
-        lyrView.watch("updating", function(value) {
-            // once the layer view finishes updating
-            if (!value) {
-                lyrView
-                    .queryFeatures({
-                        where: "1=1",
-                        outFields: lyrView.availableFields,
-                    })
-                    .then(({ features }) => {
-                        let data = features.map(({ attributes }) => attributes);
-                        let cardsList = getCardsList(data);
-                        $("#cardsList").html(cardsList.join(""));
-                    });
-            }
-        });
+    let lyrView = null;
+    let selectedId;
+
+    view.popup.watch("visible", async (visible) => {
+        if (visible) {
+            selectedId = view.popup.selectedFeature.attributes.TableID;
+        } else {
+            selectedId = null;
+        }
+
+        let cardData = await getCardListData(lyrView);
+        if (cardData) {
+            let cardsList = getCardsList(cardData, selectedId);
+            $("#cardsList").html(cardsList.join(""));
+        }
     });
 
+    // Specials Checkboxes
     let $cboxTakeOut = $("#cboxTakeOut");
     let $cboxDelivery = $("#cboxDelivery");
     let $cboxApp = $("#cboxApp");
@@ -129,24 +137,219 @@ define([
         },
     ];
 
-    let highlight;
+    $(".filterControl").change(() => {
+        peoriaBusinessesLayer.definitionExpression = getCurrentDefinitionExpression();
+    });
 
-    $("body").on("click", ".card", async (e) => {
-        let objectId = $(e.currentTarget).data("objectid");
+    function getCurrentDefinitionExpression() {
+        let definitionExpression = "1=1";
+        let checkboxes = filters
+            .map((filter) => {
+                let val = filter.getValue();
+                return val ? `${filter.field} = ${val}` : null;
+            })
+            .filter((fltr) => fltr);
+        var dropdown = $("#bizCat");
+        var bizData = dropdown.data("kendoComboBox");
+        var dataItem = bizData.dataItem();
+
+        if (checkboxes.length > 0) {
+            definitionExpression += " AND " + checkboxes.join(" AND ");
+        }
+        if (dataItem) {
+            definitionExpression += ` AND Category = '${dataItem}'`;
+        }
+        // console.log(definitionExpression);
+        return definitionExpression;
+    }
+
+    async function getCardListData(lyrView) {
+        let { features } = await lyrView.queryFeatures({
+            where: "1=1",
+            outFields: lyrView.availableFields,
+        });
+        if (features && features.length > 0) {
+            return features.map(({ attributes }) => attributes);
+        }
+        return null;
+    }
+
+    var sortType = sortPos;
+
+    function sortPos(a, b) {
+        // Use toUpperCase() to ignore character casing
+        const Restaurant_NameA = a.Restaurant_Name.toUpperCase();
+        const Restaurant_NameB = b.Restaurant_Name.toUpperCase();
+
+        let comparison = 0;
+        if (Restaurant_NameA > Restaurant_NameB) {
+            comparison = 1;
+        } else if (Restaurant_NameA < Restaurant_NameB) {
+            comparison = -1;
+        }
+        return comparison;
+    }
+
+    function sortNeg(a, b) {
+        // Use toUpperCase() to ignore character casing
+        const Restaurant_NameA = a.Restaurant_Name.toUpperCase();
+        const Restaurant_NameB = b.Restaurant_Name.toUpperCase();
+
+        let comparison = 0;
+        if (Restaurant_NameA > Restaurant_NameB) {
+            comparison = 1;
+        } else if (Restaurant_NameA < Restaurant_NameB) {
+            comparison = -1;
+        }
+        //invert return value by multiplying by -1
+        return comparison * -1;
+    }
+
+    //sort button
+    $("#sort-biz").on("click", function() {
+        var toggleStatus = $("#sort-biz").attr("data-status");
+        if (toggleStatus === "on") {
+            $("#sort-biz").attr("data-status", "off");
+            sortType = sortPos;
+        } else {
+            $("#sort-biz").attr("data-status", "on");
+            sortType = sortNeg;
+        }
+        // console.log(toggleStatus);
+    });
+
+    var getCardsList = cardsF.getCardsList;
+
+    view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
+        lyrView = layerView;
+
+        lyrView.watch("updating", async function(value) {
+            // once the layer view finishes updating
+            if (!value) {
+                let cardData = await getCardListData(lyrView);
+                cardData.sort(sortType);
+                if (cardData) {
+                    let cardsList = getCardsList(cardData, selectedId);
+                    // console.log(cardData);
+                    $("#cardsList").html(cardsList.join(""));
+                }
+                setupBizDropdown(cardData);
+                bizCatogory(cardData);
+            }
+        });
+    });
+
+    // Search by Business Function
+    function setupBizDropdown(data) {
+        // console.log(data);
+        var dropdown = $("#inputBiz");
+        dropdown.kendoComboBox({
+            dataTextField: "Restaurant_Name",
+            dataValueField: "Restaurant_Name",
+            filter: "none",
+            suggest: true,
+            template: "${data.Restaurant_Name}",
+            dataSource: {
+                data: data,
+                sort: {
+                    field: "Restaurant_Name",
+                    dir: "asc",
+                },
+            },
+            placeholder: "Select a Business",
+            change: onChange,
+        });
+
+        function onChange() {
+            var dropdown = $("#inputBiz");
+            var bizData = dropdown.data("kendoComboBox");
+            var dataItem = bizData.dataItem();
+            // console.log(dataItem, dataItem.TableID);
+            if (dataItem !== undefined) {
+                var e = dataItem.TableID;
+                gotoBiz(e);
+            } else {
+                return;
+            }
+        }
+    }
+
+    function bizCatogory(data) {
+        // console.log(data);
+        let unique = [...new Set(data.map((item) => item.Category))];
+        // console.log(unique);
+        // create ComboBox from input HTML element
+        $("#bizCat").kendoComboBox({
+            dataSource: {
+                data: unique,
+                sort: {
+                    dir: "asc",
+                },
+            },
+            placeholder: "Select a Category",
+            change: onChange,
+        });
+
+        function onChange() {
+            const peoriaBusinessesLayer = map.findLayerById("peoriaBusinesses");
+            peoriaBusinessesLayer.definitionExpression = getCurrentDefinitionExpression();
+        }
+    }
+
+    async function gotoBiz(e) {
+        let objectId = e;
+        // console.log(objectId);
         if (lyrView) {
             let { features } = await lyrView.queryFeatures({
                 objectIds: [objectId],
                 returnGeometry: true,
             });
+
             if (features[0]) {
-                view.goTo({
+                await view.goTo({
                     target: features[0],
                     zoom: 15,
                 });
+
+                view.popup.open({
+                    location: features[0].geometry,
+                    features: features,
+                });
+
+                selectedId = objectId;
+            }
+        }
+    }
+
+    let highlight;
+
+    //Click on card and zoom to point on map
+    $("body").on("click", ".card", async (e) => {
+        let objectId = $(e.currentTarget).data("objectid");
+        // console.log(objectId);
+        if (lyrView) {
+            let { features } = await lyrView.queryFeatures({
+                objectIds: [objectId],
+                returnGeometry: true,
+            });
+
+            if (features[0]) {
+                await view.goTo({
+                    target: features[0],
+                    zoom: 15,
+                });
+
+                view.popup.open({
+                    location: features[0].geometry,
+                    features: features,
+                });
+
+                selectedId = objectId;
             }
         }
     });
 
+    //hover card and highlights point on map
     $("body").on("mouseenter", ".card", async (e) => {
         let objectId = $(e.currentTarget).data("objectid");
         if (lyrView) {
@@ -161,100 +364,17 @@ define([
             }
         }
     });
-
+    //hover card remove and remove highlighted point on map
     $("body").on("mouseleave", ".card", (e) => {
         if (highlight) {
             highlight.remove();
         }
     });
 
-    $(".filterControl").change(() => {
-        let filterComponents = filters
-            .map((filter) => {
-                let val = filter.getValue();
-                return val ? `${filter.field} = ${val}` : null;
-            })
-            .filter((fltr) => fltr);
-        peoriaBusinessesLayer.definitionExpression = filterComponents.join(
-            " AND "
-        );
-        // console.log(filterComponents.join(" OR "));
-    });
+
 
     return {
         map,
-        view
+        view,
     };
 });
-
-
-function titleCase(str) {
-    str = str.toLowerCase().split(' ');
-    for (var i = 0; i < str.length; i++) {
-        str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
-    }
-    return str.join(' ');
-}
-
-function formatPhoneNumber(phoneNumberString) {
-    var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
-    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-    if (match) {
-        return '(' + match[1] + ') ' + match[2] + '-' + match[3];
-    }
-    return 'N/A';
-}
-
-function getCardsList(data) {
-    return data.map(
-        ({
-            OBJECTID,
-            Name,
-            Phone_Number,
-            Address,
-            Specials,
-            Website,
-            Opn_for,
-            TakeOut,
-            Delivery,
-            ThirdPartyApp,
-        }) => {
-            return `
-            <div data-objectid="${OBJECTID}" class="card">
-              <div class="card-body">
-                <h5 class="card-title">${titleCase(Name)}</h5>
-                <h6 class="card-subtitle text-muted mb-2">${Address}</h6>
-                ${
-                    Phone_Number
-                        ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(Phone_Number)}</p>`
-                        : ""
-                }
-                 ${
-                    Website
-                        ? `<p class="card-text"><a href="https://${Website}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
-                        : ""
-                }
-                <div class="horizontalIconContainer">
-                  ${
-                      TakeOut
-                          ? `<span class="card-text horizontalIcon"><em class="fa fa-car"></em> Take out</span>`
-                          : ""
-                  }
-                  ${
-                      Delivery
-                          ? `<span class="card-text horizontalIcon"><em class="fa fa-truck"></em> Delivery</span>`
-                          : ""
-                  }
-                  ${
-                      ThirdPartyApp
-                          ? `<span class="card-text horizontalIcon"><em class="fas fa-tablet-alt"></em> Mobile App</span>`
-                          : ""
-                  }
-                </div>
-
-              </div>
-            </div>
-          `;
-        }
-    );
-}
