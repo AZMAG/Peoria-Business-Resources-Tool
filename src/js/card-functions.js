@@ -6,28 +6,23 @@
  * @file        card-functions.js
  * ======================================================================== */
 
-define([
-        "mag/config",
-        "mag/map",
-    ],
-    function(config, { map, view }) {
-
-        function titleCase(str) {
-            str = str.toLowerCase().split(" ");
-            for (var i = 0; i < str.length; i++) {
-                str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
-            }
-            return str.join(" ");
+define(["mag/config", "mag/map"], function (config, { map, view }) {
+    function titleCase(str) {
+        str = str.toLowerCase().split(" ");
+        for (var i = 0; i < str.length; i++) {
+            str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
         }
+        return str.join(" ");
+    }
 
-        function formatPhoneNumber(phoneNumberString) {
-            var cleaned = ("" + phoneNumberString).replace(/\D/g, "");
-            var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-            if (match) {
-                return "(" + match[1] + ") " + match[2] + "-" + match[3];
-            }
-            return "N/A";
+    function formatPhoneNumber(phoneNumberString) {
+        var cleaned = ("" + phoneNumberString).replace(/\D/g, "");
+        var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+        if (match) {
+            return "(" + match[1] + ") " + match[2] + "-" + match[3];
         }
+        return "N/A";
+    }
 
         function getCardsList(data) {
             return data.map(
@@ -87,6 +82,7 @@ define([
               </div>
             </div>
           `;
+
                 }
             );
         }

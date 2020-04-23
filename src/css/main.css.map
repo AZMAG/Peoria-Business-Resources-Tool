@@ -15,8 +15,6 @@
         "../sass/partials/_header.scss",
         "../sass/partials/_popup.scss",
         "../sass/partials/_card.scss",
-        "../sass/partials/_dropdowns.scss",
-        "../sass/partials/_peoriaFile.scss"
     ],
     "names": [],
     "file": "main.css"

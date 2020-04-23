@@ -1,0 +1,26 @@
+.hidden {
+  display: none;
+}
+.successMessage {
+  font-size: 20px;
+  font-weight: bold;
+  top: 0px;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  display: none;
+}
+
+.invalid-tooltip {
+  position: relative;
+}
+
+.redAsterisk {
+  color: red;
+}
+
+.form-control {
+  width: 95%;
+  padding: 2px 5px;
+}

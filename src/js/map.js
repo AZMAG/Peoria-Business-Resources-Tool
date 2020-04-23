@@ -371,8 +371,6 @@ define([
         }
     });
 
-
-
     return {
         map,
         view,
