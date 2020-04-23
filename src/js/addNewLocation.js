@@ -30,9 +30,29 @@ define([
     });
 
     async function addMissingBusiness(data) {
-        data.takeOutCbox = data.takeOutCbox ? 1 : 0;
-        data.deliveryCheckBox = data.deliveryCheckBox ? 1 : 0;
-        data.mobileApp = data.mobileApp ? 1 : 0;
+        data.businessname = data.BusinessName;
+        data.businessaddress = data.BusinessAddress;
+        data.businesswebsite = data.BusinessWebsite;
+        data.businessphone = data.BusinessPhone;
+        data.takeoutcbox = data.takeOutCbox;
+        data.deliverycheckbox = data.deliveryCheckBox;
+        data.mobileapp = data.mobileApp;
+        data.name = data.NAME;
+        data.email = data.EMAIL;
+
+        data.takeoutcbox = data.takeOutCbox ? 1 : 0;
+        data.deliverycheckbox = data.deliveryCheckBox ? 1 : 0;
+        data.mobileapp = data.mobileApp ? 1 : 0;
+
+        delete data.BusinessName;
+        delete data.BusinessAddress;
+        delete data.BusinessWebsite;
+        delete data.BusinessPhone;
+        delete data.takeOutCbox;
+        delete data.deliveryCheckBox;
+        delete data.mobileApp;
+        delete data.NAME;
+        delete data.EMAIL;
 
         let newGraphic = new Graphic({
             geometry: currCoordinate.geometry,
