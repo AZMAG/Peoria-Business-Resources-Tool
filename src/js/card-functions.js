@@ -6,7 +6,7 @@
  * @file        card-functions.js
  * ======================================================================== */
 
-define(["mag/config", "mag/map"], function (config, { map, view }) {
+define(["mag/config", "mag/map"], function(config, { map, view }) {
     function titleCase(str) {
         str = str.toLowerCase().split(" ");
         for (var i = 0; i < str.length; i++) {
@@ -24,23 +24,24 @@ define(["mag/config", "mag/map"], function (config, { map, view }) {
         return "N/A";
     }
 
-        function getCardsList(data) {
-            return data.map(
-                ({
-                    TableID,
-                    Restaurant_Name,
-                    Phone_Number_Redone,
-                    Business_Address,
-                    Category,
-                    Specials,
-                    Link,
-                    Open_,
-                    TakeOut,
-                    Delivery,
-                    ThirdPartyApp,
-                    Highlight
-                }) => {
-                    return `
+    function getCardsList(data) {
+        return data.map(
+            ({
+                TableID,
+                Restaurant_Name,
+                Phone_Number_Redone,
+                Business_Address,
+                Category,
+                Specials_,
+                Link,
+                Open_,
+                TakeOut,
+                Delivery,
+                ThirdPartyApp,
+                Highlight,
+                logo
+            }) => {
+                return `
             <div data-objectid="${TableID}" class="card ${Highlight ? 'highlighted' : ''}">
               <div class="card-body">
                 <div class="card-top">
@@ -83,12 +84,11 @@ define(["mag/config", "mag/map"], function (config, { map, view }) {
             </div>
           `;
 
-                }
-            );
-        }
-
-        return {
-            getCardsList
-        };
+            }
+        );
     }
-);
+
+    return {
+        getCardsList
+    };
+});

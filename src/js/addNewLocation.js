@@ -1,3 +1,10 @@
+/* ========================================================================
+ * Maricopa Association of Governments
+ * JS document
+ * @project     MAG Peoria Business Resource Tool
+ * @summary     Add New Location JavaScript file
+ * @file        addNewLocation.js
+ * ======================================================================== */
 define([
     "mag/config",
     "mag/map",
@@ -6,9 +13,8 @@ define([
     "esri/Graphic",
     "esri/layers/FeatureLayer",
     "esri/geometry/Point",
-], function (
-    config,
-    { view },
+], function(
+    config, { view },
     Draw,
     geometryEngine,
     Graphic,
@@ -77,7 +83,7 @@ define([
         });
 
         action = draw.create("point");
-        action.on("cursor-update", function (evt) {
+        action.on("cursor-update", function(evt) {
             if (drawing) {
                 $iconTooltip.css({
                     display: "block",
@@ -95,7 +101,7 @@ define([
             }
         });
 
-        action.on("draw-complete", function (evt) {
+        action.on("draw-complete", function(evt) {
             $commentPin.removeClass("active");
             $btnCancelDrawing.hide();
             $iconTooltip.hide();
@@ -106,6 +112,7 @@ define([
             $modalForm.modal("show");
         });
     }
+
     function ResetForm() {
         $newBusinessForm.removeClass("was-validated");
         $newBusinessForm[0].reset();
@@ -174,9 +181,9 @@ define([
 
             ResetForm();
 
-            $(".successMessage").fadeIn(300, function () {
+            $(".successMessage").fadeIn(300, function() {
                 var message = this;
-                setTimeout(function () {
+                setTimeout(function() {
                     $(message).fadeOut(500);
                 }, 3000);
             });
