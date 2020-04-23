@@ -15,10 +15,8 @@ define([
     "esri/widgets/Search",
     "esri/tasks/Locator",
     "esri/geometry/Extent",
-], function (
-    config,
-    { map, view },
-    { enableDrawing },
+], function(
+    config, { map, view }, { enableDrawing },
     Zoom,
     Home,
     Search,
@@ -42,19 +40,16 @@ define([
         view,
         includeDefaultSources: false,
         locationEnabled: false,
-        sources: [
-            {
-                locator: new Locator({
-                    url:
-                        "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
-                }),
-                singleLineFieldName: "SingleLine",
-                outFields: ["Addr_type"],
-                autoNavigate: true,
-                searchExtent: config.initExtent,
-                placeholder: "Address",
-            },
-        ],
+        sources: [{
+            locator: new Locator({
+                url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+            }),
+            singleLineFieldName: "SingleLine",
+            outFields: ["Addr_type"],
+            autoNavigate: true,
+            searchExtent: config.initExtent,
+            placeholder: "Address",
+        }, ],
     });
     view.ui.add(search, "bottom-left");
 
@@ -66,5 +61,3 @@ define([
         enableDrawing();
     });
 });
-    }
-);
