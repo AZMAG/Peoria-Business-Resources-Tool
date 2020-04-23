@@ -24,7 +24,7 @@
 }
 
 .card-info {
-    display: inline;
+    display: inline-flex;
     float: left;
 
     .card-subtitle {
@@ -38,6 +38,11 @@
             margin: .5rem 0 0 0;
         }
     }
+}
+
+.logo-img {
+    max-width: 60px;
+    max-height: 60px;
 }
 
 
