@@ -16,9 +16,15 @@ require([
         "use strict";
         $(document).ready(function() {
 
+            $("#modalForm").load("views/feedback-view.html", function() {
+
+            });
+
             $("#page_footer").load("views/footer-view.html", function() {
 
             });
+
+
 
 
 
