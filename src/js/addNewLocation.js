@@ -4,11 +4,17 @@ define([
     "esri/views/2d/draw/Draw",
     "esri/geometry/geometryEngine",
     "esri/Graphic",
+    "esri/layers/FeatureLayer",
     "esri/geometry/Point",
-], function (config, { view }, Draw, geometryEngine, Graphic, Point) {
-    async function addNewBusiness() {
-        alert("dfs");
-    }
+], function (
+    config,
+    { view },
+    Draw,
+    geometryEngine,
+    Graphic,
+    FeatureLayer,
+    Point
+) {
     const $commentPin = $(".commentPin");
     const $iconTooltip = $(".iconTooltip");
     const $modalForm = $("#modalForm");
@@ -16,14 +22,40 @@ define([
     const $btnCancelDrawing = $("#btnCancelDrawing");
 
     let drawing = false;
-    let currComment;
-    let currCommentType;
-    let currCommentIndex;
+    let currCoordinate;
     let action;
 
+    let editLayer = new FeatureLayer({
+        url: config.editLayer,
+    });
+
+    async function addMissingBusiness(data) {
+        data.takeOutCbox = data.takeOutCbox ? 1 : 0;
+        data.deliveryCheckBox = data.deliveryCheckBox ? 1 : 0;
+        data.mobileApp = data.mobileApp ? 1 : 0;
+
+        let newGraphic = new Graphic({
+            geometry: currCoordinate.geometry,
+            attributes: data,
+        });
+
+        let res = await editLayer.applyEdits({
+            addFeatures: [newGraphic],
+        });
+
+        // BusinessName: "test"
+        // BusinessAddress: "test"
+        // BusinessWebsite: "test"
+        // BusinessPhone: "test"
+        // takeOutCbox: true
+        // deliveryCheckBox: true
+        // mobileApp: false
+        // NAME: ""
+        // EMAIL: ""
+    }
     // let commentsLyr = app.map.findLayerById("mainLayer");
 
-    $newBusinessForm.submit(FormSubmitted);
+    $newBusinessForm.submit(formSubmitted);
 
     function enableDrawing(id) {
         drawing = true;
@@ -40,7 +72,7 @@ define([
                     left: evt.native.pageX + 20,
                     top: evt.native.pageY - 10,
                 });
-                createPointGraphic(evt.coordinates, currCommentType);
+                createPointGraphic(evt.coordinates);
             }
         });
 
@@ -56,23 +88,17 @@ define([
             $btnCancelDrawing.hide();
             $iconTooltip.hide();
             drawing = true;
-            currComment = createPointGraphic(evt.coordinates);
+            currCoordinate = createPointGraphic(evt.coordinates);
             drawing = false;
 
             $modalForm.modal("show");
         });
     }
     function ResetForm() {
-        // $newBusinessForm.removeClass("was-validated");
-        // $newBusinessForm[0].reset();
-        // let formNAME = localStorage.getItem("form-NAME");
-        // let formPHONE = localStorage.getItem("form-PHONE");
-        // let formEMAIL = localStorage.getItem("form-EMAIL");
-        // $newBusinessForm.find("input[name=NAME]").val(formNAME);
-        // $newBusinessForm.find("input[name=PHONE]").val(formPHONE);
-        // $newBusinessForm.find("input[name=EMAIL]").val(formEMAIL);
-        // $modalForm.modal("hide");
-        // app.view.graphics.removeAll();
+        $newBusinessForm.removeClass("was-validated");
+        $newBusinessForm[0].reset();
+        $modalForm.modal("hide");
+        view.graphics.removeAll();
     }
 
     function createPointGraphic(coordinates) {
@@ -102,7 +128,7 @@ define([
         }
     }
 
-    async function FormSubmitted(e) {
+    async function formSubmitted(e) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -112,27 +138,27 @@ define([
         const formValid = form.checkValidity();
         $form.addClass("was-validated");
         if (formValid) {
-            const formData = $form.getFormObject();
+            let BusinessName = $('input[name="BusinessName"]').val();
+            let BusinessAddress = $("input[name=BusinessAddress]").val();
+            let BusinessWebsite = $("input[name=BusinessWebsite]").val();
+            let BusinessPhone = $("input[name=BusinessPhone]").val();
+            let takeOutCbox = $("#takeOutCbox").prop("checked");
+            let deliveryCheckBox = $("#deliveryCheckBox").prop("checked");
+            let mobileApp = $("#mobileApp").prop("checked");
+            let NAME = $("input[name=NAME]").val();
+            let EMAIL = $("input[name=EMAIL]").val();
 
-            formData["COMMENT_TYPE"] = Number(currCommentIndex);
-            formData["COMMENT_DATE"] = new Date();
-            formData["AGENCY_RESPONSE"] = "";
-            formData["PROJECT_NAME"] = config.projectName;
-            formData["PUBLIC_VIEW"] = 0;
-            formData["VOTES"] = 1;
-            formData["COMMENT_"] += " -- Purpose=" + formData["COMMENT2"];
-            localStorage.setItem("form-NAME", formData["NAME"]);
-            localStorage.setItem("form-PHONE", formData["PHONE"]);
-            localStorage.setItem("form-EMAIL", formData["EMAIL"]);
-
-            if (currComment) {
-                formData["REGIONWIDE"] = 0;
-                currComment.attributes = formData;
-                SubmitNewComment(currComment);
-            } else {
-                formData["REGIONWIDE"] = 1;
-                SubmitAreaComment(formData);
-            }
+            addMissingBusiness({
+                BusinessName,
+                BusinessAddress,
+                BusinessWebsite,
+                BusinessPhone,
+                takeOutCbox,
+                deliveryCheckBox,
+                mobileApp,
+                NAME,
+                EMAIL,
+            });
 
             ResetForm();
 
@@ -145,5 +171,5 @@ define([
         }
     }
 
-    return { addNewBusiness, enableDrawing };
+    return { addMissingBusiness, enableDrawing };
 });

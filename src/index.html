@@ -109,7 +109,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add New Business</h5>
+                    <h5 class="modal-title">Add Missing Business</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -117,8 +117,9 @@
                 <div class="modal-body">
                     <form class="needs-validation" novalidate id="newBusinessForm">
                         <div class="form-group">
-                            <label for="BusinessName">Business Name</label>
-                            <input name="BusinessName" type="BusinessName" class="form-control form-control-sm" />
+                            <label for="BusinessName">Business Name <span class="redAsterisk">*</span></label>
+                            <input required name="BusinessName" type="BusinessName"
+                                class="form-control form-control-sm" />
                         </div>
                         <div class="form-group">
                             <label for="BusinessAddress">Business Address</label>
@@ -197,7 +198,7 @@
         <span class="esri-icon-map-pin"></span>
     </div>
     <div class="successMessage alert alert-success" role="alert">
-        Thank you, MAG has received your feedback.
+        Thank you, we have received your feedback.
     </div>
     <!-- </div> -->
     <span class="iconTooltip"><span class="iconTooltiptext">Click to add a point</span></span>
