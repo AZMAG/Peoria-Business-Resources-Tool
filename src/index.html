@@ -110,7 +110,8 @@
 
     <footer id="page_footer" class=""></footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2019.2.619/js/kendo.all.min.js"></script>
@@ -119,14 +120,15 @@
             packages: [{
                 name: "mag",
                 location: location.pathname.replace(/\/[^/]+$/, "") + "./js",
-            }, ],
+            },],
         };
     </script>
     <script src="https://js.arcgis.com/4.15/"></script>
     <script>
-        require(["mag/main.REPLACE"], function(mag) {});
+        require(["mag/main.REPLACE"], function (mag) { });
     </script>
-    <div id="new-location-button" class="hidden esri-widget esri-widget--button esri-interactive" title="Add Missing Business Location">
+    <div id="new-location-button" class="hidden esri-widget esri-widget--button esri-interactive"
+        title="Add Missing Business Location">
         <span class="esri-icon-map-pin"></span>
     </div>
     <div class="successMessage alert alert-success" role="alert">

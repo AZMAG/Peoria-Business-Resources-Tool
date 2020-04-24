@@ -13,8 +13,9 @@ define([
     "esri/Graphic",
     "esri/layers/FeatureLayer",
     "esri/geometry/Point",
-], function(
-    config, { view },
+], function (
+    config,
+    { view },
     Draw,
     geometryEngine,
     Graphic,
@@ -40,7 +41,7 @@ define([
         url: config.editLayer,
     });
 
-    async function addMissingBusiness(data) {
+    async function addMissingBusiness(data, attachment) {
         data.businessname = data.BusinessName;
         data.businessaddress = data.BusinessAddress;
         data.businesswebsite = data.BusinessWebsite;
@@ -54,6 +55,7 @@ define([
         data.takeoutcbox = data.takeOutCbox ? 1 : 0;
         data.deliverycheckbox = data.deliveryCheckBox ? 1 : 0;
         data.mobileapp = data.mobileApp ? 1 : 0;
+        data.globalid = uuidv4();
 
         delete data.BusinessName;
         delete data.BusinessAddress;
@@ -70,9 +72,40 @@ define([
             attributes: data,
         });
 
-        let res = await editLayer.applyEdits({
+        let { addFeatureResults } = await editLayer.applyEdits({
             addFeatures: [newGraphic],
         });
+
+        if (attachment) {
+            let newOid = addFeatureResults[0].objectId;
+
+            let { features } = await editLayer.queryFeatures({
+                objectIds: [Number(newOid)],
+                outFields: ["*"],
+                returnGeometry: true,
+            });
+
+            let addedFeature = features[0];
+
+            const form = new FormData();
+            form.set("attachment", attachment);
+            form.append("f", "json");
+
+            await editLayer.addAttachment(addedFeature, form);
+        }
+    }
+
+    function prePopulateForm(data) {
+        let BusinessName = $('input[name="BusinessName"]').val();
+        let BusinessAddress = $("input[name=BusinessAddress]").val();
+        let BusinessWebsite = $("input[name=BusinessWebsite]").val();
+        let BusinessPhone = $("input[name=BusinessPhone]").val();
+        let takeOutCbox = $("#takeOutCbox").prop("checked");
+        let deliveryCheckBox = $("#deliveryCheckBox").prop("checked");
+        let mobileApp = $("#mobileApp").prop("checked");
+        let NAME = $("input[name=NAME]").val();
+        let EMAIL = $("input[name=EMAIL]").val();
+        let icon = $("#iconFile");
     }
 
     function enableDrawing(id) {
@@ -83,7 +116,7 @@ define([
         });
 
         action = draw.create("point");
-        action.on("cursor-update", function(evt) {
+        action.on("cursor-update", function (evt) {
             if (drawing) {
                 $iconTooltip.css({
                     display: "block",
@@ -101,7 +134,7 @@ define([
             }
         });
 
-        action.on("draw-complete", function(evt) {
+        action.on("draw-complete", function (evt) {
             $commentPin.removeClass("active");
             $btnCancelDrawing.hide();
             $iconTooltip.hide();
@@ -166,29 +199,62 @@ define([
             let mobileApp = $("#mobileApp").prop("checked");
             let NAME = $("input[name=NAME]").val();
             let EMAIL = $("input[name=EMAIL]").val();
+            let icon = $("#iconFile");
 
-            addMissingBusiness({
-                BusinessName,
-                BusinessAddress,
-                BusinessWebsite,
-                BusinessPhone,
-                takeOutCbox,
-                deliveryCheckBox,
-                mobileApp,
-                NAME,
-                EMAIL,
-            });
+            if (icon[0].files) {
+                console.log(icon[0].files[0]);
+            }
+
+            addMissingBusiness(
+                {
+                    BusinessName,
+                    BusinessAddress,
+                    BusinessWebsite,
+                    BusinessPhone,
+                    takeOutCbox,
+                    deliveryCheckBox,
+                    mobileApp,
+                    NAME,
+                    EMAIL,
+                },
+                icon[0].files ? icon[0].files[0] : null
+            );
 
             ResetForm();
 
-            $(".successMessage").fadeIn(300, function() {
+            $(".successMessage").fadeIn(300, function () {
                 var message = this;
-                setTimeout(function() {
+                setTimeout(function () {
                     $(message).fadeOut(500);
                 }, 3000);
             });
         }
     }
 
-    return { addMissingBusiness, enableDrawing, setup };
+    return { addMissingBusiness, enableDrawing, setup, prePopulateForm };
 });
+
+const readUploadedFileAsText = (inputFile) => {
+    const temporaryFileReader = new FileReader();
+
+    return new Promise((resolve, reject) => {
+        temporaryFileReader.onerror = () => {
+            temporaryFileReader.abort();
+            reject(new DOMException("Problem parsing input file."));
+        };
+
+        temporaryFileReader.onload = () => {
+            resolve(temporaryFileReader.result);
+        };
+        temporaryFileReader.readAsText(inputFile);
+    });
+};
+function uuidv4() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (
+        c
+    ) {
+        var r = (Math.random() * 16) | 0,
+            v = c == "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+    });
+}

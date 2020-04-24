@@ -6,7 +6,7 @@
  * @file        card-functions.js
  * ======================================================================== */
 
-define(["mag/config", "mag/map"], function(config, { map, view }) {
+define(["mag/config", "mag/map"], function (config, { map, view }) {
     function titleCase(str) {
         str = str.toLowerCase().split(" ");
         for (var i = 0; i < str.length; i++) {
@@ -39,10 +39,12 @@ define(["mag/config", "mag/map"], function(config, { map, view }) {
                 Delivery,
                 ThirdPartyApp,
                 Highlight,
-                logo
+                logo,
             }) => {
                 return `
-            <div data-objectid="${TableID}" class="card ${Highlight ? 'highlighted' : ''}">
+            <div data-objectid="${TableID}" class="card ${
+                    Highlight ? "highlighted" : ""
+                }">
               <div class="card-body">
                 <div class="card-top">
                     <h5 class="card-title">${Restaurant_Name}</h5>
@@ -54,26 +56,26 @@ define(["mag/config", "mag/map"], function(config, { map, view }) {
                     ${
                         Phone_Number_Redone
                             ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(
-                                Phone_Number_Redone
-                            )}</p>`
+                                  Phone_Number_Redone
+                              )}</p>`
                             : ""
                     }
                     ${
-                        Link !== 'N/A'
+                        Link !== "N/A"
                             ? `<p class="card-text"><a href="https://${Link}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
                             : ""
                     }
                     ${
-                        Specials_ !== null ?
-                            `<p class="card-text sp"><b>Specials:</b> ${Specials_}</p>` :
-                            ""
+                        Specials_ !== null
+                            ? `<p class="card-text sp"><b>Specials:</b> ${Specials_}</p>`
+                            : ""
                     }
                  </div>
                  <div class="col col-sm-3 text-center">
                     ${
-                        logo !== null ?
-                            `<img class="logo-img" src="images/logos/${logo}.png" alt="biz logo">`:
-                            ""
+                        logo !== null
+                            ? `<img class="logo-img" src="images/logos/${logo}.png" alt="biz logo">`
+                            : ""
                     }
                  </div>
                  </div>
@@ -97,12 +99,11 @@ define(["mag/config", "mag/map"], function(config, { map, view }) {
               </div>
             </div>
           `;
-
             }
         );
     }
 
     return {
-        getCardsList
+        getCardsList,
     };
 });
