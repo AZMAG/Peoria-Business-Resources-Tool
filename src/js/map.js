@@ -13,9 +13,7 @@ define([
     "esri/layers/FeatureLayer",
     "esri/geometry/Extent",
     "mag/card-functions",
-], function(config, Map, MapView, FeatureLayer, Extent, cardsF) {
-    "use strict";
-
+], function (config, Map, MapView, FeatureLayer, Extent, cardsF) {
     const maxExtent = new Extent(config.maxExtent);
     const initExtent = new Extent(config.intExtent);
 
@@ -72,7 +70,7 @@ define([
     });
     map.add(peoriaBusinessesLayer);
 
-    view.watch("extent", function(extent) {
+    view.watch("extent", function (extent) {
         let currentCenter = extent.center;
         if (!maxExtent.contains(currentCenter)) {
             let newCenter = extent.center;
@@ -117,7 +115,8 @@ define([
     let $cboxDelivery = $("#cboxDelivery");
     let $cboxApp = $("#cboxApp");
 
-    let filters = [{
+    let filters = [
+        {
             field: "TakeOut",
             getValue: () => {
                 return $cboxTakeOut.prop("checked") ? 1 : 0;
@@ -206,7 +205,7 @@ define([
     }
 
     //sort button
-    $("#sort-biz").on("click", function() {
+    $("#sort-biz").on("click", function () {
         var toggleStatus = $("#sort-biz").attr("data-status");
         if (toggleStatus === "on") {
             $("#sort-biz").attr("data-status", "off");
@@ -223,7 +222,7 @@ define([
     view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
         lyrView = layerView;
 
-        lyrView.watch("updating", async function(value) {
+        lyrView.watch("updating", async function (value) {
             // once the layer view finishes updating
             if (!value) {
                 let cardData = await getCardListData(lyrView);
@@ -345,6 +344,48 @@ define([
                 });
 
                 selectedId = objectId;
+            }
+        }
+    });
+
+    function prePopulateForm(feature) {
+        console.log(feature);
+        let {
+            Restaurant_Name,
+            Business_Address,
+            Link,
+            Category,
+            Phone_Number_Redone,
+            Latitude,
+            Longitude,
+            Delivery,
+            TakeOut,
+            ThirdPartyApp,
+        } = feature.attributes;
+
+        $('input[name="BusinessName"]').val(Restaurant_Name);
+        $("input[name=BusinessAddress]").val(Business_Address);
+        $("input[name=Category]").val(Category);
+        $("input[name=BusinessWebsite]").val(Link);
+        $("input[name=BusinessPhone]").val(Phone_Number_Redone);
+        $("#takeOutCbox").prop("checked", TakeOut);
+        $("#deliveryCheckBox").prop("checked", Delivery);
+        $("#mobileApp").prop("checked", ThirdPartyApp);
+    }
+
+    $("body").on("click", ".editBtn", async (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        let objectId = $(e.currentTarget).data("objectid");
+        if (lyrView) {
+            let { features } = await lyrView.queryFeatures({
+                objectIds: [objectId],
+                outFields: ["*"],
+            });
+            if (features[0]) {
+                prePopulateForm(features[0]);
+                $("#modalForm").modal("show");
             }
         }
     });

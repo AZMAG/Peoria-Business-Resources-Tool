@@ -67,8 +67,14 @@ define([
         delete data.NAME;
         delete data.EMAIL;
 
+        let geometry;
+
+        if (currCoordinate) {
+            geometry = currCoordinate.geometry;
+        }
+
         let newGraphic = new Graphic({
-            geometry: currCoordinate.geometry,
+            geometry,
             attributes: data,
         });
 
@@ -93,19 +99,6 @@ define([
 
             await editLayer.addAttachment(addedFeature, form);
         }
-    }
-
-    function prePopulateForm(data) {
-        let BusinessName = $('input[name="BusinessName"]').val();
-        let BusinessAddress = $("input[name=BusinessAddress]").val();
-        let BusinessWebsite = $("input[name=BusinessWebsite]").val();
-        let BusinessPhone = $("input[name=BusinessPhone]").val();
-        let takeOutCbox = $("#takeOutCbox").prop("checked");
-        let deliveryCheckBox = $("#deliveryCheckBox").prop("checked");
-        let mobileApp = $("#mobileApp").prop("checked");
-        let NAME = $("input[name=NAME]").val();
-        let EMAIL = $("input[name=EMAIL]").val();
-        let icon = $("#iconFile");
     }
 
     function enableDrawing(id) {
@@ -141,7 +134,7 @@ define([
             drawing = true;
             currCoordinate = createPointGraphic(evt.coordinates);
             drawing = false;
-
+            ResetForm();
             $modalForm.modal("show");
         });
     }
@@ -231,7 +224,7 @@ define([
         }
     }
 
-    return { addMissingBusiness, enableDrawing, setup, prePopulateForm };
+    return { addMissingBusiness, enableDrawing, setup };
 });
 
 const readUploadedFileAsText = (inputFile) => {

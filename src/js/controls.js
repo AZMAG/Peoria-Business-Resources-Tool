@@ -6,12 +6,11 @@
  * @file        controls.js
  * ======================================================================== */
 
-define([
-    "mag/config",
-    "mag/map",
-    "mag/card-functions",
-    "mag/addNewLocation",
-], function (config, { map, view }, cards, { prePopulateForm }) {
+define(["mag/config", "mag/map", "mag/card-functions"], function (
+    config,
+    { map, view },
+    cards
+) {
     var getCardsList = cards.getCardsList;
     var peoriaBusinessesLayer = map.peoriaBusinessesLayer;
     let lyrView = null;
@@ -225,32 +224,6 @@ define([
     }
 
     let highlight;
-
-    //Click on card and zoom to point on map
-    $("body").on("click", ".card", async (e) => {
-        let objectId = $(e.currentTarget).data("objectid");
-        // console.log(objectId);
-        if (lyrView) {
-            let { features } = await lyrView.queryFeatures({
-                objectIds: [objectId],
-                returnGeometry: true,
-            });
-
-            if (features[0]) {
-                await view.goTo({
-                    target: features[0],
-                    zoom: 15,
-                });
-
-                view.popup.open({
-                    location: features[0].geometry,
-                    features: features,
-                });
-
-                selectedId = objectId;
-            }
-        }
-    });
 
     //hover card and highlights point on map
     $("body").on("mouseenter", ".card", async (e) => {

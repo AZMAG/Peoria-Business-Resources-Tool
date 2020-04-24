@@ -51,33 +51,33 @@ define(["mag/config", "mag/map"], function (config, { map, view }) {
                     <h6 class="catType">${Category}</h6>
                 </div>
                 <div class="card-info">
-                <div class="col col-sm-9">
-                    <h6 class="card-subtitle text-muted mb-2">${Business_Address}</h6>
-                    ${
-                        Phone_Number_Redone
-                            ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(
-                                  Phone_Number_Redone
-                              )}</p>`
-                            : ""
-                    }
-                    ${
-                        Link !== "N/A"
-                            ? `<p class="card-text"><a href="https://${Link}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
-                            : ""
-                    }
-                    ${
-                        Specials_ !== null
-                            ? `<p class="card-text sp"><b>Specials:</b> ${Specials_}</p>`
-                            : ""
-                    }
-                 </div>
-                 <div class="col col-sm-3 text-center">
-                    ${
-                        logo !== null
-                            ? `<img class="logo-img" src="images/logos/${logo}.png" alt="biz logo">`
-                            : ""
-                    }
-                 </div>
+                    <div class="col col-sm-9">
+                        <h6 class="card-subtitle text-muted mb-2">${Business_Address}</h6>
+                        ${
+                            Phone_Number_Redone
+                                ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(
+                                      Phone_Number_Redone
+                                  )}</p>`
+                                : ""
+                        }
+                        ${
+                            Link !== "N/A"
+                                ? `<p class="card-text"><a href="https://${Link}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
+                                : ""
+                        }
+                        ${
+                            Specials_ !== null
+                                ? `<p class="card-text sp"><b>Specials:</b> ${Specials_}</p>`
+                                : ""
+                        }
+                    </div>
+                    <div class="col col-sm-3 text-center">
+                        ${
+                            logo !== null
+                                ? `<img class="logo-img" src="images/logos/${logo}.png" alt="biz logo">`
+                                : ""
+                        }
+                    </div>
                  </div>
                 <div class="horizontalIconContainer">
                   ${
@@ -95,6 +95,7 @@ define(["mag/config", "mag/map"], function (config, { map, view }) {
                           ? `<span class="card-text horizontalIcon"><em class="fas fa-tablet-alt"></em> Mobile App</span>`
                           : ""
                   }
+                  <button data-objectid="${TableID}" title="Edit this Business" class="btn btn-sm btn-primary pull-right editBtn"><i class="fas fa-edit"></i></button>
                 </div>
               </div>
             </div>
