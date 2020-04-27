@@ -6,16 +6,16 @@
  * @file        config.js
  * ======================================================================== */
 
-define([], function() {
+define([], function () {
     "use strict";
 
     function formatPhoneNumber(phoneNumberString) {
-        var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+        var cleaned = ("" + phoneNumberString).replace(/\D/g, "");
         var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
         if (match) {
-            return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+            return "(" + match[1] + ") " + match[2] + "-" + match[3];
         }
-        return 'N/A';
+        return "N/A";
     }
 
     var popContent = ({ graphic }) => {
@@ -27,17 +27,22 @@ define([], function() {
                 ${Link !== 'N/A' ? `<span><a target="_blank" href="https://${Link}" class="card-link"><em class="fa fa-link"></em> Website</a></span>` : '' }
                 </div>
             `;
-    }
+    };
 
     return {
-        version: "v0.0.4 | 2020-04-21",
+        version: "v1.0.0 | 2020-04-23",
         copyright: "2020",
 
         peoriaURL: "https://www.peoriaaz.gov/",
 
-        pBoundaryLayer: "https://geo.azmag.gov/arcgis/rest/services/maps/RegionalBoundaries/MapServer/3",
+        editLayer:
+            "https://geo.azmag.gov/arcgis/rest/services/Hosted/Peoria_Business_Locations/FeatureServer/0",
 
-        pBusinessLayer: "https://geo.azmag.gov/arcgis/rest/services/maps/PeoriaBusinesses/MapServer/0",
+        pBoundaryLayer:
+            "https://geo.azmag.gov/arcgis/rest/services/maps/RegionalBoundaries/MapServer/3",
+
+        pBusinessLayer:
+            "https://geo.azmag.gov/arcgis/rest/services/maps/PeoriaBusinesses/MapServer/0",
 
         intExtent: {
             xmin: -12532415.067261647,
@@ -55,14 +60,9 @@ define([], function() {
             spatialReference: { wkid: 3857 },
         },
 
-
-
         popTemplate: {
             title: "<span style='display: none;'>{*}</span>{Restaurant_Name}",
             content: popContent,
         },
-
-
-
     };
 });
