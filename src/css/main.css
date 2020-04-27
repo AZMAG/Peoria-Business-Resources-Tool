@@ -7128,6 +7128,11 @@ table.tableBox td {
   padding: 2px 5px;
 }
 
+#new-location-button {
+  width: 150px;
+  height: 30px;
+}
+
 .iconTooltip .iconTooltiptext::after {
   pointer-events: none;
   content: " ";
@@ -7165,4 +7170,3 @@ table.tableBox td {
 .tooltip {
   z-index: 1000000;
 }
-/*# sourceMappingURL=main.css.map */
