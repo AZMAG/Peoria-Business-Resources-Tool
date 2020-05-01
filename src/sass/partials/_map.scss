@@ -12,12 +12,19 @@
   height: 500px;
 }
 
+@media (max-width: 800px) {
+  .mapTableContainer {
+    height: 50vh;
+  }
+  .jumbotron {
+    display: none;
+  }
+}
+
 #mapView {
   flex: 2;
   padding: 0;
   margin: 0;
-  height: 500px;
-  width: 500px;
 }
 
 #listContainer {
@@ -68,6 +75,7 @@
     .fieldlist {
       display: flex;
       list-style: none;
+      padding-left: 0;
 
       ul {
         margin-bottom: 0;
@@ -79,7 +87,32 @@
         font-weight: 600;
       }
     }
-
   }
+}
+@media (max-width: 1200px) {
+  #controls {
+    flex-direction: column;
+    * {
+      margin: auto;
+    }
+    #specials {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+}
 
+@media (max-width: 800px) {
+  #listContainer {
+    display: none;
+  }
+  #bizControls {
+    flex-direction: column;
+    .input-group {
+      margin-bottom: 10px;
+    }
+  }
+  #footercolumn {
+    display: none !important;
+  }
 }

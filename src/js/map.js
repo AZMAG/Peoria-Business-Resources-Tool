@@ -390,6 +390,25 @@ define([
         }
     });
 
+    view.popup.on("trigger-action", async function (event) {
+        // If the zoom-out action is clicked, fire the zoomOut() function
+        if (event.action.id === "edit") {
+            let TableID = view.popup.selectedFeature.attributes["TableID"];
+            console.log(TableID);
+
+            if (lyrView) {
+                let { features } = await lyrView.queryFeatures({
+                    outFields: ["*"],
+                    where: "TableID = " + TableID,
+                });
+                if (features[0]) {
+                    prePopulateForm(features[0]);
+                    $("#modalForm").modal("show");
+                }
+            }
+        }
+    });
+
     //hover card and highlights point on map
     $("body").on("mouseenter", ".card", async (e) => {
         let objectId = $(e.currentTarget).data("objectid");
