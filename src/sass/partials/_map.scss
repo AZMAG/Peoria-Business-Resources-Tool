@@ -6,20 +6,22 @@
 }
 
 .mapTableContainer {
-  display: flex;
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: space-between;
   margin: 0 0 0 15px;
-  justify-content: space-between;
   height: 500px;
+  overflow-x: hidden;
 }
 
 #mapView {
-  flex: 2;
+  // flex: 2;
   padding: 0;
   margin: 0;
 }
 
 #listContainer {
-  flex: 1.5;
+  // flex: 1.5;
   font-size: 12px;
 
   h4 {
@@ -53,12 +55,27 @@
 }
 
 // Extra small devices (portrait phones, less than 576px)
-@media (max-width: 575.98px) {}
+@media (max-width: 575.98px) {
+  .mapTableContainer {
+    // flex-direction: row;
+    margin: 0;
+    height: 400px;
+  }
+
+  #listContainer {
+
+    #cardsListContainer {
+      height: 400px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+  }
+}
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
   #listContainer {
-    display: none;
+    // display: none;
   }
 }
 

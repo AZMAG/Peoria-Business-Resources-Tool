@@ -62,10 +62,13 @@
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
+
     #bizControls,
     #specials {
         flex-direction: column;
     }
+
+
 }
 
 // Medium devices (tablets, less than 992px)
@@ -84,5 +87,9 @@
             padding-top: 10px;
             padding-bottom: 10px;
         }
+    }
+
+    #bizDropDown {
+        margin-right: 15px;
     }
 }
