@@ -1,0 +1,88 @@
+/*******************
+ Controls
+********************/
+#controls {
+    display: flex;
+    flex-direction: row;
+    color: $text-white;
+    background-color: lighten($peoria-main, 10%);
+    margin: 0 auto;
+
+    #bizControls {
+        display: flex;
+        justify-content: center;
+        font-size: 16px;
+        padding: 15px 15px 2px 15px;
+
+        .input-group {
+            margin-bottom: 10px;
+        }
+    }
+
+    #specials {
+        justify-content: center;
+        padding-top: 25px;
+
+        .fieldlist {
+            display: flex;
+            list-style: none;
+            padding-left: 0;
+
+            ul {
+                margin-bottom: 0;
+            }
+
+            li {
+                margin-left: 20px;
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+#bizDropDown {
+    width: 350px;
+    margin-right: 25px;
+}
+
+#catDropDown {
+    width: 210px;
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+    .fieldlist {
+
+        li label {
+            font-size: 16px;
+        }
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+    #bizControls,
+    #specials {
+        flex-direction: column;
+    }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
+    #controls {
+        flex-direction: column;
+
+        * {
+            margin: auto;
+        }
+
+        #specials {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    }
+}
