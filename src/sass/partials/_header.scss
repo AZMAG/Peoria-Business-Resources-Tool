@@ -5,26 +5,12 @@
 #siteheader {
   display: flex;
   background: white;
+
   a#home_link {
     background: url($header_logo_URL) center center no-repeat !important;
     height: 115px;
     margin-left: 10%;
     width: 375px;
-  }
-}
-
-@media (min-width: 48em) {
-  .jumbotron {
-    padding: 4rem 2rem;
-    font-size: medium;
-    font-weight: 700;
-  }
-}
-
-@media (max-width: 800px) {
-  #home_link {
-    margin-left: 0;
-    margin: auto !important;
   }
 }
 
@@ -38,3 +24,26 @@
   font-size: large;
   font-weight: 700;
 }
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .jumbotron {
+    font-size: 12px;
+  }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+  #home_link {
+    margin-left: 0;
+    margin: auto !important;
+  }
+
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {}
