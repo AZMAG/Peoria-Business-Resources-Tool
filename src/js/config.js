@@ -19,18 +19,28 @@ define([], function () {
     }
 
     var popContent = ({ graphic }) => {
-        let { Business_Address, Phone_Number_Redone, Link } = graphic.attributes;
+        let {
+            Business_Address,
+            Phone_Number_Redone,
+            Link,
+        } = graphic.attributes;
         return `
                 <div>
                 <span><b>Address: </b>${Business_Address}</span></br>
-                <span><b>Phone: </b>${formatPhoneNumber(Phone_Number_Redone)}</span></br>
-                ${Link !== 'N/A' ? `<span><a target="_blank" href="https://${Link}" class="card-link"><em class="fa fa-link"></em> Website</a></span>` : '' }
+                <span><b>Phone: </b>${formatPhoneNumber(
+                    Phone_Number_Redone
+                )}</span></br>
+                ${
+                    Link !== "N/A"
+                        ? `<span><a target="_blank" href="https://${Link}" class="card-link"><em class="fa fa-link"></em> Website</a></span>`
+                        : ""
+                }
                 </div>
             `;
     };
 
     return {
-        version: "v1.0.0 | 2020-04-23",
+        version: "v1.2.0 | 2020-05-04",
         copyright: "2020",
 
         peoriaURL: "https://www.peoriaaz.gov/",
@@ -63,6 +73,16 @@ define([], function () {
         popTemplate: {
             title: "<span style='display: none;'>{*}</span>{Restaurant_Name}",
             content: popContent,
+            actions: [
+                {
+                    // This text is displayed as a tooltip
+                    title: "Edit",
+                    // The ID by which to reference the action in the event handler
+                    id: "edit",
+                    // Sets the icon font used to style the action button
+                    className: "esri-icon-edit",
+                },
+            ],
         },
     };
 });

@@ -7,21 +7,21 @@
 
 .mapTableContainer {
   display: flex;
+  // flex-wrap: wrap;
+  // justify-content: space-between;
   margin: 0 0 0 15px;
-  justify-content: space-between;
   height: 500px;
+  overflow-x: hidden;
 }
 
 #mapView {
-  flex: 2;
+  // flex: 2;
   padding: 0;
   margin: 0;
-  height: 500px;
-  width: 500px;
 }
 
 #listContainer {
-  flex: 1.5;
+  // flex: 1.5;
   font-size: 12px;
 
   h4 {
@@ -54,32 +54,34 @@
   }
 }
 
-#controls {
-  display: flex;
-  color: $text-white;
-  background-color: lighten($peoria-main, 10%);
-  // padding-top: 30px;
-  margin: 0 auto;
-
-  #specials {
-    justify-content: center;
-    padding-top: 25px;
-
-    .fieldlist {
-      display: flex;
-      list-style: none;
-
-      ul {
-        margin-bottom: 0;
-      }
-
-      li {
-        margin-left: 20px;
-        font-size: 20px;
-        font-weight: 600;
-      }
-    }
-
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .mapTableContainer {
+    // flex-direction: row;
+    margin: 0;
+    height: 400px;
   }
 
+  #listContainer {
+    #cardsListContainer {
+      height: 400px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+  }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+  #listContainer {
+    // display: none;
+  }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
 }
