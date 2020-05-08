@@ -2,145 +2,48 @@
  Header
 ********************/
 
-// #siteheader {
-//     width: 730px;
-//     max-width: 730px;
-// }
-
-@media only screen and (min-width: 62em) {
-    #siteheader {
-        background: url($header_txt_image_URL) center bottom no-repeat !important;
-    }
-}
-
 #siteheader {
-    z-index: 1;
-    margin-bottom: 0;
-    position: relative;
-    width: 100%;
-    // background: $peoria-main url($header_strip_URL) center top no-repeat !important;
-    height: 106px;
-    background-size: cover;
+  display: flex;
+  background: white;
+
+  a#home_link {
+    background: url($header_logo_URL) center center no-repeat !important;
+    height: 115px;
+    margin-left: 10%;
+    width: 375px;
+  }
 }
-
-@media screen and (min-width: 48em) {
-    #siteheader {
-        height: 147px;
-        background: url($header_txt_image_URL) center bottom no-repeat;
-        background-size: 100%;
-        position: relative;
-        margin: 0 auto;
-        z-index: 8;
-    }
-
-    #siteheader:before {
-        display: none;
-    }
-
-    #siteheader.searchactive:before {
-        content: '';
-        top: 0;
-        left: 0;
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-        background: rgba(40, 38, 58, 0.9);
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        display: block;
-        z-index: 1;
-    }
-
-    #headercolumn {
-        background-image: none !important;
-        height: auto !important;
-    }
-
-}
-
-#siteheader a#home_link {
-    background: url($header_txt_image_URL) no-repeat center center !important;
-    width: 234px;
-    height: 66px;
-    overflow: hidden;
-    position: absolute;
-    text-indent: -4000px;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    background-size: 100% auto !important;
-}
-
-@media screen and (min-width: 48em) {
-    #siteheader a#home_link {
-        height: 115px;
-        right: auto;
-        margin-left: 10%;
-        top: 17px;
-        width: 375px;
-        background: url($header_logo_URL) center center no-repeat !important;
-        background-size: 100% auto !important;
-    }
-}
-
-@media only screen and (min-width: 62em) {
-    #siteheader a#home_link {
-        // height: 115px;
-        right: auto;
-        left: 0;
-        top: 17px;
-        // width: 320px;
-    }
-}
-
-.mainSpan_wrapper_home.jPanelMenu-panel #siteheader a#home_link {
-    top: 40px;
-}
-
-#siteheader a.menu_trigger {
-    background: url('_gfx/cmn/mobile/menu.png') no-repeat scroll center center rgba(0, 0, 0, 0);
-    cursor: pointer;
-    display: block !important;
-    height: 37px;
-    left: 0;
-    top: 0;
-    position: absolute;
-    overflow: hidden;
-    text-indent: -4000px;
-    width: 37px;
-}
-
-.mainSpan_wrapper_home.jPanelMenu-panel #siteheader a.menu_trigger {
-    top: 52px;
-}
-
-@media screen and (min-width: 48em) {
-
-    #siteheader>a.menu_trigger,
-    .expand_link {
-        display: none !important;
-    }
-}
-
-@media (min-width: 48em) {
-    .jumbotron {
-        padding: 4rem 2rem;
-        font-size: medium;
-        font-weight: 700;
-    }
-}
-
 
 .jumbotron {
-    padding: 1rem 1rem;
-    margin-bottom: 0;
-    color: $text-white;
-    background-color: $peoria-accent;
-    border-radius: 0;
-    text-align: center;
-    font-size: large;
-    font-weight: 700;
+  padding: 1rem 1rem;
+  margin-bottom: 0;
+  color: $text-white;
+  background-color: $peoria-accent;
+  border-radius: 0;
+  text-align: center;
+  font-size: large;
+  font-weight: 700;
 }
+
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .jumbotron {
+    font-size: 12px;
+  }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+  #home_link {
+    margin-left: 0;
+    margin: auto !important;
+  }
+
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {}
