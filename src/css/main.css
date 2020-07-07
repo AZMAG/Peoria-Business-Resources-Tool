@@ -926,6 +926,10 @@ a.card-link:visited {
   border-color: #57222c;
 }
 
+.info-pics {
+  width: 100px;
+}
+
 /*******************
  Controls
 ********************/
@@ -989,6 +993,10 @@ a.card-link:visited {
 
 #catDropDown {
   width: 210px;
+}
+
+.info-btn {
+  padding: 0 0 20px 45px;
 }
 
 @media (max-width: 575.98px) {

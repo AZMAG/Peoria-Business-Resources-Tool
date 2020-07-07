@@ -8,6 +8,7 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+
 body {
   background-color: #35322b;
 }
@@ -82,4 +83,8 @@ a.card-link {
     background-color: darken($peoria-accent, 10%);
     border-color: darken($peoria-accent, 15%);
   }
+}
+
+.info-pics {
+  width: 100px;
 }
