@@ -13,14 +13,18 @@ require([
     "mag/widgets",
     "mag/card-functions",
     // "mag/controls"
-], function (config, addNewLocation) {
+], function(config, addNewLocation) {
     "use strict";
-    $(document).ready(function () {
-        $("#modalForm").load("views/feedback-view.html", function () {
+    $(document).ready(function() {
+        $("#modalForm").load("views/feedback-view.html", function() {
             addNewLocation.setup();
         });
 
-        $("#page_footer").load("views/footer-view.html", function () {});
+        $("#modalHelp").load("views/modal-help.html", function() {
+
+        });
+
+        $("#page_footer").load("views/footer-view.html", function() {});
     });
 
     return;

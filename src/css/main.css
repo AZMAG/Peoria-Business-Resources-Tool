@@ -831,6 +831,10 @@ template {
   background-color: #ccd1d6;
 }
 
+.modal-header {
+  background-color: #5baae9;
+}
+
 /*******************
  Cards
 ********************/
@@ -926,6 +930,16 @@ a.card-link:visited {
   border-color: #57222c;
 }
 
+.info-pics {
+  width: 700px;
+}
+
+.info-pic-div {
+  text-align: center;
+  margin-bottom: 1rem;
+  background-color: #eeeeee;
+}
+
 /*******************
  Controls
 ********************/
@@ -937,9 +951,12 @@ a.card-link:visited {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   color: #ffffff;
   background-color: #2e93e3;
-  margin: 0 auto;
+  width: auto;
 }
 
 #controls #bizControls {
@@ -949,8 +966,11 @@ a.card-link:visited {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
   font-size: 16px;
-  padding: 15px 15px 2px 15px;
+  padding-top: 15px;
 }
 
 #controls #bizControls .input-group {
@@ -958,16 +978,19 @@ a.card-link:visited {
 }
 
 #controls #specials {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding-top: 25px;
+  padding-top: 20px;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
 }
 
 #controls #specials .fieldlist {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   list-style: none;
   padding-left: 0;
 }
@@ -991,6 +1014,20 @@ a.card-link:visited {
   width: 210px;
 }
 
+#info-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  color: #ffffff;
+  background-color: #2e93e3;
+  padding-right: 5px;
+  padding-top: 2px;
+  width: auto;
+}
+
 @media (max-width: 575.98px) {
   .fieldlist li label {
     font-size: 16px;
@@ -998,31 +1035,14 @@ a.card-link:visited {
 }
 
 @media (max-width: 767.98px) {
-  #bizControls,
-  #specials {
+  #bizControls {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-  }
-}
-
-@media (max-width: 1199.98px) {
-  #controls {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  #controls * {
-    margin: auto;
-  }
-  #controls #specials {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  #bizDropDown {
-    margin-right: 15px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
 }
 

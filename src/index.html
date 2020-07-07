@@ -16,8 +16,8 @@
     <!-- endcomments -->
     <meta name="url" content="https://geo.azmag.gov/maps/peoriabiz/">
     <meta name="creation-date" content="2020-04-09">
-    <meta name="revision-date" content="2020-05-04">
-    <meta name="version" content="1.2.0">
+    <meta name="revision-date" content="2020-07-07">
+    <meta name="version" content="1.2.1">
     <!-- Application CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css" />
@@ -67,52 +67,60 @@
             Welcome to the City of Peoria business locations COVID-19
             Project.
         </div>
-        <div id="controls">
-            <div id="bizControls">
-                <div id="bizDropDown" class="input-group">
-                    <input id="inputBiz" type="search" class="form-control form-control-sm" />
-                    <div class="input-group-append"></div>
+
+        <div id="info-btn" class="container-fluid">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalHelp">
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div id="controls" class="container-fluid">
+            <div class="row">
+                <div id="bizControls" class="col">
+                    <div id="bizDropDown" class="input-group">
+                        <input id="inputBiz" type="search" class="form-control form-control-sm" />
+                        <div class="input-group-append"></div>
+                    </div>
+                    <div id="catDropDown" class="input-group">
+                        <input id="bizCat" type="search" class="form-control form-control-sm" />
+                        <div class="input-group-append"></div>
+                    </div>
                 </div>
-                <div id="catDropDown" class="input-group">
-                    <input id="bizCat" type="search" class="form-control form-control-sm" />
-                    <div class="input-group-append"></div>
+                <div id="specials" class="col">
+                    <ul class="fieldlist">
+                        <li>
+                            <input type="checkbox" id="cboxTakeOut" class="filterControl k-checkbox" />
+                            <label class="k-checkbox-label" for="cboxTakeOut">Take out</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="cboxDelivery" class="filterControl k-checkbox" />
+                            <label class="k-checkbox-label" for="cboxDelivery">Delivery</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="cboxApp" class="filterControl k-checkbox" />
+                            <label class="k-checkbox-label" for="cboxApp">Mobile App</label>
+                        </li>
+                    </ul>
                 </div>
-                <!-- <button id="sort-biz" type="button" class="btn btn-sm sort-btn" data-status="on" data-toggle="tooltip" data-placement="top" title="Sort by Business Name">Sort Business&nbsp;<i class="fas fa-sort"></i></button> -->
-            </div>
-            <div id="specials">
-                <ul class="fieldlist">
-                    <li>
-                        <input type="checkbox" id="cboxTakeOut" class="filterControl k-checkbox" />
-                        <label class="k-checkbox-label" for="cboxTakeOut">Take out</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="cboxDelivery" class="filterControl k-checkbox" />
-                        <label class="k-checkbox-label" for="cboxDelivery">Delivery</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="cboxApp" class="filterControl k-checkbox" />
-                        <label class="k-checkbox-label" for="cboxApp">Mobile App</label>
-                    </li>
-                </ul>
+
             </div>
         </div>
+
         <div class="mapTableContainer">
-            <!-- <div class="row"> -->
             <div id="listContainer" class="col-sm-5">
                 <div id="cardsListContainer">
                     <div id="cardsList"></div>
                 </div>
             </div>
-            <!-- </div>
-            <div class="row"> -->
             <div id="mapView" class="col-sm-7"></div>
-            <!-- </div> -->
         </div>
     </main>
     <div id="modalForm" class="modal" tabindex="-1" role="dialog"></div>
+    <div id="modalHelp" class="modal" tabindex="-1" role="dialog"></div>
+
 
     <footer id="page_footer" class=""></footer>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.2.5/polyfill.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
