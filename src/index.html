@@ -67,52 +67,52 @@
             Welcome to the City of Peoria business locations COVID-19
             Project.
         </div>
-        <div id="controls">
-            <div id="bizControls">
-                <div id="bizDropDown" class="input-group">
-                    <input id="inputBiz" type="search" class="form-control form-control-sm" />
-                    <div class="input-group-append"></div>
-                </div>
-                <div id="catDropDown" class="input-group">
-                    <input id="bizCat" type="search" class="form-control form-control-sm" />
-                    <div class="input-group-append"></div>
-                </div>
-                <!-- <button id="sort-biz" type="button" class="btn btn-sm sort-btn" data-status="on" data-toggle="tooltip" data-placement="top" title="Sort by Business Name">Sort Business&nbsp;<i class="fas fa-sort"></i></button> -->
-                <div class="info-btn">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalHelp">
-                        <i class="fa fa-question-circle" aria-hidden="true"></i>
-                    </button>
 
+        <div id="info-btn" class="container-fluid">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalHelp">
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div id="controls" class="container-fluid">
+            <div class="row">
+                <div id="bizControls" class="col">
+                    <div id="bizDropDown" class="input-group">
+                        <input id="inputBiz" type="search" class="form-control form-control-sm" />
+                        <div class="input-group-append"></div>
+                    </div>
+                    <div id="catDropDown" class="input-group">
+                        <input id="bizCat" type="search" class="form-control form-control-sm" />
+                        <div class="input-group-append"></div>
+                    </div>
                 </div>
-            </div>
-            <div id="specials">
-                <ul class="fieldlist">
-                    <li>
-                        <input type="checkbox" id="cboxTakeOut" class="filterControl k-checkbox" />
-                        <label class="k-checkbox-label" for="cboxTakeOut">Take out</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="cboxDelivery" class="filterControl k-checkbox" />
-                        <label class="k-checkbox-label" for="cboxDelivery">Delivery</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="cboxApp" class="filterControl k-checkbox" />
-                        <label class="k-checkbox-label" for="cboxApp">Mobile App</label>
-                    </li>
-                </ul>
+                <div id="specials" class="col">
+                    <ul class="fieldlist">
+                        <li>
+                            <input type="checkbox" id="cboxTakeOut" class="filterControl k-checkbox" />
+                            <label class="k-checkbox-label" for="cboxTakeOut">Take out</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="cboxDelivery" class="filterControl k-checkbox" />
+                            <label class="k-checkbox-label" for="cboxDelivery">Delivery</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="cboxApp" class="filterControl k-checkbox" />
+                            <label class="k-checkbox-label" for="cboxApp">Mobile App</label>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </div>
+
         <div class="mapTableContainer">
-            <!-- <div class="row"> -->
             <div id="listContainer" class="col-sm-5">
                 <div id="cardsListContainer">
                     <div id="cardsList"></div>
                 </div>
             </div>
-            <!-- </div>
-            <div class="row"> -->
             <div id="mapView" class="col-sm-7"></div>
-            <!-- </div> -->
         </div>
     </main>
     <div id="modalForm" class="modal" tabindex="-1" role="dialog"></div>

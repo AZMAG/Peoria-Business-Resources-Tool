@@ -44,3 +44,7 @@
         background-color: $widget_con;
     }
 }
+
+.modal-header {
+    background-color: lighten($peoria-main, 20%);
+}

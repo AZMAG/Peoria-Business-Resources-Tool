@@ -4,15 +4,17 @@
 #controls {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     color: $text-white;
     background-color: lighten($peoria-main, 10%);
-    margin: 0 auto;
+    width: auto;
 
     #bizControls {
         display: flex;
         justify-content: center;
+        order: 1;
         font-size: 16px;
-        padding: 15px 15px 2px 15px;
+        padding-top: 15px;
 
         .input-group {
             margin-bottom: 10px;
@@ -20,11 +22,12 @@
     }
 
     #specials {
-        justify-content: center;
-        padding-top: 25px;
+        padding-top: 20px;
+        order: 2;
 
         .fieldlist {
             display: flex;
+            justify-content: center;
             list-style: none;
             padding-left: 0;
 
@@ -50,13 +53,21 @@
     width: 210px;
 }
 
-.info-btn {
-    // margin: 0 5px 0 45px !important;
-    padding: 0 0 20px 45px;
+#info-btn {
+    display: flex;
+    justify-content: flex-end;
+    color: $text-white;
+    background-color: lighten($peoria-main, 10%);
+    padding-right: 5px;
+    padding-top: 2px;
+    width: auto;
 }
+
+
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
+
     .fieldlist {
 
         li label {
@@ -67,34 +78,14 @@
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
-
-    #bizControls,
-    #specials {
+    #bizControls {
         flex-direction: column;
+        justify-content: center;
     }
-
-
 }
 
 // Medium devices (tablets, less than 992px)
 @media (max-width: 991.98px) {}
 
 // Large devices (desktops, less than 1200px)
-@media (max-width: 1199.98px) {
-    #controls {
-        flex-direction: column;
-
-        * {
-            margin: auto;
-        }
-
-        #specials {
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-    }
-
-    #bizDropDown {
-        margin-right: 15px;
-    }
-}
+@media (max-width: 1199.98px) {}
