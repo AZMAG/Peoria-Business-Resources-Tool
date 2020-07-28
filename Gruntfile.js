@@ -188,13 +188,17 @@ module.exports = function(grunt) {
                 src: ["src/index.html", "README.md", "LICENSE", "src/LICENSE", "src/js/config.js", "src/humans.txt"], // source files array
                 overwrite: true,
                 replacements: [{
-                    // html pages
+                    // index.html pages - revision date
                     from: /(<meta name="revision-date" content=")[0-9]{4}-[0-9]{2}-[0-9]{2}(">)/g,
                     to: '<meta name="revision-date" content="' + '<%= pkg.date %>' + '">',
                 }, {
-                    // html pages
+                    // index.html pages - version #
                     from: /(<meta name="version" content=")([0-9]+)(?:\.([0-9]+))(?:\.([0-9]+))(">)/g,
                     to: '<meta name="version" content="' + '<%= pkg.version %>' + '">',
+                }, {
+                    // html pages - build-info
+                    from: /(<meta name="build-info" content=")([0-9]+)(?:\.([0-9]+))(?:\.([0-9]+))(?:\.)(\d{12})(">)/g,
+                    to: '<meta name="build-info" content="' + '<%= pkg.version %>' + '.' + '<%= grunt.template.today("yyyymmddHHMM") %>' + '">',
                 }, {
                     // config.js
                     from: /(v)([0-9]+)(?:\.([0-9]+))(?:\.([0-9]+))( \| )[0-9]{4}-[0-9]{2}-[0-9]{2}/g,

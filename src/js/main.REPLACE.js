@@ -24,7 +24,22 @@ require([
 
         });
 
-        $("#page_footer").load("views/footer-view.html", function() {});
+        //*** terms binding
+        $("#modalTerms").load("views/modal-terms.html", function() {});
+        //*** privacy binding
+        $("#modalPrivacy").load("views/modal-privacy.html", function() {});
+        //*** legal binding
+        $("#modalLegal").load("views/modal-legal.html", function() {});
+
+
+        $("#page_footer").load("views/footer-view.html", function() {
+            //*** version binding
+            $(".version").html(config.version);
+            //*** copy write binding
+            $(".copyright").html(config.copyright);
+        });
+
+
     });
 
     return;
