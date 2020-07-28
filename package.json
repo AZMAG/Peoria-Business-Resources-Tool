@@ -45,6 +45,7 @@
     "devDependencies": {
         "@babel/core": "^7.10.5",
         "@babel/preset-env": "^7.10.4",
+        "dijit": ">=1.14.7",
         "grunt": "^1.2.1",
         "grunt-babel": "^8.0.0",
         "grunt-comment-toggler": "^0.2.2",
