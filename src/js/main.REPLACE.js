@@ -25,7 +25,7 @@ require([
         });
 
         //*** terms binding
-        $("#modalTerms").load("views/modal-help.html", function() {});
+        $("#modalTerms").load("views/modal-terms.html", function() {});
         //*** privacy binding
         $("#modalPrivacy").load("views/modal-privacy.html", function() {});
         //*** legal binding
