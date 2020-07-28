@@ -317,6 +317,21 @@
   margin: 0 auto;
 }
 
+#page_footer {
+  .mag-footer {
+    font-size: 11px;
+    color: $text-alt;
+    text-align: center;
+    margin-bottom: 10px;
+
+    a {
+      color: $text-alt;
+      cursor: pointer;
+    }
+  }
+}
+
+
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {}
 
