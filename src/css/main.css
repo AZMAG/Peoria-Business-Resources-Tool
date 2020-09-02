@@ -7127,6 +7127,12 @@ table.tableBox td {
   height: 30px;
 }
 
+.redLable {
+  color: red;
+  border-color: red;
+  font-weight: 600;
+}
+
 .iconTooltip .iconTooltiptext::after {
   pointer-events: none;
   content: " ";

@@ -13,9 +13,8 @@ define([
     "esri/Graphic",
     "esri/layers/FeatureLayer",
     "esri/geometry/Point",
-], function (
-    config,
-    { view },
+], function(
+    config, { view },
     Draw,
     geometryEngine,
     Graphic,
@@ -47,14 +46,18 @@ define([
         data.businesswebsite = data.BusinessWebsite;
         data.businessphone = data.BusinessPhone;
         data.takeoutcbox = data.takeOutCbox;
+        data.dineincbox = data.dineInCbox;
+        data.optoutcbox = data.OptOutCbox;
         data.deliverycheckbox = data.deliveryCheckBox;
         data.mobileapp = data.mobileApp;
         data.name = data.NAME;
         data.email = data.EMAIL;
 
+        data.dineincbox = data.dineInCbox ? 1 : 0;
         data.takeoutcbox = data.takeOutCbox ? 1 : 0;
         data.deliverycheckbox = data.deliveryCheckBox ? 1 : 0;
         data.mobileapp = data.mobileApp ? 1 : 0;
+        data.optoutcbox = data.OptOutCbox ? 1 : 0;
         data.globalid = uuidv4();
 
         delete data.BusinessName;
@@ -62,6 +65,8 @@ define([
         delete data.BusinessWebsite;
         delete data.BusinessPhone;
         delete data.takeOutCbox;
+        delete data.dineInCbox;
+        delete data.OptOutCbox;
         delete data.deliveryCheckBox;
         delete data.mobileApp;
         delete data.NAME;
@@ -109,7 +114,7 @@ define([
         });
 
         action = draw.create("point");
-        action.on("cursor-update", function (evt) {
+        action.on("cursor-update", function(evt) {
             if (drawing) {
                 $iconTooltip.css({
                     display: "block",
@@ -127,7 +132,7 @@ define([
             }
         });
 
-        action.on("draw-complete", function (evt) {
+        action.on("draw-complete", function(evt) {
             $commentPin.removeClass("active");
             $btnCancelDrawing.hide();
             $iconTooltip.hide();
@@ -188,6 +193,8 @@ define([
             let BusinessWebsite = $("input[name=BusinessWebsite]").val();
             let BusinessPhone = $("input[name=BusinessPhone]").val();
             let takeOutCbox = $("#takeOutCbox").prop("checked");
+            let dineInCbox = $("#dineInCbox").prop("checked");
+            let OptOutCbox = $("#OptOutCbox").prop("checked");
             let deliveryCheckBox = $("#deliveryCheckBox").prop("checked");
             let mobileApp = $("#mobileApp").prop("checked");
             let NAME = $("input[name=NAME]").val();
@@ -198,13 +205,14 @@ define([
                 console.log(icon[0].files[0]);
             }
 
-            addMissingBusiness(
-                {
+            addMissingBusiness({
                     BusinessName,
                     BusinessAddress,
                     BusinessWebsite,
                     BusinessPhone,
+                    dineInCbox,
                     takeOutCbox,
+                    OptOutCbox,
                     deliveryCheckBox,
                     mobileApp,
                     NAME,
@@ -215,9 +223,9 @@ define([
 
             ResetForm();
 
-            $(".successMessage").fadeIn(300, function () {
+            $(".successMessage").fadeIn(300, function() {
                 var message = this;
-                setTimeout(function () {
+                setTimeout(function() {
                     $(message).fadeOut(500);
                 }, 3000);
             });
@@ -242,8 +250,9 @@ const readUploadedFileAsText = (inputFile) => {
         temporaryFileReader.readAsText(inputFile);
     });
 };
+
 function uuidv4() {
-    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(
         c
     ) {
         var r = (Math.random() * 16) | 0,
