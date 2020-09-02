@@ -47,6 +47,7 @@ define([
         data.businessphone = data.BusinessPhone;
         data.takeoutcbox = data.takeOutCbox;
         data.dineincbox = data.dineInCbox;
+        data.optoutcbox = data.OptOutCbox;
         data.deliverycheckbox = data.deliveryCheckBox;
         data.mobileapp = data.mobileApp;
         data.name = data.NAME;
@@ -56,6 +57,7 @@ define([
         data.takeoutcbox = data.takeOutCbox ? 1 : 0;
         data.deliverycheckbox = data.deliveryCheckBox ? 1 : 0;
         data.mobileapp = data.mobileApp ? 1 : 0;
+        data.optoutcbox = data.OptOutCbox ? 1 : 0;
         data.globalid = uuidv4();
 
         delete data.BusinessName;
@@ -64,6 +66,7 @@ define([
         delete data.BusinessPhone;
         delete data.takeOutCbox;
         delete data.dineInCbox;
+        delete data.OptOutCbox;
         delete data.deliveryCheckBox;
         delete data.mobileApp;
         delete data.NAME;
@@ -191,6 +194,7 @@ define([
             let BusinessPhone = $("input[name=BusinessPhone]").val();
             let takeOutCbox = $("#takeOutCbox").prop("checked");
             let dineInCbox = $("#dineInCbox").prop("checked");
+            let OptOutCbox = $("#OptOutCbox").prop("checked");
             let deliveryCheckBox = $("#deliveryCheckBox").prop("checked");
             let mobileApp = $("#mobileApp").prop("checked");
             let NAME = $("input[name=NAME]").val();
@@ -208,6 +212,7 @@ define([
                     BusinessPhone,
                     dineInCbox,
                     takeOutCbox,
+                    OptOutCbox,
                     deliveryCheckBox,
                     mobileApp,
                     NAME,

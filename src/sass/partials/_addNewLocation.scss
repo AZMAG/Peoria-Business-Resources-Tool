@@ -1,6 +1,7 @@
 .hidden {
   display: none;
 }
+
 .successMessage {
   font-size: 20px;
   font-weight: bold;
@@ -15,7 +16,7 @@
 .invalid-tooltip {
   position: relative;
 }
- 
+
 .redAsterisk {
   color: red;
 }
@@ -26,7 +27,13 @@
 }
 
 
-#new-location-button{
+#new-location-button {
   width: 150px;
   height: 30px;
+}
+
+.redLable {
+  color: red;
+  font-weight: 600;
+
 }
