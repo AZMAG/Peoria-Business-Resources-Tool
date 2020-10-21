@@ -18,9 +18,9 @@ The Maricopa Association of Governments (MAG) mapping page showing businesses op
 
 ## Version
 
-### version | 1.3.0 ###
+### version | 1.3.1 ###
 
-* #### Updated | 2020-09-02 ####
+* #### Updated | 2020-10-21 ####
 
 * #### Created | 2020-04-09 ####
 
@@ -84,8 +84,4 @@ Please acknowledge the Maricopa Association of Governments (MAG) GIS as the sour
 
 ## Copyright and Licensing
 
-Code released under the MIT license.
-
-A copy of the license is available in the repository's `LICENSE` file.
-
-* [LICENSE](LICENSE)
+Code released under the MIT license. [LICENSE](LICENSE)
