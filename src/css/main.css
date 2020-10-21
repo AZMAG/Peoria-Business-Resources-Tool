@@ -7129,8 +7129,15 @@ table.tableBox td {
 
 .redLable {
   color: red;
-  border-color: red;
   font-weight: 600;
+}
+
+#commentSubmit {
+  margin-right: 5px;
+}
+
+#commentClose {
+  margin-left: 5px;
 }
 
 .iconTooltip .iconTooltiptext::after {
