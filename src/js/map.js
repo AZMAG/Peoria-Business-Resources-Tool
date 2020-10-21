@@ -13,7 +13,7 @@ define([
     "esri/layers/FeatureLayer",
     "esri/geometry/Extent",
     "mag/card-functions",
-], function (config, Map, MapView, FeatureLayer, Extent, cardsF) {
+], function(config, Map, MapView, FeatureLayer, Extent, cardsF) {
     const maxExtent = new Extent(config.maxExtent);
     const initExtent = new Extent(config.intExtent);
 
@@ -70,7 +70,7 @@ define([
     });
     map.add(peoriaBusinessesLayer);
 
-    view.watch("extent", function (extent) {
+    view.watch("extent", function(extent) {
         let currentCenter = extent.center;
         if (!maxExtent.contains(currentCenter)) {
             let newCenter = extent.center;
@@ -115,8 +115,7 @@ define([
     let $cboxDelivery = $("#cboxDelivery");
     let $cboxApp = $("#cboxApp");
 
-    let filters = [
-        {
+    let filters = [{
             field: "TakeOut",
             getValue: () => {
                 return $cboxTakeOut.prop("checked") ? 1 : 0;
@@ -205,7 +204,7 @@ define([
     }
 
     //sort button
-    $("#sort-biz").on("click", function () {
+    $("#sort-biz").on("click", function() {
         var toggleStatus = $("#sort-biz").attr("data-status");
         if (toggleStatus === "on") {
             $("#sort-biz").attr("data-status", "off");
@@ -222,7 +221,7 @@ define([
     view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
         lyrView = layerView;
 
-        lyrView.watch("updating", async function (value) {
+        lyrView.watch("updating", async function(value) {
             // once the layer view finishes updating
             if (!value) {
                 let cardData = await getCardListData(lyrView);
@@ -349,7 +348,7 @@ define([
     });
 
     function prePopulateForm(feature) {
-        console.log(feature);
+        // console.log(feature);
         let {
             Restaurant_Name,
             Business_Address,
@@ -390,11 +389,11 @@ define([
         }
     });
 
-    view.popup.on("trigger-action", async function (event) {
+    view.popup.on("trigger-action", async function(event) {
         // If the zoom-out action is clicked, fire the zoomOut() function
         if (event.action.id === "edit") {
             let TableID = view.popup.selectedFeature.attributes["TableID"];
-            console.log(TableID);
+            // console.log(TableID);
 
             if (lyrView) {
                 let { features } = await lyrView.queryFeatures({
