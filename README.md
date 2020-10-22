@@ -18,7 +18,7 @@ The Maricopa Association of Governments (MAG) mapping page showing businesses op
 
 ## Version
 
-### version | 1.3.1 ###
+### version | 1.3.2 ###
 
 * #### Updated | 2020-10-21 ####
 
