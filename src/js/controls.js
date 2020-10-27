@@ -6,9 +6,8 @@
  * @file        controls.js
  * ======================================================================== */
 
-define(["mag/config", "mag/map", "mag/card-functions"], function (
-    config,
-    { map, view },
+define(["mag/config", "mag/map", "mag/card-functions"], function(
+    config, { map, view },
     cards
 ) {
     var getCardsList = cards.getCardsList;
@@ -30,7 +29,7 @@ define(["mag/config", "mag/map", "mag/card-functions"], function (
     view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
         lyrView = layerView;
 
-        lyrView.watch("updating", async function (value) {
+        lyrView.watch("updating", async function(value) {
             // once the layer view finishes updating
             if (!value) {
                 let cardData = await getCardListData(lyrView);
@@ -50,8 +49,7 @@ define(["mag/config", "mag/map", "mag/card-functions"], function (
     let $cboxDelivery = $("#cboxDelivery");
     let $cboxApp = $("#cboxApp");
 
-    let filters = [
-        {
+    let filters = [{
             field: "TakeOut",
             getValue: () => {
                 return $cboxTakeOut.prop("checked") ? 1 : 0;
@@ -101,13 +99,13 @@ define(["mag/config", "mag/map", "mag/card-functions"], function (
 
     function sortPos(a, b) {
         // Use toUpperCase() to ignore character casing
-        const Restaurant_NameA = a.Restaurant_Name.toUpperCase();
-        const Restaurant_NameB = b.Restaurant_Name.toUpperCase();
+        const BusinessNameA = a.BusinessName.toUpperCase();
+        const BusinessNameB = b.BusinessName.toUpperCase();
 
         let comparison = 0;
-        if (Restaurant_NameA > Restaurant_NameB) {
+        if (BusinessNameA > BusinessNameB) {
             comparison = 1;
-        } else if (Restaurant_NameA < Restaurant_NameB) {
+        } else if (BusinessNameA < BusinessNameB) {
             comparison = -1;
         }
         return comparison;
@@ -115,13 +113,13 @@ define(["mag/config", "mag/map", "mag/card-functions"], function (
 
     function sortNeg(a, b) {
         // Use toUpperCase() to ignore character casing
-        const Restaurant_NameA = a.Restaurant_Name.toUpperCase();
-        const Restaurant_NameB = b.Restaurant_Name.toUpperCase();
+        const BusinessNameA = a.BusinessName.toUpperCase();
+        const BusinessNameB = b.BusinessName.toUpperCase();
 
         let comparison = 0;
-        if (Restaurant_NameA > Restaurant_NameB) {
+        if (BusinessNameA > BusinessNameB) {
             comparison = 1;
-        } else if (Restaurant_NameA < Restaurant_NameB) {
+        } else if (BusinessNameA < BusinessNameB) {
             comparison = -1;
         }
         //invert return value by multiplying by -1
@@ -129,7 +127,7 @@ define(["mag/config", "mag/map", "mag/card-functions"], function (
     }
 
     //sort button
-    $("#sort-biz").on("click", function () {
+    $("#sort-biz").on("click", function() {
         var toggleStatus = $("#sort-biz").attr("data-status");
         if (toggleStatus === "on") {
             $("#sort-biz").attr("data-status", "off");
@@ -146,15 +144,15 @@ define(["mag/config", "mag/map", "mag/card-functions"], function (
         // console.log(data);
         var dropdown = $("#inputBiz");
         dropdown.kendoComboBox({
-            dataTextField: "Restaurant_Name",
-            dataValueField: "Restaurant_Name",
+            dataTextField: "BusinessName",
+            dataValueField: "BusinessName",
             filter: "none",
             suggest: true,
-            template: "${data.Restaurant_Name}",
+            template: "${data.BusinessName}",
             dataSource: {
                 data: data,
                 sort: {
-                    field: "Restaurant_Name",
+                    field: "BusinessName",
                     dir: "asc",
                 },
             },

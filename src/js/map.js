@@ -176,13 +176,13 @@ define([
 
     function sortPos(a, b) {
         // Use toUpperCase() to ignore character casing
-        const Restaurant_NameA = a.Restaurant_Name.toUpperCase();
-        const Restaurant_NameB = b.Restaurant_Name.toUpperCase();
+        const BusinessNameA = a.BusinessName.toUpperCase();
+        const BusinessNameB = b.BusinessName.toUpperCase();
 
         let comparison = 0;
-        if (Restaurant_NameA > Restaurant_NameB) {
+        if (BusinessNameA > BusinessNameB) {
             comparison = 1;
-        } else if (Restaurant_NameA < Restaurant_NameB) {
+        } else if (BusinessNameA < BusinessNameB) {
             comparison = -1;
         }
         return comparison;
@@ -190,13 +190,13 @@ define([
 
     function sortNeg(a, b) {
         // Use toUpperCase() to ignore character casing
-        const Restaurant_NameA = a.Restaurant_Name.toUpperCase();
-        const Restaurant_NameB = b.Restaurant_Name.toUpperCase();
+        const BusinessNameA = a.BusinessName.toUpperCase();
+        const BusinessNameB = b.BusinessName.toUpperCase();
 
         let comparison = 0;
-        if (Restaurant_NameA > Restaurant_NameB) {
+        if (BusinessNameA > BusinessNameB) {
             comparison = 1;
-        } else if (Restaurant_NameA < Restaurant_NameB) {
+        } else if (BusinessNameA < BusinessNameB) {
             comparison = -1;
         }
         //invert return value by multiplying by -1
@@ -242,15 +242,15 @@ define([
         // console.log(data);
         var dropdown = $("#inputBiz");
         dropdown.kendoComboBox({
-            dataTextField: "Restaurant_Name",
-            dataValueField: "Restaurant_Name",
+            dataTextField: "BusinessName",
+            dataValueField: "BusinessName",
             filter: "none",
             suggest: true,
-            template: "${data.Restaurant_Name}",
+            template: "${data.BusinessName}",
             dataSource: {
                 data: data,
                 sort: {
-                    field: "Restaurant_Name",
+                    field: "BusinessName",
                     dir: "asc",
                 },
             },
@@ -350,26 +350,24 @@ define([
     function prePopulateForm(feature) {
         // console.log(feature);
         let {
-            Restaurant_Name,
-            Business_Address,
-            Link,
+            BusinessName,
+            BusinessAddress,
+            BusinessWebsite,
             Category,
-            Phone_Number_Redone,
-            Latitude,
-            Longitude,
-            Delivery,
-            TakeOut,
-            ThirdPartyApp,
+            BusinessPhone,
+            DeliveryCbox,
+            TakeOutCbox,
+            MobileAppCbox,
         } = feature.attributes;
 
-        $('input[name="BusinessName"]').val(Restaurant_Name);
-        $("input[name=BusinessAddress]").val(Business_Address);
+        $('input[name="BusinessName"]').val(BusinessName);
+        $("input[name=BusinessAddress]").val(BusinessAddress);
         $("input[name=Category]").val(Category);
-        $("input[name=BusinessWebsite]").val(Link);
-        $("input[name=BusinessPhone]").val(Phone_Number_Redone);
-        $("#takeOutCbox").prop("checked", TakeOut);
-        $("#deliveryCheckBox").prop("checked", Delivery);
-        $("#mobileApp").prop("checked", ThirdPartyApp);
+        $("input[name=BusinessWebsite]").val(BusinessWebsite);
+        $("input[name=BusinessPhone]").val(BusinessPhone);
+        $("#takeOutCbox").prop("checked", TakeOutCbox);
+        $("#deliveryCheckBox").prop("checked", DeliveryCbox);
+        $("#mobileApp").prop("checked", MobileAppCbox);
     }
 
     $("body").on("click", ".editBtn", async (e) => {

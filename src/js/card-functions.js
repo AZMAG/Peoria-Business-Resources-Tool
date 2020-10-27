@@ -6,7 +6,7 @@
  * @file        card-functions.js
  * ======================================================================== */
 
-define(["mag/config", "mag/map"], function (config, { map, view }) {
+define(["mag/config", "mag/map"], function(config, { map, view }) {
     function titleCase(str) {
         str = str.toLowerCase().split(" ");
         for (var i = 0; i < str.length; i++) {
@@ -28,18 +28,18 @@ define(["mag/config", "mag/map"], function (config, { map, view }) {
         return data.map(
             ({
                 TableID,
-                Restaurant_Name,
-                Phone_Number_Redone,
-                Business_Address,
+                BusinessName,
+                BusinessPhone,
+                BusinessAddress,
                 Category,
-                Specials_,
-                Link,
-                Open_,
-                TakeOut,
-                Delivery,
-                ThirdPartyApp,
+                Specials,
+                BusinessWebsite,
+                Status,
+                TakeOutCbox,
+                DeliveryCbox,
+                MobileAppCbox,
                 Highlight,
-                logo,
+                Logo,
             }) => {
                 return `
             <div data-objectid="${TableID}" class="card ${
@@ -47,51 +47,51 @@ define(["mag/config", "mag/map"], function (config, { map, view }) {
                 }">
               <div class="card-body">
                 <div class="card-top">
-                    <h5 class="card-title">${Restaurant_Name}</h5>
+                    <h5 class="card-title">${BusinessName}</h5>
                     <h6 class="catType">${Category}</h6>
                 </div>
                 <div class="card-info">
                     <div class="col col-sm-9">
-                        <h6 class="card-subtitle text-muted mb-2">${Business_Address}</h6>
+                        <h6 class="card-subtitle text-muted mb-2">${BusinessAddress}</h6>
                         ${
-                            Phone_Number_Redone
+                            BusinessPhone
                                 ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(
-                                      Phone_Number_Redone
+                                      BusinessPhone
                                   )}</p>`
                                 : ""
                         }
                         ${
-                            Link !== "N/A"
-                                ? `<p class="card-text"><a href="https://${Link}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
+                            BusinessWebsite !== "N/A"
+                                ? `<p class="card-text"><a href="https://${BusinessWebsite}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
                                 : ""
                         }
                         ${
-                            Specials_ !== null
-                                ? `<p class="card-text sp"><b>Specials:</b> ${Specials_}</p>`
+                            Specials !== null
+                                ? `<p class="card-text sp"><b>Specials:</b> ${Specials}</p>`
                                 : ""
                         }
                     </div>
                     <div class="col col-sm-3 text-center">
                         ${
-                            logo !== null
-                                ? `<img class="logo-img" src="images/logos/${logo}.png" alt="biz logo">`
+                            Logo !== null
+                                ? `<img class="logo-img" src="images/logos/${Logo}.png" alt="biz logo">`
                                 : ""
                         }
                     </div>
                  </div>
                 <div class="horizontalIconContainer">
                   ${
-                      TakeOut
+                      TakeOutCbox
                           ? `<span class="card-text horizontalIcon"><em class="fa fa-car"></em> Take out</span>`
                           : ""
                   }
                   ${
-                      Delivery
+                      DeliveryCbox
                           ? `<span class="card-text horizontalIcon"><em class="fa fa-truck"></em> Delivery</span>`
                           : ""
                   }
                   ${
-                      ThirdPartyApp
+                      MobileAppCbox
                           ? `<span class="card-text horizontalIcon"><em class="fas fa-tablet-alt"></em> Mobile App</span>`
                           : ""
                   }
