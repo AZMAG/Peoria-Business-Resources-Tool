@@ -27,78 +27,81 @@ define(["mag/config", "mag/map"], function(config, { map, view }) {
     function getCardsList(data) {
         return data.map(
             ({
-                TableID,
-                BusinessName,
-                BusinessPhone,
-                BusinessAddress,
-                Category,
-                Specials,
-                BusinessWebsite,
-                Status,
-                TakeOutCbox,
-                DeliveryCbox,
-                MobileAppCbox,
-                Highlight,
-                Logo,
+                objectid,
+                businessname,
+                businessphone,
+                businessaddress,
+                category,
+                specials,
+                businesswebsite,
+                status,
+                takeoutcbox,
+                deliverycbox,
+                mobileappcbox,
+                magempid,
+                logo,
             }) => {
                 return `
-            <div data-objectid="${TableID}" class="card ${
-                    Highlight ? "highlighted" : ""
+            <div data-objectid="${objectid}"
+            class="card ${
+                    magempid ? "highlighted" : ""
                 }">
               <div class="card-body">
                 <div class="card-top">
-                    <h5 class="card-title">${BusinessName}</h5>
-                    <h6 class="catType">${Category}</h6>
+                    <h5 class="card-title">${businessname}</h5>
+                    <h6 class="catType">${category}</h6>
                 </div>
                 <div class="card-info">
                     <div class="col col-sm-9">
-                        <h6 class="card-subtitle text-muted mb-2">${BusinessAddress}</h6>
+                        <h6 class="card-subtitle text-muted mb-2">${businessaddress}</h6>
                         ${
-                            BusinessPhone
+                            businessphone
                                 ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(
-                                      BusinessPhone
+                                      businessphone
                                   )}</p>`
                                 : ""
                         }
                         ${
-                            BusinessWebsite !== "N/A"
-                                ? `<p class="card-text"><a href="https://${BusinessWebsite}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
+                            businesswebsite !== "N/A"
+                                ? `<p class="card-text"><a href="https://${businesswebsite}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
                                 : ""
                         }
                         ${
-                            Specials !== null
-                                ? `<p class="card-text sp"><b>Specials:</b> ${Specials}</p>`
+                            specials !== null
+                                ? `<p class="card-text sp"><b>Specials:</b> ${specials}</p>`
                                 : ""
                         }
                     </div>
                     <div class="col col-sm-3 text-center">
                         ${
-                            Logo !== null
-                                ? `<img class="logo-img" src="images/logos/${Logo}.png" alt="biz logo">`
+                            logo !== null
+                                ? `<img class="logo-img" src="images/logos/${logo}.png" alt="biz logo">`
                                 : ""
                         }
                     </div>
                  </div>
                 <div class="horizontalIconContainer">
                   ${
-                      TakeOutCbox
+                      takeoutcbox
                           ? `<span class="card-text horizontalIcon"><em class="fa fa-car"></em> Take out</span>`
                           : ""
                   }
                   ${
-                      DeliveryCbox
+                      deliverycbox
                           ? `<span class="card-text horizontalIcon"><em class="fa fa-truck"></em> Delivery</span>`
                           : ""
                   }
                   ${
-                      MobileAppCbox
+                      mobileappcbox
                           ? `<span class="card-text horizontalIcon"><em class="fas fa-tablet-alt"></em> Mobile App</span>`
                           : ""
                   }
-                  <button data-objectid="${TableID}" title="Edit this Business" class="btn btn-sm btn-primary pull-right editBtn"><i class="fas fa-edit"></i></button>
+                  <button data-objectid="${objectid}"
+                  title="Edit this Business"
+                  class="btn btn-sm btn-primary pull-right editBtn"><i class="fas fa-edit"></i></button>
                 </div>
               </div>
-            </div>
+            </>
           `;
             }
         );

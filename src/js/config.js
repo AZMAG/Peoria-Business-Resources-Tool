@@ -20,19 +20,19 @@ define([], function() {
 
     var popContent = ({ graphic }) => {
         let {
-            BusinessAddress,
-            BusinessPhone,
-            BusinessWebsite,
+            businessaddress,
+            businessphone,
+            businesswebsite,
         } = graphic.attributes;
         return `
                 <div>
-                <span><b>Address: </b>${BusinessAddress}</span></br>
+                <span><b>Address: </b>${businessaddress}</span></br>
                 <span><b>Phone: </b>${formatPhoneNumber(
-                    BusinessPhone
+                    businessphone
                 )}</span></br>
                 ${
-                    BusinessWebsite !== "N/A"
-                        ? `<span><a target="_blank" href="https://${BusinessWebsite}" class="card-link"><em class="fa fa-link"></em> Website</a></span>`
+                    businesswebsite !== "N/A"
+                        ? `<span><a target="_blank" href="https://${businesswebsite}" class="card-link"><em class="fa fa-link"></em> Website</a></span>`
                         : ""
                 }
                 </div>
@@ -45,11 +45,11 @@ define([], function() {
 
         peoriaURL: "https://www.peoriaaz.gov/",
 
-        editLayer: "https://geo.azmag.gov/arcgis/rest/services/Hosted/Peoria_Business_Locations/FeatureServer/0",
+        editLayer: "https://geo.azmag.gov/arcgis/rest/services/Hosted/Peoria_Buisness_Locations_TEST/FeatureServer/0",
 
         pBoundaryLayer: "https://geo.azmag.gov/arcgis/rest/services/maps/RegionalBoundaries/MapServer/3",
 
-        pBusinessLayer: "https://geo.azmag.gov/arcgis/rest/services/maps/PeoriaBusinesses_new/MapServer/0",
+        pBusinessLayer: "https://geo.azmag.gov/arcgis/rest/services/Hosted/Peoria_Buisness_Locations_TEST/FeatureServer/0",
 
         intExtent: {
             xmin: -12532415.067261647,
@@ -68,7 +68,7 @@ define([], function() {
         },
 
         popTemplate: {
-            title: "<span style='display: none;'>{*}</span>{BusinessName}",
+            title: "<span style='display: none;'>{*}</span>{businessname}",
             content: popContent,
             actions: [{
                 // This text is displayed as a tooltip

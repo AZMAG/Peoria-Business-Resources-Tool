@@ -116,19 +116,19 @@ define([
     let $cboxApp = $("#cboxApp");
 
     let filters = [{
-            field: "TakeOut",
+            field: "takeoutcbox",
             getValue: () => {
                 return $cboxTakeOut.prop("checked") ? 1 : 0;
             },
         },
         {
-            field: "Delivery",
+            field: "deliverycbox",
             getValue: () => {
                 return $cboxDelivery.prop("checked") ? 1 : 0;
             },
         },
         {
-            field: "ThirdPartyApp",
+            field: "mobileappcbox",
             getValue: () => {
                 return $cboxApp.prop("checked") ? 1 : 0;
             },
@@ -176,8 +176,8 @@ define([
 
     function sortPos(a, b) {
         // Use toUpperCase() to ignore character casing
-        const BusinessNameA = a.BusinessName.toUpperCase();
-        const BusinessNameB = b.BusinessName.toUpperCase();
+        const BusinessNameA = a.businessname.toUpperCase();
+        const BusinessNameB = b.businessname.toUpperCase();
 
         let comparison = 0;
         if (BusinessNameA > BusinessNameB) {
@@ -190,8 +190,8 @@ define([
 
     function sortNeg(a, b) {
         // Use toUpperCase() to ignore character casing
-        const BusinessNameA = a.BusinessName.toUpperCase();
-        const BusinessNameB = b.BusinessName.toUpperCase();
+        const BusinessNameA = a.businessname.toUpperCase();
+        const BusinessNameB = b.businessname.toUpperCase();
 
         let comparison = 0;
         if (BusinessNameA > BusinessNameB) {
@@ -242,15 +242,15 @@ define([
         // console.log(data);
         var dropdown = $("#inputBiz");
         dropdown.kendoComboBox({
-            dataTextField: "BusinessName",
-            dataValueField: "BusinessName",
+            dataTextField: "businessname",
+            dataValueField: "businessname",
             filter: "none",
             suggest: true,
-            template: "${data.BusinessName}",
+            template: "${data.businessname}",
             dataSource: {
                 data: data,
                 sort: {
-                    field: "BusinessName",
+                    field: "businessname",
                     dir: "asc",
                 },
             },
@@ -264,7 +264,7 @@ define([
             var dataItem = bizData.dataItem();
             // console.log(dataItem, dataItem.TableID);
             if (dataItem !== undefined) {
-                var e = dataItem.TableID;
+                var e = dataItem.objectid;
                 gotoBiz(e);
             } else {
                 return;
@@ -274,7 +274,7 @@ define([
 
     function bizCatogory(data) {
         // console.log(data);
-        let unique = [...new Set(data.map((item) => item.Category))];
+        let unique = [...new Set(data.map((item) => item.category))];
         // console.log(unique);
         // create ComboBox from input HTML element
         $("#bizCat").kendoComboBox({
@@ -350,24 +350,24 @@ define([
     function prePopulateForm(feature) {
         // console.log(feature);
         let {
-            BusinessName,
-            BusinessAddress,
-            BusinessWebsite,
-            Category,
-            BusinessPhone,
-            DeliveryCbox,
-            TakeOutCbox,
-            MobileAppCbox,
+            businessname,
+            businessaddress,
+            businesswebsite,
+            category,
+            businessphone,
+            deliverycbox,
+            takeoutcbox,
+            mobileappcbox,
         } = feature.attributes;
 
-        $('input[name="BusinessName"]').val(BusinessName);
-        $("input[name=BusinessAddress]").val(BusinessAddress);
-        $("input[name=Category]").val(Category);
-        $("input[name=BusinessWebsite]").val(BusinessWebsite);
-        $("input[name=BusinessPhone]").val(BusinessPhone);
-        $("#takeOutCbox").prop("checked", TakeOutCbox);
-        $("#deliveryCheckBox").prop("checked", DeliveryCbox);
-        $("#mobileApp").prop("checked", MobileAppCbox);
+        $('input[name="BusinessName"]').val(businessname);
+        $("input[name=BusinessAddress]").val(businessaddress);
+        $("input[name=Category]").val(category);
+        $("input[name=BusinessWebsite]").val(businesswebsite);
+        $("input[name=BusinessPhone]").val(businessphone);
+        $("#takeOutCbox").prop("checked", takeoutcbox);
+        $("#deliveryCheckBox").prop("checked", deliverycbox);
+        $("#mobileApp").prop("checked", mobileappcbox);
     }
 
     $("body").on("click", ".editBtn", async (e) => {
@@ -390,13 +390,13 @@ define([
     view.popup.on("trigger-action", async function(event) {
         // If the zoom-out action is clicked, fire the zoomOut() function
         if (event.action.id === "edit") {
-            let TableID = view.popup.selectedFeature.attributes["TableID"];
+            let TableID = view.popup.selectedFeature.attributes["objectid"];
             // console.log(TableID);
 
             if (lyrView) {
                 let { features } = await lyrView.queryFeatures({
                     outFields: ["*"],
-                    where: "TableID = " + TableID,
+                    where: "TableID = " + objectid,
                 });
                 if (features[0]) {
                     prePopulateForm(features[0]);
