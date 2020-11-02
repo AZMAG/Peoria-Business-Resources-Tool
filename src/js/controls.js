@@ -17,7 +17,7 @@ define(["mag/config", "mag/map", "mag/card-functions"], function(
 
     async function getCardListData(lyrView) {
         let { features } = await lyrView.queryFeatures({
-            where: "1=1",
+            where: "active=1",
             outFields: lyrView.availableFields,
         });
         if (features && features.length > 0) {
@@ -25,6 +25,8 @@ define(["mag/config", "mag/map", "mag/card-functions"], function(
         }
         return null;
     }
+
+
 
     view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
         lyrView = layerView;
@@ -74,7 +76,7 @@ define(["mag/config", "mag/map", "mag/card-functions"], function(
     });
 
     function getCurrentDefinitionExpression() {
-        let definitionExpression = "1=1";
+        let definitionExpression = "active=1";
         let checkboxes = filters
             .map((filter) => {
                 let val = filter.getValue();

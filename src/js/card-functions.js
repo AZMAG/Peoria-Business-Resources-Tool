@@ -101,6 +101,7 @@ define(["mag/config", "mag/map"], function(config, { map, view }) {
                   class="btn btn-sm btn-primary pull-right editBtn"><i class="fas fa-edit"></i></button>
                 </div>
               </div>
+              </div>
             </>
           `;
             }

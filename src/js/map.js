@@ -140,7 +140,7 @@ define([
     });
 
     function getCurrentDefinitionExpression() {
-        let definitionExpression = "1=1";
+        let definitionExpression = "active=1";
         let checkboxes = filters
             .map((filter) => {
                 let val = filter.getValue();
@@ -162,15 +162,22 @@ define([
     }
 
     async function getCardListData(lyrView) {
+
         let { features } = await lyrView.queryFeatures({
-            where: "1=1",
+            where: "active=1",
             outFields: lyrView.availableFields,
         });
+        console.log(features);
         if (features && features.length > 0) {
             return features.map(({ attributes }) => attributes);
         }
+
         return null;
     }
+
+    // lyrView.queryFeatureCount(query).then(function(numResults) {
+    //     console.log(numResults);
+    // });
 
     var sortType = sortPos;
 
