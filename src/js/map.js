@@ -98,7 +98,7 @@ define([
 
     view.popup.watch("visible", async (visible) => {
         if (visible) {
-            selectedId = view.popup.selectedFeature.attributes.TableID;
+            selectedId = view.popup.selectedFeature.attributes.objectid;
         } else {
             selectedId = null;
         }
