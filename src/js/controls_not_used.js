@@ -101,8 +101,8 @@ define(["mag/config", "mag/map", "mag/card-functions"], function(
 
     function sortPos(a, b) {
         // Use toUpperCase() to ignore character casing
-        const BusinessNameA = a.BusinessName.toUpperCase();
-        const BusinessNameB = b.BusinessName.toUpperCase();
+        const BusinessNameA = a.businessname.toUpperCase();
+        const BusinessNameB = b.businessname.toUpperCase();
 
         let comparison = 0;
         if (BusinessNameA > BusinessNameB) {
@@ -115,8 +115,8 @@ define(["mag/config", "mag/map", "mag/card-functions"], function(
 
     function sortNeg(a, b) {
         // Use toUpperCase() to ignore character casing
-        const BusinessNameA = a.BusinessName.toUpperCase();
-        const BusinessNameB = b.BusinessName.toUpperCase();
+        const BusinessNameA = a.businessname.toUpperCase();
+        const BusinessNameB = b.businessname.toUpperCase();
 
         let comparison = 0;
         if (BusinessNameA > BusinessNameB) {
@@ -143,18 +143,19 @@ define(["mag/config", "mag/map", "mag/card-functions"], function(
 
     // Search by Business Function
     function setupBizDropdown(data) {
+        let unique = [...new Set(data.map((item) => item.businessname))];
         // console.log(data);
         var dropdown = $("#inputBiz");
         dropdown.kendoComboBox({
-            dataTextField: "BusinessName",
-            dataValueField: "BusinessName",
+            dataTextField: "businessname",
+            dataValueField: "businessname",
             filter: "none",
             suggest: true,
-            template: "${data.BusinessName}",
+            template: "${data.businessname}",
             dataSource: {
-                data: data,
+                data: unique,
                 sort: {
-                    field: "BusinessName",
+                    field: "businessname",
                     dir: "asc",
                 },
             },
@@ -178,8 +179,8 @@ define(["mag/config", "mag/map", "mag/card-functions"], function(
 
     function bizCatogory(data) {
         // console.log(data);
-        let unique = [...new Set(data.map((item) => item.Category))];
-        // console.log(unique);
+        let unique = [...new Set(data.map((item) => item.cluster_mag))];
+        console.log(unique);
         // create ComboBox from input HTML element
         $("#bizCat").kendoComboBox({
             dataSource: {

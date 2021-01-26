@@ -45,11 +45,11 @@ define([], function() {
 
         peoriaURL: "https://www.peoriaaz.gov/",
 
-        editLayer: "https://geo.azmag.gov/arcgis/rest/services/Hosted/Peoria_Buisness_Locations_TEST/FeatureServer/0",
+        editLayer: "https://geo.azmag.gov/arcgis/rest/services/Hosted/PeoriaBusinessesUpdate/FeatureServer",
 
         pBoundaryLayer: "https://geo.azmag.gov/arcgis/rest/services/maps/RegionalBoundaries/MapServer/3",
 
-        pBusinessLayer: "https://geo.azmag.gov/arcgis/rest/services/Hosted/Peoria_Buisness_Locations_TEST/FeatureServer/0",
+        pBusinessLayer: "https://geo.azmag.gov/arcgis/rest/services/Hosted/PeoriaBusinessesUpdate/FeatureServer",
 
         intExtent: {
             xmin: -12532415.067261647,

@@ -155,9 +155,9 @@ define([
             definitionExpression += " AND " + checkboxes.join(" AND ");
         }
         if (dataItem) {
-            definitionExpression += ` AND Category = '${dataItem}'`;
+            definitionExpression += ` AND subcluster_mag = '${dataItem}'`;
         }
-        // console.log(definitionExpression);
+        console.log(definitionExpression);
         return definitionExpression;
     }
 
@@ -167,7 +167,7 @@ define([
             where: "active=1",
             outFields: lyrView.availableFields,
         });
-        console.log(features);
+        // console.log(features);
         if (features && features.length > 0) {
             return features.map(({ attributes }) => attributes);
         }
@@ -281,7 +281,7 @@ define([
 
     function bizCatogory(data) {
         // console.log(data);
-        let unique = [...new Set(data.map((item) => item.category))];
+        let unique = [...new Set(data.map((item) => item.subcluster_mag))];
         // console.log(unique);
         // create ComboBox from input HTML element
         $("#bizCat").kendoComboBox({
@@ -303,7 +303,6 @@ define([
 
     async function gotoBiz(e) {
         let objectId = e;
-        // console.log(objectId);
         if (lyrView) {
             let { features } = await lyrView.queryFeatures({
                 objectIds: [objectId],

@@ -1,8 +1,8 @@
 {
-    "name": "Peoria-Business-Resources-Tool",
-    "version": "1.3.3",
-    "date": "2020-10-22",
-    "copyright": "2020",
+    "name": "peoria-business-resources-tool",
+    "version": "2.0.0",
+    "date": "2021-01-25",
+    "copyright": "2021",
     "description": "MAG webmap for City of Peoria Businesses",
     "keywords": [
         "peoria",

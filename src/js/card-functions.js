@@ -38,13 +38,13 @@ define(["mag/config", "mag/map"], function(config, { map, view }) {
                 takeoutcbox,
                 deliverycbox,
                 mobileappcbox,
-                magempid,
+                mageempid,
                 logo,
             }) => {
                 return `
             <div data-objectid="${objectid}"
             class="card ${
-                    magempid ? "highlighted" : ""
+                    mageempid ? "highlighted" : ""
                 }">
               <div class="card-body">
                 <div class="card-top">
