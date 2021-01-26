@@ -156,9 +156,9 @@ define([
             definitionExpression += " AND " + checkboxes.join(" AND ");
         }
         if (dataItem) {
-            definitionExpression += ` AND subcluster_mag = '${dataItem}'`;
+            definitionExpression += ` AND cluster_pe = '${dataItem}'`;
         }
-        console.log(definitionExpression);
+        // console.log(definitionExpression);
         return definitionExpression;
     }
 

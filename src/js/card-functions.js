@@ -31,7 +31,7 @@ define(["mag/config", "mag/map"], function(config, { map, view }) {
                 businessname,
                 businessphone,
                 businessaddress,
-                category,
+                cluster_pe,
                 specials,
                 businesswebsite,
                 status,
@@ -49,7 +49,7 @@ define(["mag/config", "mag/map"], function(config, { map, view }) {
               <div class="card-body">
                 <div class="card-top">
                     <h5 class="card-title">${businessname}</h5>
-                    <h6 class="catType">${category}</h6>
+                    <h6 class="catType">${cluster_pe}</h6>
                 </div>
                 <div class="card-info">
                     <div class="col col-sm-9">
