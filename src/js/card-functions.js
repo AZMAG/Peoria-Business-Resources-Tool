@@ -66,11 +66,6 @@ define(["mag/config", "mag/map"], function(config, { map, view }) {
                                 ? `<p class="card-text"><a href="https://${businesswebsite}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
                                 : ""
                         }
-                        ${
-                            specials !== null
-                                ? `<p class="card-text sp"><b>Specials:</b> ${specials}</p>`
-                                : ""
-                        }
                     </div>
                     <div class="col col-sm-3 text-center">
                         ${
