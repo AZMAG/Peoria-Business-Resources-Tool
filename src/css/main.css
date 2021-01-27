@@ -418,10 +418,6 @@ template {
   cursor: pointer;
 }
 
-#listContainer #cardsList .highlighted {
-  background-color: #d9ebfa;
-}
-
 @media (max-width: 575.98px) {
   .mapTableContainer {
     margin: 0;
@@ -7177,4 +7173,3 @@ table.tableBox td {
 .tooltip {
   z-index: 1000000;
 }
-/*# sourceMappingURL=main.css.map */
