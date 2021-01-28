@@ -23,20 +23,26 @@ define([], function() {
             businessaddress,
             businessphone,
             businesswebsite,
+            cluster_pe,
+            subcluster_pe
         } = graphic.attributes;
         return `
-                <div>
+                <div class='popinfo'>
                 <span><b>Address: </b>${businessaddress}</span></br>
-                <span><b>Phone: </b>${formatPhoneNumber(
-                    businessphone
-                )}</span></br>
+                <span><b>Phone: </b>${formatPhoneNumber(businessphone)}</span></br>
                 ${
                     businesswebsite !== "N/A"
                         ? `<span><a target="_blank" href="https://${businesswebsite}" class="card-link"><em class="fa fa-link"></em> Website</a></span>`
                         : ""
+                }</br>
+                <span class='poptext'><hr>Category: ${cluster_pe}</span></br>
+                ${
+                    subcluster_pe !== null
+                    ? `<span class='poptext'>Subcategory: ${subcluster_pe}</span>`
+                    : ""
                 }
                 </div>
-            `;
+                `;
     };
 
     return {

@@ -25,21 +25,28 @@
         padding-top: 20px;
         order: 2;
 
+        p {
+            font-size: 12px;
+            margin-bottom: 1px;
+            text-align: center;
+        }
+
+        ul.fieldlist {
+            margin-bottom: 0px;
+        }
+
         .fieldlist {
             display: flex;
             justify-content: center;
             list-style: none;
-            padding-left: 0;
-
-            ul {
-                margin-bottom: 0;
-            }
+            padding-left: 0px;
 
             li {
                 margin-left: 20px;
                 font-size: 20px;
                 font-weight: 600;
             }
+
         }
     }
 }

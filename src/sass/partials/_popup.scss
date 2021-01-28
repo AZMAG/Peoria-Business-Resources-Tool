@@ -48,3 +48,15 @@
 .modal-header {
     background-color: lighten($peoria-main, 20%);
 }
+
+.popinfo {
+    hr {
+        margin: 1px;
+    }
+
+    .poptext {
+        font-size: 0.9em;
+        font-variant: small-caps;
+        font-weight: 800;
+    }
+}
