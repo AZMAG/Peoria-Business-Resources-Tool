@@ -6,7 +6,7 @@
  * @file        card-functions.js
  * ======================================================================== */
 
-define(["mag/config", "mag/map"], function (config, { map, view }) {
+define(["mag/config", "mag/map"], function(config, { map, view }) {
     function titleCase(str) {
         str = str.toLowerCase().split(" ");
         for (var i = 0; i < str.length; i++) {
@@ -27,47 +27,48 @@ define(["mag/config", "mag/map"], function (config, { map, view }) {
     function getCardsList(data) {
         return data.map(
             ({
-                TableID,
-                Restaurant_Name,
-                Phone_Number_Redone,
-                Business_Address,
-                Category,
-                Specials_,
-                Link,
-                Open_,
-                TakeOut,
-                Delivery,
-                ThirdPartyApp,
-                Highlight,
+                objectid,
+                businessname,
+                businessphone,
+                businessaddress,
+                cluster_pe,
+                subcluster_pe,
+                specials,
+                businesswebsite,
+                status,
+                takeoutcbox,
+                deliverycbox,
+                mobileappcbox,
+                mageempid,
                 logo,
             }) => {
                 return `
-            <div data-objectid="${TableID}" class="card ${
-                    Highlight ? "highlighted" : ""
+            <div data-objectid="${objectid}"
+            class="card ${
+                    mageempid ? "highlighted" : ""
                 }">
               <div class="card-body">
                 <div class="card-top">
-                    <h5 class="card-title">${Restaurant_Name}</h5>
-                    <h6 class="catType">${Category}</h6>
+                    <h5 class="card-title">${businessname}</h5>
+                    ${
+                        subcluster_pe !== null
+                        ? `<h6 class="catType">${cluster_pe}</br>${subcluster_pe}</h6>`
+                        : `<h6 class="catType">${cluster_pe}</h6>`
+                    }
                 </div>
                 <div class="card-info">
                     <div class="col col-sm-9">
-                        <h6 class="card-subtitle text-muted mb-2">${Business_Address}</h6>
+                        <h6 class="card-subtitle text-muted mb-2">${businessaddress}</h6>
                         ${
-                            Phone_Number_Redone
+                            businessphone
                                 ? `<p class="card-text"><em class="fa fa-phone"></em> ${formatPhoneNumber(
-                                      Phone_Number_Redone
+                                      businessphone
                                   )}</p>`
                                 : ""
                         }
                         ${
-                            Link !== "N/A"
-                                ? `<p class="card-text"><a href="https://${Link}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
-                                : ""
-                        }
-                        ${
-                            Specials_ !== null
-                                ? `<p class="card-text sp"><b>Specials:</b> ${Specials_}</p>`
+                            businesswebsite !== "N/A"
+                                ? `<p class="card-text"><a href="https://${businesswebsite}" class="card-link" target="_blank"><em class="fa fa-link"></em> Website</a></p>`
                                 : ""
                         }
                     </div>
@@ -81,24 +82,27 @@ define(["mag/config", "mag/map"], function (config, { map, view }) {
                  </div>
                 <div class="horizontalIconContainer">
                   ${
-                      TakeOut
+                      takeoutcbox
                           ? `<span class="card-text horizontalIcon"><em class="fa fa-car"></em> Take out</span>`
                           : ""
                   }
                   ${
-                      Delivery
+                      deliverycbox
                           ? `<span class="card-text horizontalIcon"><em class="fa fa-truck"></em> Delivery</span>`
                           : ""
                   }
                   ${
-                      ThirdPartyApp
+                      mobileappcbox
                           ? `<span class="card-text horizontalIcon"><em class="fas fa-tablet-alt"></em> Mobile App</span>`
                           : ""
                   }
-                  <button data-objectid="${TableID}" title="Edit this Business" class="btn btn-sm btn-primary pull-right editBtn"><i class="fas fa-edit"></i></button>
+                  <button data-objectid="${objectid}"
+                  title="Edit this Business"
+                  class="btn btn-sm btn-primary pull-right editBtn"><i class="fas fa-edit"></i></button>
                 </div>
               </div>
-            </div>
+              </div>
+            </>
           `;
             }
         );

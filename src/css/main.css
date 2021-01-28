@@ -418,10 +418,6 @@ template {
   cursor: pointer;
 }
 
-#listContainer #cardsList .highlighted {
-  background-color: #d9ebfa;
-}
-
 @media (max-width: 575.98px) {
   .mapTableContainer {
     margin: 0;
@@ -437,6 +433,23 @@ template {
 /*******************
  Footer
 ********************/
+#page_footer {
+  padding: 10px 10px 10px 10px;
+  font-size: 82%;
+  display: block;
+  background: #35322b;
+}
+
+#page_footer p {
+  margin: 0;
+  clear: both;
+}
+
+#page_footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
 #footercolumn {
   margin-left: auto;
   margin-right: auto;
@@ -451,7 +464,6 @@ template {
 
 #page_footer #footercolumn .footer_seal {
   float: left;
-  height: 192px;
   display: table;
   padding: 0;
   width: 100%;
@@ -462,16 +474,17 @@ template {
   display: none;
 }
 
-#page_footer {
-  padding: 30px 10px 10px 10px;
-  font-size: 82%;
-  display: block;
-  background: #35322b;
-}
-
 #page_footer #footercolumn {
   color: #000;
   display: block;
+}
+
+#page_footer #footercolumn .footer_address {
+  background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/location_icon.png") no-repeat center top;
+}
+
+#page_footer #footercolumn .footer_contact {
+  background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/phone_icon.png") no-repeat center top;
 }
 
 #page_footer #footercolumn .footer_address,
@@ -486,25 +499,6 @@ template {
 #page_footer #footercolumn .footer_contact p {
   font-size: 14px;
   text-align: center;
-}
-
-#page_footer #footercolumn .footer_address {
-  background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/location_icon.png") no-repeat center top;
-}
-
-#page_footer #footercolumn .footer_contact {
-  background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/phone_icon.png") no-repeat center top;
-}
-
-#page_footer #footercolumn .footer_copyright {
-  color: #cdbd96;
-  font-size: 12px;
-  text-align: center;
-}
-
-#page_footer #footercolumn .footer_copyright a {
-  color: #fff;
-  margin: 0;
 }
 
 #page_footer .footer_nav {
@@ -539,16 +533,6 @@ template {
 
 #page_footer .footer_copyright {
   margin-bottom: 10px;
-}
-
-#page_footer p {
-  margin: 0;
-  clear: both;
-}
-
-#page_footer a {
-  color: #fff;
-  text-decoration: none;
 }
 
 .footer_buttons {
@@ -595,14 +579,24 @@ template {
     position: relative;
     display: block;
   }
+  #page_footer a {
+    margin: 0;
+  }
+  #page_footer .mag-footer {
+    font-size: 11px;
+    color: #ccd1d6;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  #page_footer .mag-footer a {
+    color: #ccd1d6;
+    cursor: pointer;
+  }
   #page_footer .footer_nav {
     width: 60%;
     margin: 0 auto;
     position: relative;
     bottom: 23px;
-  }
-  #page_footer a {
-    margin: 0;
   }
   #page_footer #footercolumn {
     margin: 0 auto;
@@ -611,34 +605,22 @@ template {
     min-height: 232px;
   }
   #page_footer #footercolumn .footer_address {
-    float: left;
-    width: 50%;
-    min-height: 192px;
-    background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/location_icon.png") left 12px center no-repeat;
-    padding: 0;
-    background-size: auto auto;
-    max-width: 100%;
-    margin: 0;
+    background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/location_icon.png") left 5px center no-repeat;
   }
-  #page_footer #footercolumn .footer_address p {
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: 0.2px;
-    line-height: 18px;
-    text-align: left;
-    padding: 80px 0 0 102px;
+  #page_footer #footercolumn .footer_contact {
+    background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/phone_icon.png") 29px center no-repeat;
   }
+  #page_footer #footercolumn .footer_address,
   #page_footer #footercolumn .footer_contact {
     float: left;
     width: 50%;
     min-height: 192px;
-    background: url("https://www.peoriaaz.gov/Project/Contents/Main/_gfx/cmn/phone_icon.png") 29px center no-repeat;
     padding: 0;
     background-size: auto auto;
     max-width: 100%;
     margin: 0;
   }
+  #page_footer #footercolumn .footer_address p,
   #page_footer #footercolumn .footer_contact p {
     font-size: 14px;
     font-weight: 600;
@@ -646,7 +628,7 @@ template {
     letter-spacing: 0.2px;
     line-height: 18px;
     text-align: left;
-    padding: 80px 0 0 123px;
+    padding: 80px 0 0 110px;
   }
   #page_footer #footercolumn .footer_contact p:last-child {
     padding-top: 0;
@@ -656,23 +638,6 @@ template {
     font-weight: 600;
     color: #fff;
     letter-spacing: 0.2px;
-  }
-  #page_footer #footercolumn .footer_copyright {
-    display: block;
-    font-size: 12px;
-    font-weight: normal;
-    color: #cdbd96;
-    letter-spacing: 0.2px;
-    line-height: 40px;
-    text-align: center;
-    margin: 12px 0 0;
-  }
-  #page_footer #footercolumn .footer_copyright a {
-    color: #fff;
-    font-weight: bold;
-  }
-  #page_footer #footercolumn .footer_copyright a:hover {
-    text-decoration: underline;
   }
 }
 
@@ -729,18 +694,6 @@ template {
   clear: both;
   display: block;
   margin: 0 auto;
-}
-
-#page_footer .mag-footer {
-  font-size: 11px;
-  color: #ccd1d6;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-#page_footer .mag-footer a {
-  color: #ccd1d6;
-  cursor: pointer;
 }
 
 @media (max-width: 767.98px) {
@@ -832,6 +785,16 @@ template {
 
 .modal-header {
   background-color: #5baae9;
+}
+
+.popinfo hr {
+  margin: 1px;
+}
+
+.popinfo .poptext {
+  font-size: 0.9em;
+  font-variant: small-caps;
+  font-weight: 800;
 }
 
 /*******************
@@ -983,6 +946,16 @@ a.card-link:visited {
           order: 2;
 }
 
+#controls #specials p {
+  font-size: 12px;
+  margin-bottom: 1px;
+  text-align: center;
+}
+
+#controls #specials ul.fieldlist {
+  margin-bottom: 0px;
+}
+
 #controls #specials .fieldlist {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -991,11 +964,7 @@ a.card-link:visited {
       -ms-flex-pack: center;
           justify-content: center;
   list-style: none;
-  padding-left: 0;
-}
-
-#controls #specials .fieldlist ul {
-  margin-bottom: 0;
+  padding-left: 0px;
 }
 
 #controls #specials .fieldlist li {
@@ -5799,7 +5768,7 @@ a.font_smaller {
     bottom: 0;
     z-index: -1;
     width: 664px;
-    height: 551px;
+    height: 500px;
   }
 }
 
@@ -7177,4 +7146,3 @@ table.tableBox td {
 .tooltip {
   z-index: 1000000;
 }
-/*# sourceMappingURL=main.css.map */

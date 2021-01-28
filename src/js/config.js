@@ -6,7 +6,7 @@
  * @file        config.js
  * ======================================================================== */
 
-define([], function () {
+define([], function() {
     "use strict";
 
     function formatPhoneNumber(phoneNumberString) {
@@ -20,39 +20,42 @@ define([], function () {
 
     var popContent = ({ graphic }) => {
         let {
-            Business_Address,
-            Phone_Number_Redone,
-            Link,
+            businessaddress,
+            businessphone,
+            businesswebsite,
+            cluster_pe,
+            subcluster_pe
         } = graphic.attributes;
         return `
-                <div>
-                <span><b>Address: </b>${Business_Address}</span></br>
-                <span><b>Phone: </b>${formatPhoneNumber(
-                    Phone_Number_Redone
-                )}</span></br>
+                <div class='popinfo'>
+                <span><b>Address: </b>${businessaddress}</span></br>
+                <span><b>Phone: </b>${formatPhoneNumber(businessphone)}</span></br>
                 ${
-                    Link !== "N/A"
-                        ? `<span><a target="_blank" href="https://${Link}" class="card-link"><em class="fa fa-link"></em> Website</a></span>`
+                    businesswebsite !== "N/A"
+                        ? `<span><a target="_blank" href="https://${businesswebsite}" class="card-link"><em class="fa fa-link"></em> Website</a></span>`
                         : ""
+                }</br>
+                <span class='poptext'><hr>Category: ${cluster_pe}</span></br>
+                ${
+                    subcluster_pe !== null
+                    ? `<span class='poptext'>Subcategory: ${subcluster_pe}</span>`
+                    : ""
                 }
                 </div>
-            `;
+                `;
     };
 
     return {
-        version: "v1.3.3 | 2020-10-22",
-        copyright: "2020",
+        version: "v2.0.0 | 2021-01-28",
+        copyright: "2021",
 
         peoriaURL: "https://www.peoriaaz.gov/",
 
-        editLayer:
-            "https://geo.azmag.gov/arcgis/rest/services/Hosted/Peoria_Business_Locations/FeatureServer/0",
+        editLayer: "https://geo.azmag.gov/arcgis/rest/services/Hosted/PeoriaBusinessesUpdate/FeatureServer",
 
-        pBoundaryLayer:
-            "https://geo.azmag.gov/arcgis/rest/services/maps/RegionalBoundaries/MapServer/3",
+        pBoundaryLayer: "https://geo.azmag.gov/arcgis/rest/services/maps/RegionalBoundaries/MapServer/3",
 
-        pBusinessLayer:
-            "https://geo.azmag.gov/arcgis/rest/services/maps/PeoriaBusinesses/MapServer/0",
+        pBusinessLayer: "https://geo.azmag.gov/arcgis/rest/services/Hosted/PeoriaBusinessesUpdate/FeatureServer",
 
         intExtent: {
             xmin: -12532415.067261647,
@@ -71,18 +74,16 @@ define([], function () {
         },
 
         popTemplate: {
-            title: "<span style='display: none;'>{*}</span>{Restaurant_Name}",
+            title: "<span style='display: none;'>{*}</span>{businessname}",
             content: popContent,
-            actions: [
-                {
-                    // This text is displayed as a tooltip
-                    title: "Edit",
-                    // The ID by which to reference the action in the event handler
-                    id: "edit",
-                    // Sets the icon font used to style the action button
-                    className: "esri-icon-edit",
-                },
-            ],
+            actions: [{
+                // This text is displayed as a tooltip
+                title: "Edit",
+                // The ID by which to reference the action in the event handler
+                id: "edit",
+                // Sets the icon font used to style the action button
+                className: "esri-icon-edit",
+            }, ],
         },
     };
 });
