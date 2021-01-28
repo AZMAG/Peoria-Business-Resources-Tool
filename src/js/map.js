@@ -13,7 +13,7 @@ define([
     "esri/layers/FeatureLayer",
     "esri/geometry/Extent",
     "mag/card-functions",
-], function(config, Map, MapView, FeatureLayer, Extent, cardsF) {
+], function (config, Map, MapView, FeatureLayer, Extent, cardsF) {
     const maxExtent = new Extent(config.maxExtent);
     const initExtent = new Extent(config.intExtent);
 
@@ -70,7 +70,7 @@ define([
     });
     map.add(peoriaBusinessesLayer);
 
-    view.watch("extent", function(extent) {
+    view.watch("extent", function (extent) {
         let currentCenter = extent.center;
         if (!maxExtent.contains(currentCenter)) {
             let newCenter = extent.center;
@@ -98,7 +98,7 @@ define([
 
     view.popup.watch("visible", async (visible) => {
         if (visible) {
-            selectedId = view.popup.selectedFeature.attributes.TableID;
+            selectedId = view.popup.selectedFeature.attributes.objectid;
         } else {
             selectedId = null;
         }
@@ -115,20 +115,21 @@ define([
     let $cboxDelivery = $("#cboxDelivery");
     let $cboxApp = $("#cboxApp");
 
-    let filters = [{
-            field: "TakeOut",
+    let filters = [
+        {
+            field: "takeoutcbox",
             getValue: () => {
                 return $cboxTakeOut.prop("checked") ? 1 : 0;
             },
         },
         {
-            field: "Delivery",
+            field: "deliverycbox",
             getValue: () => {
                 return $cboxDelivery.prop("checked") ? 1 : 0;
             },
         },
         {
-            field: "ThirdPartyApp",
+            field: "mobileappcbox",
             getValue: () => {
                 return $cboxApp.prop("checked") ? 1 : 0;
             },
@@ -140,7 +141,7 @@ define([
     });
 
     function getCurrentDefinitionExpression() {
-        let definitionExpression = "1=1";
+        let definitionExpression = "active=1";
         let checkboxes = filters
             .map((filter) => {
                 let val = filter.getValue();
@@ -155,7 +156,7 @@ define([
             definitionExpression += " AND " + checkboxes.join(" AND ");
         }
         if (dataItem) {
-            definitionExpression += ` AND Category = '${dataItem}'`;
+            definitionExpression += ` AND cluster_pe = '${dataItem}'`;
         }
         // console.log(definitionExpression);
         return definitionExpression;
@@ -163,26 +164,32 @@ define([
 
     async function getCardListData(lyrView) {
         let { features } = await lyrView.queryFeatures({
-            where: "1=1",
+            where: "active=1",
             outFields: lyrView.availableFields,
         });
+        // console.log(features);
         if (features && features.length > 0) {
             return features.map(({ attributes }) => attributes);
         }
+
         return null;
     }
+
+    // lyrView.queryFeatureCount(query).then(function(numResults) {
+    //     console.log(numResults);
+    // });
 
     var sortType = sortPos;
 
     function sortPos(a, b) {
         // Use toUpperCase() to ignore character casing
-        const Restaurant_NameA = a.Restaurant_Name.toUpperCase();
-        const Restaurant_NameB = b.Restaurant_Name.toUpperCase();
+        const BusinessNameA = a.businessname.toUpperCase();
+        const BusinessNameB = b.businessname.toUpperCase();
 
         let comparison = 0;
-        if (Restaurant_NameA > Restaurant_NameB) {
+        if (BusinessNameA > BusinessNameB) {
             comparison = 1;
-        } else if (Restaurant_NameA < Restaurant_NameB) {
+        } else if (BusinessNameA < BusinessNameB) {
             comparison = -1;
         }
         return comparison;
@@ -190,13 +197,13 @@ define([
 
     function sortNeg(a, b) {
         // Use toUpperCase() to ignore character casing
-        const Restaurant_NameA = a.Restaurant_Name.toUpperCase();
-        const Restaurant_NameB = b.Restaurant_Name.toUpperCase();
+        const BusinessNameA = a.businessname.toUpperCase();
+        const BusinessNameB = b.businessname.toUpperCase();
 
         let comparison = 0;
-        if (Restaurant_NameA > Restaurant_NameB) {
+        if (BusinessNameA > BusinessNameB) {
             comparison = 1;
-        } else if (Restaurant_NameA < Restaurant_NameB) {
+        } else if (BusinessNameA < BusinessNameB) {
             comparison = -1;
         }
         //invert return value by multiplying by -1
@@ -204,7 +211,7 @@ define([
     }
 
     //sort button
-    $("#sort-biz").on("click", function() {
+    $("#sort-biz").on("click", function () {
         var toggleStatus = $("#sort-biz").attr("data-status");
         if (toggleStatus === "on") {
             $("#sort-biz").attr("data-status", "off");
@@ -221,7 +228,7 @@ define([
     view.whenLayerView(peoriaBusinessesLayer).then((layerView) => {
         lyrView = layerView;
 
-        lyrView.watch("updating", async function(value) {
+        lyrView.watch("updating", async function (value) {
             // once the layer view finishes updating
             if (!value) {
                 let cardData = await getCardListData(lyrView);
@@ -242,15 +249,15 @@ define([
         // console.log(data);
         var dropdown = $("#inputBiz");
         dropdown.kendoComboBox({
-            dataTextField: "Restaurant_Name",
-            dataValueField: "Restaurant_Name",
+            dataTextField: "businessname",
+            dataValueField: "businessname",
             filter: "none",
             suggest: true,
-            template: "${data.Restaurant_Name}",
+            template: "${data.businessname}",
             dataSource: {
                 data: data,
                 sort: {
-                    field: "Restaurant_Name",
+                    field: "businessname",
                     dir: "asc",
                 },
             },
@@ -264,7 +271,7 @@ define([
             var dataItem = bizData.dataItem();
             // console.log(dataItem, dataItem.TableID);
             if (dataItem !== undefined) {
-                var e = dataItem.TableID;
+                var e = dataItem.objectid;
                 gotoBiz(e);
             } else {
                 return;
@@ -274,8 +281,7 @@ define([
 
     function bizCatogory(data) {
         // console.log(data);
-        let unique = [...new Set(data.map((item) => item.Category))];
-        // console.log(unique);
+        let unique = [...new Set(data.map((item) => item.cluster_pe))];
         // create ComboBox from input HTML element
         $("#bizCat").kendoComboBox({
             dataSource: {
@@ -296,7 +302,6 @@ define([
 
     async function gotoBiz(e) {
         let objectId = e;
-        // console.log(objectId);
         if (lyrView) {
             let { features } = await lyrView.queryFeatures({
                 objectIds: [objectId],
@@ -350,26 +355,24 @@ define([
     function prePopulateForm(feature) {
         // console.log(feature);
         let {
-            Restaurant_Name,
-            Business_Address,
-            Link,
-            Category,
-            Phone_Number_Redone,
-            Latitude,
-            Longitude,
-            Delivery,
-            TakeOut,
-            ThirdPartyApp,
+            businessname,
+            businessaddress,
+            businesswebsite,
+            category,
+            businessphone,
+            deliverycbox,
+            takeoutcbox,
+            mobileappcbox,
         } = feature.attributes;
 
-        $('input[name="BusinessName"]').val(Restaurant_Name);
-        $("input[name=BusinessAddress]").val(Business_Address);
-        $("input[name=Category]").val(Category);
-        $("input[name=BusinessWebsite]").val(Link);
-        $("input[name=BusinessPhone]").val(Phone_Number_Redone);
-        $("#takeOutCbox").prop("checked", TakeOut);
-        $("#deliveryCheckBox").prop("checked", Delivery);
-        $("#mobileApp").prop("checked", ThirdPartyApp);
+        $('input[name="BusinessName"]').val(businessname);
+        $("input[name=BusinessAddress]").val(businessaddress);
+        $("input[name=Category]").val(category);
+        $("input[name=BusinessWebsite]").val(businesswebsite);
+        $("input[name=BusinessPhone]").val(businessphone);
+        $("#takeOutCbox").prop("checked", takeoutcbox);
+        $("#deliveryCheckBox").prop("checked", deliverycbox);
+        $("#mobileApp").prop("checked", mobileappcbox);
     }
 
     $("body").on("click", ".editBtn", async (e) => {
@@ -389,16 +392,16 @@ define([
         }
     });
 
-    view.popup.on("trigger-action", async function(event) {
+    view.popup.on("trigger-action", async function (event) {
         // If the zoom-out action is clicked, fire the zoomOut() function
         if (event.action.id === "edit") {
-            let TableID = view.popup.selectedFeature.attributes["TableID"];
+            let TableID = view.popup.selectedFeature.attributes["objectid"];
             // console.log(TableID);
 
             if (lyrView) {
                 let { features } = await lyrView.queryFeatures({
                     outFields: ["*"],
-                    where: "TableID = " + TableID,
+                    where: "TableID = " + objectid,
                 });
                 if (features[0]) {
                     prePopulateForm(features[0]);
