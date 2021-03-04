@@ -6,7 +6,7 @@
  * @file        config.js
  * ======================================================================== */
 
-define([], function() {
+define([], function () {
     "use strict";
 
     function formatPhoneNumber(phoneNumberString) {
@@ -24,12 +24,14 @@ define([], function() {
             businessphone,
             businesswebsite,
             cluster_pe,
-            subcluster_pe
+            subcluster_pe,
         } = graphic.attributes;
         return `
                 <div class='popinfo'>
                 <span><b>Address: </b>${businessaddress}</span></br>
-                <span><b>Phone: </b>${formatPhoneNumber(businessphone)}</span></br>
+                <span><b>Phone: </b>${formatPhoneNumber(
+                    businessphone
+                )}</span></br>
                 ${
                     businesswebsite !== "N/A"
                         ? `<span><a target="_blank" href="https://${businesswebsite}" class="card-link"><em class="fa fa-link"></em> Website</a></span>`
@@ -38,8 +40,8 @@ define([], function() {
                 <span class='poptext'><hr>Category: ${cluster_pe}</span></br>
                 ${
                     subcluster_pe !== null
-                    ? `<span class='poptext'>Subcategory: ${subcluster_pe}</span>`
-                    : ""
+                        ? `<span class='poptext'>Subcategory: ${subcluster_pe}</span>`
+                        : ""
                 }
                 </div>
                 `;
@@ -51,11 +53,14 @@ define([], function() {
 
         peoriaURL: "https://www.peoriaaz.gov/",
 
-        editLayer: "https://geo.azmag.gov/arcgis/rest/services/Hosted/PeoriaBusinessesUpdate/FeatureServer",
+        editLayer:
+            "https://geo.azmag.gov/arcgis/rest/services/Hosted/PeoriaBusinessesUpdate/FeatureServer",
 
-        pBoundaryLayer: "https://geo.azmag.gov/arcgis/rest/services/maps/RegionalBoundaries/MapServer/3",
+        pBoundaryLayer:
+            "https://geo.azmag.gov/arcgis/rest/services/maps/RegionalBoundaries/MapServer/3",
 
-        pBusinessLayer: "https://geo.azmag.gov/arcgis/rest/services/Hosted/PeoriaBusinessesUpdate/FeatureServer",
+        pBusinessLayer:
+            "https://geo.azmag.gov/arcgis/rest/services/Hosted/PeoriaBusinessesUpdate/FeatureServer",
 
         intExtent: {
             xmin: -12532415.067261647,
@@ -76,14 +81,33 @@ define([], function() {
         popTemplate: {
             title: "<span style='display: none;'>{*}</span>{businessname}",
             content: popContent,
-            actions: [{
-                // This text is displayed as a tooltip
-                title: "Edit",
-                // The ID by which to reference the action in the event handler
-                id: "edit",
-                // Sets the icon font used to style the action button
-                className: "esri-icon-edit",
-            }, ],
+            actions: [
+                {
+                    // This text is displayed as a tooltip
+                    title: "Edit",
+                    // The ID by which to reference the action in the event handler
+                    id: "edit",
+                    // Sets the icon font used to style the action button
+                    className: "esri-icon-edit",
+                },
+            ],
         },
+
+        cluster: [
+            { id: 0, text: "All" },
+            { id: 1, text: "Consumer Services" },
+            { id: 2, text: "Business Services" },
+            { id: 3, text: "Transportation & Distribution" },
+            { id: 4, text: "Hospitality, Tourism, & Recreation" },
+            { id: 5, text: "Media, Publishing, & Entertainment" },
+            { id: 6, text: "Retail" },
+            { id: 7, text: "Construction" },
+            { id: 8, text: "Government, Social, & Advocacy Services" },
+            { id: 9, text: "Finance, Insurance, & Real Estate (FIRE)" },
+            { id: 10, text: "Education" },
+            { id: 11, text: "Health Care" },
+            { id: 12, text: "Manufacturing" },
+            { id: 13, text: "Telecommunications" },
+        ],
     };
 });

@@ -149,14 +149,20 @@ define([
             })
             .filter((fltr) => fltr);
         var dropdown = $("#bizCat");
-        var bizData = dropdown.data("kendoComboBox");
+        var bizData = dropdown.data("kendoDropDownList");
         var dataItem = bizData.dataItem();
+        // console.log(dataItem.text);
 
         if (checkboxes.length > 0) {
             definitionExpression += " AND " + checkboxes.join(" AND ");
         }
         if (dataItem) {
-            definitionExpression += ` AND cluster_pe = '${dataItem}'`;
+            // console.log(dataItem.text);
+            if (dataItem.text === "All") {
+                definitionExpression;
+            } else {
+                definitionExpression += ` AND cluster_pe = '${dataItem.text}'`;
+            }
         }
         // console.log(definitionExpression);
         return definitionExpression;
@@ -282,17 +288,26 @@ define([
     function bizCatogory(data) {
         // console.log(data);
         let unique = [...new Set(data.map((item) => item.cluster_pe))];
-        // create ComboBox from input HTML element
-        $("#bizCat").kendoComboBox({
-            dataSource: {
-                data: unique,
-                sort: {
-                    dir: "asc",
-                },
-            },
-            placeholder: "Select a Category",
+        // console.log(unique);
+        // create dropdown list from input HTML element
+        $("#bizCat").kendoDropDownList({
+            dataSource: config.cluster,
+            dataTextField: "text",
+            dataValueField: "ID",
+            optionLabel: "Select a Category...",
             change: onChange,
         });
+        // create ComboBox from input HTML element
+        // $("#bizCat").kendoComboBox({
+        //     dataSource: {
+        //         data: unique,
+        //         sort: {
+        //             dir: "asc",
+        //         },
+        //     },
+        //     placeholder: "Select a Category",
+        //     change: onChange,
+        // });
 
         function onChange() {
             const peoriaBusinessesLayer = map.findLayerById("peoriaBusinesses");
