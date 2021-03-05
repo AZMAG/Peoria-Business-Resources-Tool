@@ -48,7 +48,7 @@ define([], function () {
     };
 
     return {
-        version: "v2.0.0 | 2021-01-28",
+        version: "v2.1.0 | 2021-03-04",
         copyright: "2021",
 
         peoriaURL: "https://www.peoriaaz.gov/",
@@ -94,20 +94,45 @@ define([], function () {
         },
 
         cluster: [
-            { id: 0, text: "All" },
-            { id: 1, text: "Consumer Services" },
-            { id: 2, text: "Business Services" },
-            { id: 3, text: "Transportation & Distribution" },
-            { id: 4, text: "Hospitality, Tourism, & Recreation" },
-            { id: 5, text: "Media, Publishing, & Entertainment" },
-            { id: 6, text: "Retail" },
-            { id: 7, text: "Construction" },
-            { id: 8, text: "Government, Social, & Advocacy Services" },
-            { id: 9, text: "Finance, Insurance, & Real Estate (FIRE)" },
-            { id: 10, text: "Education" },
-            { id: 11, text: "Health Care" },
-            { id: 12, text: "Manufacturing" },
-            { id: 13, text: "Telecommunications" },
+            // { clusterId: 0, text: "All" },
+            { clusterId: 1, text: "Business Services" },
+            { clusterId: 2, text: "Construction" },
+            { clusterId: 3, text: "Consumer Services" },
+            { clusterId: 4, text: "Education" },
+            { clusterId: 5, text: "Finance, Insurance, & Real Estate (FIRE)" },
+            { clusterId: 6, text: "Government, Social, & Advocacy Services" },
+            { clusterId: 7, text: "Health Care" },
+            { clusterId: 8, text: "Hospitality, Tourism, & Recreation" },
+            { clusterId: 9, text: "Manufacturing" },
+            { clusterId: 10, text: "Media, Publishing, & Entertainment" },
+            { clusterId: 11, text: "Retail" },
+            { clusterId: 12, text: "Telecommunications" },
+            { clusterId: 13, text: "Transportation & Distribution" },
+        ],
+
+        subcluster: [
+            { subId: 0, text: "Car Dealerships", clusterId: 13 },
+            { subId: 1, text: "Consumer Goods/Grocery Stores", clusterId: 11 },
+            { subId: 2, text: "Department Store", clusterId: 11 },
+            {
+                subId: 3,
+                text: "Food Services and Drinking Places",
+                clusterId: 3,
+            },
+            { subId: 4, text: "Fuel", clusterId: 13 },
+            {
+                subId: 5,
+                text: "Motorcycle, ATV, and All Other Motor Vehicle Dealers",
+                clusterId: 13,
+            },
+            { subId: 6, text: "Other", clusterId: 3 },
+            { subId: 7, text: "Other", clusterId: 11 },
+            { subId: 8, text: "Other", clusterId: 13 },
+            { subId: 9, text: "Personal Services", clusterId: 3 },
+            { subId: 10, text: "Pet Services & Supplies", clusterId: 11 },
+            { subId: 11, text: "Repair & Maintenance", clusterId: 3 },
+            { subId: 12, text: "Tire Shop", clusterId: 13 },
+            { subId: 13, text: "Vehicle Maintenance/Repair", clusterId: 13 },
         ],
     };
 });

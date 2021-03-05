@@ -1,4 +1,5 @@
 ![](http://geo.azmag.gov/maps/readonaz/app/resources/img/maglogo_black.png)
+
 # Peoria-Business-Resources-Tool
 
 [![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=my-website)](http://geo.azmag.gov/maps/health)
@@ -18,11 +19,11 @@ The Maricopa Association of Governments (MAG) mapping page showing businesses op
 
 ## Version
 
-### version | 2.0.0 ###
+### version | 2.1.0
 
-* #### Updated | 2021-01-28 ####
+-   #### Updated | 2021-03-04
 
-* #### Created | 2020-04-09 ####
+-   #### Created | 2020-04-09
 
 Releases will be numbered with the following format:
 
@@ -40,22 +41,22 @@ And constructed with the following guidelines:
 
 ## Site URL's
 
-
+[Peoria Biz Locations](https://geo.azmag.gov/maps/peoriabiz/)
 
 ## Documentation
 
 A detailed list of the changes and fixes in each version update can be found in the `CHANGELOG.md`.
 
-* [CHANGELOG](CHANGELOG.md)
+-   [CHANGELOG](CHANGELOG.md)
 
 ## Technologies
 
-* Bootstrap v3.3.7
-* Modernizr v3.5.0
-* Font-Awesome v4.7
-* jQuery v3.3.1
-* Google Analytics
-* Grunt v1.0.4
+-   Bootstrap v3.3.7
+-   Modernizr v3.5.0
+-   Font-Awesome v4.7
+-   jQuery v3.3.1
+-   Google Analytics
+-   Grunt v1.0.4
 
 ## Process
 
@@ -63,9 +64,9 @@ A detailed list of the changes and fixes in each version update can be found in 
 
 ## Dependencies
 
-* [git-labelmaker](https://github.com/himynameisdave/git-labelmaker?utm_source=hashnode.com)
+-   [git-labelmaker](https://github.com/himynameisdave/git-labelmaker?utm_source=hashnode.com)
 
-#### ***Reference Example Sites***
+#### **_Reference Example Sites_**
 
 ## Legal Disclaimer
 
