@@ -2,97 +2,100 @@
  Controls
 ********************/
 #controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: $text-white;
+  background-color: lighten($peoria-main, 10%);
+  width: auto;
+
+  #bizControls {
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    color: $text-white;
-    background-color: lighten($peoria-main, 10%);
-    width: auto;
+    order: 1;
+    // font-size: 16px;
+    padding-top: 15px;
 
-    #bizControls {
-        display: flex;
-        justify-content: center;
-        order: 1;
-        font-size: 16px;
-        padding-top: 15px;
+    .input-group {
+      margin-bottom: 10px;
+    }
+  }
 
-        .input-group {
-            margin-bottom: 10px;
-        }
+  #specials {
+    padding-top: 20px;
+    order: 2;
+
+    p {
+      font-size: 12px;
+      margin-bottom: 1px;
+      text-align: center;
     }
 
-    #specials {
-        padding-top: 20px;
-        order: 2;
-
-        p {
-            font-size: 12px;
-            margin-bottom: 1px;
-            text-align: center;
-        }
-
-        ul.fieldlist {
-            margin-bottom: 0px;
-        }
-
-        .fieldlist {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding-left: 0px;
-
-            li {
-                margin-left: 20px;
-                font-size: 20px;
-                font-weight: 600;
-            }
-
-        }
+    ul.fieldlist {
+      margin-bottom: 0px;
     }
+
+    .fieldlist {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding-left: 0px;
+
+      li {
+        margin-left: 20px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+  }
 }
 
 #bizDropDown {
-    width: 350px;
-    margin-right: 25px;
+  width: 350px;
+  margin: 0 10px;
 }
 
 #catDropDown {
-    width: 210px;
+  width: 210px;
+  margin: 0 5px;
+}
+
+#subDropDown {
+  width: 210px;
+  margin: 0 5px;
 }
 
 #info-btn {
-    display: flex;
-    justify-content: flex-end;
-    color: $text-white;
-    background-color: lighten($peoria-main, 10%);
-    padding-right: 5px;
-    padding-top: 2px;
-    width: auto;
+  display: flex;
+  justify-content: flex-end;
+  color: $text-white;
+  background-color: lighten($peoria-main, 10%);
+  padding-right: 5px;
+  padding-top: 2px;
+  width: auto;
 }
-
-
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
-
-    .fieldlist {
-
-        li label {
-            font-size: 16px;
-        }
+  .fieldlist {
+    li label {
+      font-size: 16px;
     }
+  }
 }
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
-    #bizControls {
-        flex-direction: column;
-        justify-content: center;
-    }
+  #bizControls {
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 // Medium devices (tablets, less than 992px)
-@media (max-width: 991.98px) {}
+@media (max-width: 991.98px) {
+}
 
 // Large devices (desktops, less than 1200px)
-@media (max-width: 1199.98px) {}
+@media (max-width: 1199.98px) {
+}

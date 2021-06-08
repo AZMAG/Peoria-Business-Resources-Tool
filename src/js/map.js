@@ -102,7 +102,6 @@ define([
         } else {
             selectedId = null;
         }
-
         let cardData = await getCardListData(lyrView);
         if (cardData) {
             let cardsList = getCardsList(cardData, selectedId);
@@ -148,15 +147,48 @@ define([
                 return val ? `${filter.field} = ${val}` : null;
             })
             .filter((fltr) => fltr);
-        var dropdown = $("#bizCat");
-        var bizData = dropdown.data("kendoComboBox");
-        var dataItem = bizData.dataItem();
 
         if (checkboxes.length > 0) {
             definitionExpression += " AND " + checkboxes.join(" AND ");
         }
-        if (dataItem) {
-            definitionExpression += ` AND cluster_pe = '${dataItem}'`;
+        // console.log(definitionExpression);
+        return definitionExpression;
+    }
+
+    function getBizCatDef() {
+        let definitionExpression = "active=1";
+        // Category Dropdown {catDropDown}
+        var dropdown = $("#bizCat");
+        var bizCatData = dropdown.data("kendoDropDownList");
+        var bizCatItem = bizCatData.dataItem();
+        // console.log(bizCatItem.text);
+
+        if (bizCatItem.text === "Select a Category...") {
+            definitionExpression;
+        } else {
+            definitionExpression += ` AND cluster_pe = '${bizCatItem.text}'`;
+        }
+        // console.log(definitionExpression);
+        return definitionExpression;
+    }
+    function getBizSubCatDef() {
+        let definitionExpression = "active=1";
+
+        // Category Dropdown {catDropDown}
+        var dropdown = $("#bizCat");
+        var bizCatData = dropdown.data("kendoDropDownList");
+        var bizCatItem = bizCatData.dataItem();
+        // console.log(bizCatItem.text);
+        // Subcategory Dropdown {subDropDown}
+        var dropdown = $("#bizSubCat");
+        var bizSubData = dropdown.data("kendoDropDownList");
+        var bizSubItem = bizSubData.dataItem();
+        // console.log(bizSubItem.text);
+
+        if (bizSubItem.text === "Select a Subcategory...") {
+            definitionExpression;
+        } else {
+            definitionExpression += `And cluster_pe = '${bizCatItem.text}' AND subcluster_pe = '${bizSubItem.text}'`;
         }
         // console.log(definitionExpression);
         return definitionExpression;
@@ -238,10 +270,11 @@ define([
                     // console.log(cardData);
                     $("#cardsList").html(cardsList.join(""));
                 }
+                // console.log(cardData);
                 setupBizDropdown(cardData);
-                bizCatogory(cardData);
             }
         });
+        bizCatogory();
     });
 
     // Search by Business Function
@@ -261,7 +294,7 @@ define([
                     dir: "asc",
                 },
             },
-            placeholder: "Select a Business",
+            placeholder: "Select a Business...",
             change: onChange,
         });
 
@@ -281,22 +314,33 @@ define([
 
     function bizCatogory(data) {
         // console.log(data);
-        let unique = [...new Set(data.map((item) => item.cluster_pe))];
-        // create ComboBox from input HTML element
-        $("#bizCat").kendoComboBox({
-            dataSource: {
-                data: unique,
-                sort: {
-                    dir: "asc",
-                },
-            },
-            placeholder: "Select a Category",
-            change: onChange,
+        // let unique = [...new Set(data.map((item) => item.cluster_pe))];
+        // console.log(unique);
+        // create dropdown list from input HTML element
+        $("#bizCat").kendoDropDownList({
+            dataSource: config.cluster,
+            dataTextField: "text",
+            dataValueField: "clusterId",
+            optionLabel: "Select a Category...",
+            change: onChange1,
+        });
+        $("#bizSubCat").kendoDropDownList({
+            autoBind: false,
+            cascadeFrom: "bizCat",
+            dataSource: config.subcluster,
+            dataTextField: "text",
+            dataValueField: "subId",
+            optionLabel: "Select a Subcategory...",
+            change: onChange2,
         });
 
-        function onChange() {
+        function onChange1() {
             const peoriaBusinessesLayer = map.findLayerById("peoriaBusinesses");
-            peoriaBusinessesLayer.definitionExpression = getCurrentDefinitionExpression();
+            peoriaBusinessesLayer.definitionExpression = getBizCatDef();
+        }
+        function onChange2() {
+            const peoriaBusinessesLayer = map.findLayerById("peoriaBusinesses");
+            peoriaBusinessesLayer.definitionExpression = getBizSubCatDef();
         }
     }
 

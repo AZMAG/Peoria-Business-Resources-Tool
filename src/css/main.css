@@ -931,7 +931,6 @@ a.card-link:visited {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
-  font-size: 16px;
   padding-top: 15px;
 }
 
@@ -975,11 +974,17 @@ a.card-link:visited {
 
 #bizDropDown {
   width: 350px;
-  margin-right: 25px;
+  margin: 0 10px;
 }
 
 #catDropDown {
   width: 210px;
+  margin: 0 5px;
+}
+
+#subDropDown {
+  width: 210px;
+  margin: 0 5px;
 }
 
 #info-btn {

@@ -13,8 +13,9 @@ define([
     "esri/Graphic",
     "esri/layers/FeatureLayer",
     "esri/geometry/Point",
-], function(
-    config, { view },
+], function (
+    config,
+    { view },
     Draw,
     geometryEngine,
     Graphic,
@@ -114,7 +115,7 @@ define([
         });
 
         action = draw.create("point");
-        action.on("cursor-update", function(evt) {
+        action.on("cursor-update", function (evt) {
             if (drawing) {
                 $iconTooltip.css({
                     display: "block",
@@ -132,7 +133,7 @@ define([
             }
         });
 
-        action.on("draw-complete", function(evt) {
+        action.on("draw-complete", function (evt) {
             $commentPin.removeClass("active");
             $btnCancelDrawing.hide();
             $iconTooltip.hide();
@@ -205,7 +206,8 @@ define([
                 console.log(icon[0].files[0]);
             }
 
-            addMissingBusiness({
+            addMissingBusiness(
+                {
                     BusinessName,
                     BusinessAddress,
                     BusinessWebsite,
@@ -223,12 +225,19 @@ define([
 
             ResetForm();
 
-            $(".successMessage").fadeIn(300, function() {
+            $(".successMessage").fadeIn(300, function () {
                 var message = this;
-                setTimeout(function() {
+                setTimeout(function () {
                     $(message).fadeOut(500);
                 }, 3000);
             });
+
+            $.getJSON(
+                "https://geo.azmag.gov/services/api/email/peoria",
+                function (data) {
+                    console.log(data);
+                }
+            );
         }
     }
 
@@ -252,11 +261,12 @@ const readUploadedFileAsText = (inputFile) => {
 };
 
 function uuidv4() {
-    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(
-        c
-    ) {
-        var r = (Math.random() * 16) | 0,
-            v = c == "x" ? r : (r & 0x3) | 0x8;
-        return v.toString(16);
-    });
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+        /[xy]/g,
+        function (c) {
+            var r = (Math.random() * 16) | 0,
+                v = c == "x" ? r : (r & 0x3) | 0x8;
+            return v.toString(16);
+        }
+    );
 }
