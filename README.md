@@ -2,7 +2,7 @@
 
 # Peoria-Business-Resources-Tool
 
-[![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=my-website?style=flat-square)](https://geo.azmag.gov/maps/peoriabiz/)
+[![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=my-website)](https://geo.azmag.gov/maps/peoriabiz/?style=flat-square)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/AZMAG/Peoria-Business-Resources-Tool?style=flat-square)
 ![GitHub Release Date](https://img.shields.io/github/release-date/AZMAG/Peoria-Business-Resources-Tool?style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/AZMAG/Peoria-Business-Resources-Tool?style=flat-square)
