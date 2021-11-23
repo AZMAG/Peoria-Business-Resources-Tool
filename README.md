@@ -1,6 +1,7 @@
 ![](http://geo.azmag.gov/maps/readonaz/app/resources/img/maglogo_black.png)
 
 # Peoria-Business-Resources-Tool
+
 ![Website](https://img.shields.io/website?style=flat-square&url=https%3A%2F%2Fgeo.azmag.gov%2Fmaps%2Fpeoriabiz%2F)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/AZMAG/Peoria-Business-Resources-Tool?style=flat-square)
 ![GitHub Release Date](https://img.shields.io/github/release-date/AZMAG/Peoria-Business-Resources-Tool?style=flat-square)
