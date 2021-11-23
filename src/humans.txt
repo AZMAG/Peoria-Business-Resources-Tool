@@ -47,8 +47,8 @@
 # SITE
     Site Name: Peoria-Business-Resources-Tool
     Site URL: http://geo.azmag.gov/maps/peoriabiz/
-    Version: 2.1.1
-	Last updated: 2021-03-09
+    Version: 2.1.2
+	Last updated: 2021-11-23
     Creation date: 2020-04-09
 	Language: English
 	Doctype: HTML5
