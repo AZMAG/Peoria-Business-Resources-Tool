@@ -1,4 +1,11 @@
-![](http://geo.azmag.gov/maps/readonaz/app/resources/img/maglogo_black.png)
+<div class="row">
+  <div class="column">
+    <img src="./logos/mag-logo-black.png" width="200">
+  </div>
+  <div class="column">
+    <img src="./logos/Peoria.png" width="200">
+  </div>
+</div>
 
 # Peoria-Business-Resources-Tool
 
