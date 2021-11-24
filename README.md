@@ -1,10 +1,6 @@
-<div class="row">
-  <div class="column">
-    <img src="./logos/mag-logo-black.png" width="200">
-  </div>
-  <div class="column">
-    <img src="./logos/Peoria.png" width="200">
-  </div>
+<div>
+    <a href="https://www.peoriaaz.gov/"><img src="./assets/images/Peoria.png" alt="Peoria Logo" width="125"></a>
+    <a href="https://www.azmag.gov/"><img src="./assets/images/mag-logo-black.png" alt="MAG Logo" width="300"></a>
 </div>
 
 # Peoria-Business-Resources-Tool
@@ -14,7 +10,7 @@
 ![GitHub Release Date](https://img.shields.io/github/release-date/AZMAG/Peoria-Business-Resources-Tool?style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/AZMAG/Peoria-Business-Resources-Tool?style=flat-square)
 ![GitHub issues](https://img.shields.io/github/issues-raw/AZMAG/Peoria-Business-Resources-Tool?style=flat-square)
-![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/AZMAG/mag-react-template?style=flat-square)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/AZMAG/Peoria-Business-Resources-Tool?style=flat-square)
 ![semver](https://img.shields.io/badge/semver-2.0.0-blue?style=flat-square)
 [![Built with Grunt](http://cdn.gruntjs.com/builtwith.png?style=flat-square)](http://gruntjs.com/)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
@@ -55,11 +51,18 @@ And constructed with the following guidelines:
 
 A list of technologies used within the project:
 
-- [Bootstrap](https://getbootstrap.com/docs/3.3/) v3.3.7
-- [jQuery](https://jquery.com/) v3.3.1
-- [Font-Awesome](https://fontawesome.com/) v4.7
-- [Modernizr](https://modernizr.com/) v3.5.0
-- [Grunt](https://gruntjs.com/) v1.0.4
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" title="JavaScript"><img src="https://github.com/get-icon/geticon/raw/master/icons/javascript.svg" alt="JavaScript" width="31px" height="31px"></a>
+<a href="https://jquery.com/" title="jQuery"><img src="https://github.com/get-icon/geticon/raw/master/icons/jquery-icon.svg" alt="jQuery" width="31px" height="31px"></a>
+<a href="https://www.w3.org/TR/html5/" title="HTML5"><img src="https://github.com/get-icon/geticon/raw/master/icons/html-5.svg" alt="HTML5" width="31px" height="31px"></a>
+<a href="https://www.w3.org/TR/CSS/" title="CSS3"><img src="https://github.com/get-icon/geticon/raw/master/icons/css-3.svg" alt="CSS3" width="31px" height="31px"></a>
+<a href="https://getbootstrap.com/" title="Bootstrap"><img src="https://github.com/get-icon/geticon/raw/master/icons/bootstrap.svg" alt="Bootstrap" width="31px" height="31px"></a>
+<a href="https://fontawesome.com/" title="Font-Awesome"><img src="https://github.com/get-icon/geticon/raw/master/icons/font-awesome.svg" alt="Font-Awesome" width="31px" height="31px"></a>
+<a href="https://sass-lang.com/" title="Sass"><img src="https://github.com/get-icon/geticon/raw/master/icons/sass.svg" alt="Sass" width="31px" height="31px"></a>
+<a href="https://github.com/sass/node-sass" title="Node-Sass"><img src="https://github.com/get-icon/geticon/raw/master/icons/node-sass.svg" alt="Node-Sass" width="31px" height="31px"></a>
+<a href="https://modernizr.com/" title="Modernizr"><img src="https://github.com/get-icon/geticon/raw/master/icons/modernizr.svg" alt="Modernizr" width="31px" height="31px"></a>
+<a href="https://eslint.org/" title="ESLint"><img src="https://github.com/get-icon/geticon/raw/master/icons/eslint.svg" alt="ESLint" width="31px" height="31px"></a>
+<a href="https://prettier.io/" title="Prettier"><img src="https://github.com/get-icon/geticon/raw/master/icons/prettier.svg" alt="Prettier" width="31px" height="31px"></a>
+<a href="https://gruntjs.com//" title="Grunt"><img src="https://github.com/get-icon/geticon/raw/master/icons/grunt.svg" alt="grunt" width="31px" height="31px"></a>
 
 ## :zap: Disclaimer
 
