@@ -21,9 +21,15 @@ The Maricopa Association of Governments (MAG) mapping page showing businesses op
 
 `economic development` `businesses` `City of Peoria` `Maricopa County` `State` `Arizona` `MAG` `maps` `ESRI` `#MAGmaps`
 
+## dependencies
+
+For changes being made to email notifications, this project will need to also be modified.
+
+- [mag-node-services](https://github.com/AZMAG/mag-node-services)
+
 ## Version
 
-### version | 2.1.2
+### version | 2.2.0
 
 - #### Updated | 2021-03-04
 
@@ -62,7 +68,8 @@ A list of technologies used within the project:
 <a href="https://modernizr.com/" title="Modernizr"><img src="https://github.com/get-icon/geticon/raw/master/icons/modernizr.svg" alt="Modernizr" width="31px" height="31px"></a>
 <a href="https://eslint.org/" title="ESLint"><img src="https://github.com/get-icon/geticon/raw/master/icons/eslint.svg" alt="ESLint" width="31px" height="31px"></a>
 <a href="https://prettier.io/" title="Prettier"><img src="https://github.com/get-icon/geticon/raw/master/icons/prettier.svg" alt="Prettier" width="31px" height="31px"></a>
-<a href="https://gruntjs.com//" title="Grunt"><img src="https://github.com/get-icon/geticon/raw/master/icons/grunt.svg" alt="grunt" width="31px" height="31px"></a>
+<a href="https://nodejs.org/en/" title="Grunt"><img src="https://github.com/get-icon/geticon/blob/master/icons/nodejs-icon.svg" alt="nodejs" width="31px" height="31px"></a>
+<a href="https://gruntjs.com/" title="Grunt"><img src="https://github.com/get-icon/geticon/raw/master/icons/grunt.svg" alt="grunt" width="31px" height="31px"></a>
 
 ## :zap: Disclaimer
 
