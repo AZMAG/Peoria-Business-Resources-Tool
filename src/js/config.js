@@ -48,7 +48,7 @@ define([], function () {
     };
 
     return {
-        version: "v2.2.0 | 2021-12-13",
+        version: "v2.3.0 | 2021-12-15",
         copyright: "2021",
 
         peoriaURL: "https://www.peoriaaz.gov/",

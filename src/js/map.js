@@ -52,6 +52,7 @@ define([
 
   var peoriaBusinessesLayer = new FeatureLayer({
     url: config.pBusinessLayer,
+    definitionExpression: "active = 1",
     id: "peoriaBusinesses",
     outFields: ["*"],
     renderer: {
