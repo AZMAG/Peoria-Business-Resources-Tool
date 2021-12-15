@@ -29,7 +29,7 @@ For changes being made to email notifications, this project will need to also be
 
 ## Version
 
-### version | 2.2.0
+### version | 2.3.0
 
 - #### Updated | 2021-03-04
 
