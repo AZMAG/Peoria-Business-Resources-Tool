@@ -72,7 +72,7 @@
     "lodash": "^4.17.20",
     "mag-prettier-config": "^1.0.3",
     "matchdep": "^2.0.0",
-    "node-sass": "^6.0.1",
+    "node-sass": "^7.0.0",
     "normalize.css": "^8.0.1",
     "pixrem": "^5.0.0",
     "postcss-preset-env": "^7.0.1",
